@@ -1,0 +1,29 @@
+.conteneur{
+  background-color: gainsboro;
+  & > div{
+    flex: 1 1 50%;
+    overflow: hidden;
+
+    &.fonds{
+      img{
+        width: 100vw;
+        height: 100vh;
+      }
+    }
+
+    &.formulaire{
+      position: relative;
+      &>div{
+        min-width: 40%;
+        min-height: 45vh;
+        background-color: whitesmoke;
+        border-radius: 20px;
+        padding: 25px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}

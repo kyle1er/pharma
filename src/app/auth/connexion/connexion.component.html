@@ -1,0 +1,29 @@
+<div class="conteneur">
+  <h2>Connexion</h2>
+
+  <div class="myForm">
+    <div>
+      <label for="pseudo">Pseudo</label>
+      <input type="text" id="pseudo">
+    </div>
+    <div>
+      <label for="password">Mot de passe</label>
+      <input type="password" id="password">
+    </div>
+  </div>
+
+  <div class="secondaireAction d-flex justify-content-between ">
+    <label for="rememberMe">
+      <input type="checkbox" id="rememberMe"> Se souvenir de moi
+    </label>
+    <span [routerLink]="['/auth/passWord-forget']" >Mot de passe oublié</span>
+  </div>
+
+  <div class="login">
+    <button class="btn btn-outline">Se connecter</button>
+  </div>
+
+  <div class="createLogin">
+    <span [routerLink]="['/inscription']" >Créer un compte</span>
+  </div>
+</div>

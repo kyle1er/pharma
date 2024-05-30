@@ -1,0 +1,71 @@
+<div class="conteneur">
+  <img [src]="'assets/images/world-1185076_1280.png'" alt="">
+  <div class="myForm d-flex">
+    <div class="imagFond">
+      <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
+    </div>
+    <div class="formDiv d-flex flex-column">
+      <h2>Formulaire d'inscription</h2>
+
+      <div class="d-flex flex-column" *ngIf="step === 0">
+        <!-- INFORMATIONS PERSONNELLES -->
+
+        <input type="text" placeholder="Nom">
+        <input type="text" placeholder="Prénom( s )">
+        <!-- <div class="d-flex justify-content-between">
+        </div> -->
+
+        <div class="d-flex flex-column">
+          <fieldset class="birthInfo">
+            <legend>Date et lieu de naissance</legend>
+            <div class="d-flex justify-content-between">
+              <input type="date" name="" id="" placeholder="Date de naissance">
+              <input class="naissance" type="text" placeholder="Lieu de naissance">
+            </div>
+          </fieldset>
+
+          <fieldset class="etatCivil">
+            <legend>Etat civil</legend>
+            <div class="d-flex justify-content-between py-3 px-4">
+              <label for="Célibataire">
+                Célibataire
+                <input type="radio" name="etatcivil" id="Célibataire">
+              </label>
+              <label for="Marié">
+                Marié
+                <input type="radio" name="etatcivil" id="Marié">
+              </label>
+              <label for="Divorcé">
+                Divorcé
+                <input type="radio" name="etatcivil" id="Divorcé">
+              </label>
+              <label for="Veuf">
+                Veuf (ve)
+                <input type="radio" name="etatcivil" id="Veuf">
+              </label>
+            </div>
+          </fieldset>
+
+          <input type="text" placeholder="Nationnalité">
+
+          <input type="tel" placeholder="Numéro de téléphone">
+          <input type="email" placeholder="Adresse mail">
+          <input type="text" placeholder="Situation géographique actuelle (Quartier)">
+
+          <!-- <select name="" id="">
+            <option value="M">Homme</option>
+            <option value="H">Femme</option>
+          </select>
+          <input type="password" name="">
+          <input type="password" name=""> -->
+        </div>
+      </div>
+
+      <div class="action d-flex justify-content-between ">
+        <button class="btn" (click)="stepNavigation('-')" >Précédant</button> <!-- *ngIf="step > 0" -->
+        <button class="btn" (click)="stepNavigation('+')">Suivant</button> <!-- *ngIf="step <= 3" -->
+        <button class="btn"  >Enregistrer</button> <!-- *ngIf="step === 3" -->
+      </div>
+    </div>
+  </div>
+</div>
