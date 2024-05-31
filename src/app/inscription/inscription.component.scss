@@ -15,8 +15,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    min-width: 45%;
-    max-width: 45%;
+    min-width: 65%;
+    max-width: 65%;
     min-height: 70vh;
     max-height: 70vh;
     background-color: rgba(255, 255, 255, 0.905);
@@ -60,27 +60,46 @@
 
 
         fieldset {
-          // padding: 0px 5px;
-          margin-bottom: 5px;
-          border: 1px solid gray;
+          padding: 0px 5px;
+          margin-bottom: 2px 5px;
+          // border: 1px solid gray;
+          &.titreL legend{
+            font-size: 15px;
+            font-weight: 700;
+
+            & +div {
+              input.lieu {
+                flex: 1 1 80%;
+                margin-left: 5px;
+              }
+
+              ol{
+                width: 100%;
+                li{
+                  flex: 0 1 45%;
+                }
+              }
+            }
+          }
 
           &.birthInfo {
-            padding: 0px 5px;
-            background-color: gainsboro;
+            // padding: 0px 5px;
+            // background-color: gainsboro;
 
-            input.naissance {
-              flex: 1 1 80%;
-              margin-left: 5px;
-            }
+            // input.naissance {
+            //   flex: 1 1 80%;
+            //   margin-left: 5px;
+            // }
           }
 
           &.etatCivil {
 
             // border: 1px solid gray;
             legend {
-              background-color: gainsboro;
+              // background-color: gainsboro;
               // color: #fff;
-              padding: 3px 6px;
+              // padding: 3px 6px;
+
             }
 
             label,
@@ -106,7 +125,8 @@
         &:hover {
           background-color: rgba(0, 0, 0, 0.3);
         }
-        &:disabled{
+
+        &:disabled {
           cursor: not-allowed !important;
         }
       }
