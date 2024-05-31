@@ -1,0 +1,15 @@
+<div class="conteneur d-flex flex-column">
+  <div class="logo">
+    <img [src]="'assets/images/medic-152458_1280.png'" alt="">
+  </div>
+  <div class="menuItems">
+    <div class="items d-flex align-items-center" *ngFor="let item of dataMenu" routerLink="[{{'/'+item.lien}}]" routerLinkActive="router-link-active" >
+      <span class="material-symbols-outlined mx-2">
+        {{item.icon}}
+        </span>
+        <span>
+          {{item.libelle}}
+        </span>
+    </div>
+  </div>
+</div>

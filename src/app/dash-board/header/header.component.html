@@ -1,0 +1,41 @@
+<div class="conteneur d-flex justify-content-between align-items-center ">
+  <div class="welcome">
+    <span>
+      Bienvenue, {{"M. John"}}
+    </span>
+  </div>
+
+  <div class="otre d-flex">
+    <div class="compte d-flex" (click)="compte.click()" >
+      <div class="avatar">
+        <img [src]="'assets/images/world-1185076_1280.png'" alt="">
+      </div>
+      <div class="user d-flex justify-content-between align-items-center ">
+        <span id="name"> {{"John"}} </span>
+        <span #compte class="material-symbols-outlined" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"><!-- (mouseout)="showMenu(compte)" (click)="showMenu(compte)" -->
+          arrow_drop_down
+          </span>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item>Compte</li>
+              <li nz-menu-item>Se déconnecter</li>
+              <!-- <li nz-menu-divider></li>
+              <li nz-menu-item nzDisabled>disabled menu item</li>
+              <li nz-submenu nzTitle="sub menu">
+                <ul>
+                  <li nz-menu-item>3rd menu item</li>
+                  <li nz-menu-item>4th menu item</li>
+                </ul>
+              </li>
+              <li nz-submenu nzDisabled nzTitle="disabled sub menu">
+                <ul>
+                  <li nz-menu-item>3rd menu item</li>
+                  <li nz-menu-item>4th menu item</li>
+                </ul>
+              </li> -->
+            </ul>
+          </nz-dropdown-menu>
+      </div>
+    </div>
+  </div>
+</div>
