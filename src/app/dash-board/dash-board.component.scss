@@ -1,21 +1,21 @@
-.conteneur{
+.conteneur {
   width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  padding: 10px;
+  padding: 50px;
   background-image: url('../../assets/images/pill-681121_1280.jpg');
   background-size: 100% 100%;
   background-repeat: no-repeat;
 
 
-  & > img{
+  &>img {
     width: 100%;
     height: 100%;
     // opacity: .2;
   }
 
-  & #layout{
+  & #layout {
     // position: absolute;
     // top: 50%;
     // left: 50%;
@@ -23,32 +23,82 @@
     width: 100%;
     height: 100%;
 
-    #left{
-      flex: 0 0 12%;
+    // #left{
+    //   flex: 0 0 12%;
+    //   background-color: rgba(135, 207, 235, 0.5);
+    // }
+    #tete {
+      width: 100%;
+      min-height: 70px;
+      max-height: 70px;
+      border-radius: 45px;
       background-color: rgba(135, 207, 235, 0.5);
     }
 
-    #right{
-      margin: 0px 25px ;
-      // padding: 0px;
-      border-radius: 15px;
+    #data {
+      margin-top: 50px;
+      flex: 1 1 100%;
+      min-height: 75vh;
+      border-radius: 20px;
+      flex-wrap: wrap;
+      padding: 15px;
       overflow: hidden;
-      flex: 1 1 75%;
-      // background-color: #fff;
-      // background-color: rgba(var(--vert), 1);
+      background-color: rgba(255, 166, 0, 0.411);
 
-      #tete{
-        width: 100%;
-        min-height: 80px ;
-        max-height: 80px ;
-        background-color: rgba(135, 207, 235, 0.5);
+      & >div{
+        flex: 0 1 45%;
+        border: 1px solid;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 5px;
+        border: none;
+        h3{
+          color: white;
+          text-shadow: 0px 5px 15px var(--vert);
+          position: relative;
+          text-transform: uppercase;
+          // text-decoration: underline;
+          margin-bottom: 15px;
+          margin-top: 5px;
+
+          &::after{
+            position: absolute;
+            content: "";
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 5px;
+            width: 40%;
+            background-color: rgba(0, 0, 0, 0.426);
+          }
+        }
       }
 
-      #list{
-        margin-top: 20px;
-        flex: 1 1 100%;
-        background-color: rgba(255, 166, 0, 0.411);
+      #formation{
+        // flex-basis: 35%;
+        // border-left: 5px solid gainsboro;
+        // border-right: 5px solid gainsboro;
+      }
+
+      #pro{
+        flex-grow: 1;
+        // flex-basis: 25%;
       }
     }
+
+    // #right{
+    //   margin: 0px 25px ;
+    //   // padding: 0px;
+    //   border-radius: 15px;
+    //   overflow: hidden;
+    //   flex: 1 1 75%;
+    //   // background-color: #fff;
+    //   // background-color: rgba(var(--vert), 1);
+
+
+
+
+    // }
   }
 }

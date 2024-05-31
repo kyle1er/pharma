@@ -1,27 +1,38 @@
 <div class="conteneur">
   <!-- <img [src]="'assets/images/pill-681121_1280.jpg'" alt=""> -->
 
-  <div id="layout" class="d-flex">
+  <div id="layout" class="d-flex flex-column">
 
-    <div id="left">
+    <!-- <div id="left">
       <app-menu></app-menu>
+    </div> -->
+    <div id="tete">
+      <!-- HEADER -->
+      <app-header></app-header>
+      <!-- HEADER -->
     </div>
 
-    <div id="right" class="d-flex flex-column justify-content-between">
-      <div class="home$ d-flex flex-column ">
-        <div id="tete">
-          <!-- HEADER -->
-          <app-header></app-header>
-          <!-- HEADER -->
+    <div class="home$ d-flex flex-column ">
+
+      <div id="data" class="d-flex justify-content-arround">
+        <!-- DATA LIST -->
+        <!-- <app-dataTable></app-dataTable> -->
+        <!-- DATA LIST -->
+        <div id="perso">
+          <h3>Informations personnelles</h3>
+
         </div>
+        <div id="formation">
+          <h3>Formations</h3>
 
+        </div>
+        <div id="pro">
+          <h3>Informations professionelles</h3>
 
-        <div id="list">
-          <!-- DATA LIST -->
-          <app-dataTable></app-dataTable>
-          <!-- DATA LIST -->
         </div>
       </div>
     </div>
+    <!-- <div id="right" class="d-flex flex-column justify-content-between">
+    </div> -->
   </div>
 </div>
