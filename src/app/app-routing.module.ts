@@ -9,6 +9,9 @@ const routes: Routes = [
     path:"auth", loadChildren: ()=> import('./auth/auth.module').then( auth => auth.AuthModule )
   },
   {
+    path:"pharma", loadChildren: ()=> import('./dash-board/dash-board.module').then( dash => dash.DashBoardModule )
+  },
+  {
     path:"**", redirectTo:"auth"
   }
 ];

@@ -1,0 +1,54 @@
+.conteneur{
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  background-image: url('../../assets/images/pill-681121_1280.jpg');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+
+
+  & > img{
+    width: 100%;
+    height: 100%;
+    // opacity: .2;
+  }
+
+  & #layout{
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+
+    #left{
+      flex: 0 0 12%;
+      background-color: rgba(135, 207, 235, 0.5);
+    }
+
+    #right{
+      margin: 0px 25px ;
+      // padding: 0px;
+      border-radius: 15px;
+      overflow: hidden;
+      flex: 1 1 75%;
+      // background-color: #fff;
+      // background-color: rgba(var(--vert), 1);
+
+      #tete{
+        width: 100%;
+        min-height: 80px ;
+        max-height: 80px ;
+        background-color: rgba(135, 207, 235, 0.5);
+      }
+
+      #list{
+        margin-top: 20px;
+        flex: 1 1 100%;
+        background-color: rgba(255, 166, 0, 0.411);
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.conteneur{
+  // background-color: skyblue;
+  height: 100%;
+
+  & .logo{
+    /* LOGO */
+    width: 80px;
+    height: 80px;
+    margin: 15px auto;
+    overflow: hidden;
+
+
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  /* MENU */
+  & .menuItems{
+
+    .items{
+      border-radius: 15px;
+      background-color: var(--vert);
+      width: 80%;
+      padding: 10px;
+      margin: 5px auto;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.5s;
+
+      &:hover{
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
