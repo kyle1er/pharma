@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashBoardComponent implements OnInit {
 
+  isVisible: boolean = false;
   constructor() { }
 
   ngOnInit() {
   }
 
+  handleOk(): void {
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    this.isVisible = false;
+  }
 }

@@ -134,3 +134,19 @@
     }
   }
 }
+
+
+
+::ng-deep {
+  .ant-modal-content {
+    overflow: hidden;
+    border-radius: 15px;
+  }
+
+  app-form-inscription {
+    .myForm {
+      padding: 0 !important;
+      box-shadow: none !important;
+    }
+  }
+}

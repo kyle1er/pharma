@@ -1,19 +1,19 @@
 <div class="conteneur">
   <h2>Mot de passe oublié</h2>
 
-  <div class="myForm">
+  <div class="myForm" [formGroup]="formulairePwdForget">
     <div>
       <label for="pseudo">Pseudo</label>
-      <input type="text" id="pseudo">
+      <input type="text" id="pseudo" formControlName="pseudo">
     </div>
     <div>
       <label for="email">Adresse mail</label>
-      <input type="email" id="email">
+      <input type="email" id="email" formControlName="mail">
     </div>
   </div>
 
   <div class="soumettre">
-    <button class="btn btn-outline">Soumettre</button>
+    <button class="btn btn-outline" [disabled]="formulairePwdForget.invalid" (click)="pwdForget()">Soumettre</button>
   </div>
 
   <div class="createLogin d-flex justify-content-between">

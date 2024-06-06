@@ -1,3 +1,402 @@
-<p>
-  form-inscription works!
-</p>
+<div class="myForm d-flex">
+  <div class="imagFond">
+    <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
+  </div>
+  <div class="formDiv d-flex flex-column">
+    <div [formGroup]="formulaireInscription">
+
+      <h2>{{ actionTitre === 'NEW' ? "Formulaire d'inscription" : "Modification des informations"}}</h2>
+
+      <div class="d-flex flex-column" *ngIf="step === 0">
+        <!-- INFORMATIONS PERSONNELLES -->
+
+        <input type="text" placeholder="Nom" formControlName="nom">
+        <input type="text" placeholder="Prénom( s )" formControlName="prenom">
+        <!-- <div class="d-flex justify-content-between">
+        </div> -->
+
+        <div class="d-flex flex-column">
+          <fieldset class="titreL birthInfo">
+            <legend>Date et lieu de naissance</legend>
+            <div class="d-flex justify-content-between">
+              <input type="date" id="" placeholder="Date de naissance" formControlName="dateBirth">
+              <input class="lieu" type="text" placeholder="Lieu de naissance" formControlName="lieuBirth">
+            </div>
+          </fieldset>
+
+          <fieldset class="titreL etatCivil">
+            <legend>Etat civil</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+              <label for="Célibataire">
+                Célibataire
+                <input type="radio" id="Célibataire" value="Célibataire" formControlName="etatCivil" />
+              </label>
+              <label for="Marié">
+                Marié
+                <input type="radio" id="Marié" value="Marié" formControlName="etatCivil" />
+              </label>
+              <label for="Divorcé">
+                Divorcé
+                <input type="radio" id="Divorcé" value="Divorcé" formControlName="etatCivil" />
+              </label>
+              <label for="Veuf">
+                Veuf (ve)
+                <input type="radio" id="Veuf" value="Veuf(ve)" formControlName="etatCivil" />
+              </label>
+            </div>
+          </fieldset>
+
+          <input type="text" placeholder="Nationnalité" formControlName="nationalite">
+
+          <input type="tel" placeholder="Numéro de téléphone" formControlName="tel">
+          <input type="email" placeholder="Adresse mail" formControlName="mail">
+          <input type="text" placeholder="Situation géographique actuelle (Quartier)" formControlName="quatier">
+
+          <!-- <select id="">
+            <option value="M">Homme</option>
+            <option value="H">Femme</option>
+          </select>
+          <input type="password" name="">
+          <input type="password" name=""> -->
+        </div>
+      </div>
+
+      <!-- ----------------- -->
+      <!-- ----------------- -->
+      <div class="d-flex flex-column" *ngIf="step === 1">
+        <!-- INFORMATIONS PROFESSIONELLES -->
+
+        <div class="d-flex flex-column">
+          <fieldset class="titreL">
+            <legend>Date de dépôt complet du dossier complet</legend>
+            <div class="d-flex justify-content-between">
+              <input type="text" class="flex-grow-1" id="" placeholder="Date d’obtention" formControlName="dateSoutenance">
+            </div>
+          </fieldset>
+          <fieldset class="titreL">
+            <legend>Date et lieu d’obtention du diplôme (soutenance)</legend>
+            <div class="d-flex justify-content-between">
+              <input type="date" id="" placeholder="Date d’obtention" formControlName="dateSoutenance">
+              <input class="lieu" type="text" placeholder="Lieu d’obtention" formControlName="lieuSoutenance">
+            </div>
+          </fieldset>
+          <fieldset class="titreL">
+            <legend>Date de délivrance du diplôme</legend>
+            <div class="d-flex justify-content-between">
+              <input type="date" id="" placeholder="Date de délivrance" formControlName="dateDelivranceDiplome">
+              <input class="lieu" type="text" placeholder="Lieu de délivrance" formControlName="lieuDelivranceDiplome">
+            </div>
+          </fieldset>
+
+          <fieldset class="titreL">
+            <legend>Section du tableau de l’Ordre souhaitée</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+              <label for="un">
+                1
+                <input type="radio" id="un" formControlName="sectionTable" [value]="1">
+              </label>
+              <label for="deux">
+                2
+                <input type="radio" id="deux" formControlName="sectionTable" [value]="2">
+              </label>
+              <label for="trois">
+                3
+                <input type="radio" id="trois" formControlName="sectionTable" [value]="3">
+              </label>
+              <label for="quatre">
+                4
+                <input type="radio" id="quatre" formControlName="sectionTable" [value]="4">
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- - -->
+          <!-- - -->
+          <!-- - -->
+          <fieldset class="titreL">
+            <legend>Demande de changement de section</legend>
+            <div class="d-flex justify-content-center py-1 px-4">
+              <label for="non" class="mx-2">
+                NON
+                <input type="radio" id="non" formControlName="sectionDemande" value="OUI">
+              </label>
+              <label for="oui" class="mx-2">
+                OUI
+                <input type="radio" id="oui" formControlName="sectionDemande" value="NON">
+              </label>
+            </div>
+          </fieldset>
+
+        </div>
+      </div>
+
+      <!-- ------- -->
+      <!-- ------- -->
+      <!-- ------- -->
+      <div class="d-flex flex-column" *ngIf="step === 2">
+        <!-- INFORMATIONS PROFESSIONELLES -->
+
+        <div class="d-flex flex-column">
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <fieldset class="titreL">
+            <legend>Etablissement pharmaceutique ou employeur</legend>
+            <div class="d-flex flex-column py-1 px-4" [formGroupName]="'etabPharmaceutique'">
+              <div class="d-flex flex-column">
+                <label for="Raisonsociale">Raison sociale</label>
+                <input type="text" id="Raisonsociale" formControlName="raisonSocial">
+              </div>
+
+              <div class="d-flex flex-column">
+                <label for="Adressepostale">Adresse postale</label>
+                <input type="text" id="Adressepostale" formControlName="adressePost">
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                  <label for="telEtabli">Tel.</label>
+                  <input type="text" id="telEtabli" formControlName="tel">
+                </div>
+
+                <div class="d-flex flex-column">
+                  <label for="fax">Fax</label>
+                  <input type="text" id="fax" formControlName="fax">
+                </div>
+              </div>
+
+
+              <div class="d-flex flex-column">
+                <label for="Adressegeographique">Adresse géographique</label>
+                <input type="text" id="Adressegeographique" formControlName="adresseGeographique">
+              </div>
+
+            </div>
+          </fieldset>
+
+        </div>
+      </div>
+
+      <!-- ------- -->
+      <!-- ------- -->
+      <!-- ------- -->
+      <div class="d-flex flex-column" *ngIf="step === 3">
+        <!-- INFORMATIONS PROFESSIONELLES -->
+
+        <div class="d-flex flex-column">
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <fieldset class="titreL">
+            <legend>Personnes à contacter</legend>
+            <div class="d-flex py-1 px-4" [formGroupName]="'contact'">
+
+              <ol class="d-flex justify-content-between px-2">
+                <li><b>Entourage immédiat</b>
+                  <div class="d-flex flex-column" [formGroupName]="'contactImmediat'">
+                    <div class="d-flex flex-column">
+                      <label for="immediatName">Nom et Prénoms</label>
+                      <input type="text" id="immediatName" formControlName="nom_prenoms">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatAdress">Adresse</label>
+                      <input type="text" id="immediatAdress" formControlName="adresse">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatTel">Tel.</label>
+                      <input type="text" id="immediatTel" formControlName="tel">
+                    </div>
+                  </div>
+                </li>
+                <li><b>Entourage Professionnel</b>
+                  <div class="d-flex flex-column" [formGroupName]="'contactPro'">
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelName">Nom et Prénoms</label>
+                      <input type="text" id="ProfessionnelName" formControlName="nom_prenoms">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelAdress">Adresse</label>
+                      <input type="text" id="ProfessionnelAdress" formControlName="adresse">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelTel">Tel.</label>
+                      <input type="text" id="ProfessionnelTel" formControlName="tel">
+                    </div>
+                  </div>
+                </li>
+              </ol>
+
+            </div>
+          </fieldset>
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <fieldset class="titreL">
+            <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+
+              <label for="attributionstresbien">Très bien
+                <input type="radio" id="attributionstresbien" formControlName="attributionsOrdre" value="Très bien">
+              </label>
+
+              <label for="attributionsbien">Bien
+                <input type="radio" id="attributionsbien" formControlName="attributionsOrdre" value="Bien">
+              </label>
+
+              <label for="attributionsassezbien">Assez Bien
+                <input type="radio" id="attributionsassezbien" formControlName="attributionsOrdre" value="Assez Bien">
+              </label>
+
+            </div>
+          </fieldset>
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <fieldset class="titreL">
+            <legend>Je connais le code de déontologie pharmaceutique</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+
+
+              <label for="codetresbien">Très bien
+                <input type="radio" id="codetresbien" formControlName="deontologie" value="Très bien">
+              </label>
+
+              <label for="codebien">Bien
+                <input type="radio" id="codebien" formControlName="deontologie" value="Bien">
+              </label>
+
+              <label for="codeassezbien">Assez Bien
+                <input type="radio" id="codeassezbien" formControlName="deontologie" value="Assez Bien">
+              </label>
+
+            </div>
+          </fieldset>
+
+          <span class="mt-3 mx-3">
+            <i>Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies
+              pour la constitution du dossier d’inscription.</i>
+          </span>
+        </div>
+      </div>
+
+
+      <!-- ------- -->
+      <!-- ------- -->
+      <!-- ------- -->
+      <div class="d-flex flex-column" *ngIf="step === 4">
+        <!-- RECAPITULATIF -->
+
+        <div class="d-flex flex-column">
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- <fieldset class="titreL">
+            <legend>Personnes à contacter</legend>
+            <div class="d-flex py-1 px-4">
+
+              <ol class="d-flex justify-content-between px-2" >
+                <li><b>Entourage immédiat</b>
+                  <div class="d-flex flex-column">
+                    <div class="d-flex flex-column">
+                      <label for="immediatName">Nom et Prénoms</label>
+                      <input type="text" id="immediatName">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatAdress">Adresse</label>
+                      <input type="text" id="immediatAdress">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatTel">Tel.</label>
+                      <input type="text" id="immediatTel">
+                    </div>
+                  </div>
+                </li>
+                <li><b>Entourage Professionnel</b>
+                  <div class="d-flex flex-column">
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelName">Nom et Prénoms</label>
+                      <input type="text" id="ProfessionnelName">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelAdress">Adresse</label>
+                      <input type="text" id="ProfessionnelAdress">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelTel">Tel.</label>
+                      <input type="text" id="ProfessionnelTel">
+                    </div>
+                  </div>
+                </li>
+              </ol>
+
+            </div>
+          </fieldset> -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- <fieldset class="titreL">
+            <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+
+
+              <label for="attributionstresbien">Très bien
+                <input type="radio" id="attributionstresbien">
+              </label>
+
+              <label for="attributionsbien">Bien
+                <input type="radio" id="attributionsbien">
+              </label>
+
+              <label for="attributionsassezbien">Assez Bien
+                <input type="radio" id="attributionsassezbien">
+              </label>
+
+            </div>
+          </fieldset> -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- ---- -->
+          <!-- <fieldset class="titreL">
+            <legend>Je connais le code de déontologie pharmaceutique</legend>
+            <div class="d-flex justify-content-between py-1 px-4">
+
+
+              <label for="codetresbien">Très bien
+                <input type="radio" id="codetresbien">
+              </label>
+
+              <label for="codebien">Bien
+                <input type="radio" id="codebien">
+              </label>
+
+              <label for="codeassezbien">Assez Bien
+                <input type="radio" id="codeassezbien">
+              </label>
+
+            </div>
+          </fieldset> -->
+
+          <!-- <span class="mt-3 mx-3">
+            <i>Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies
+              pour la constitution du dossier d’inscription.</i>
+          </span> -->
+        </div>
+      </div>
+
+    </div>
+
+
+
+    <div class="action d-flex justify-content-between ">
+      <button class="btn d-flex align-items-center " [disabled]="step <= 0" (click)="stepNavigation('-')">
+        <span class="material-symbols-outlined">arrow_left</span>
+        Précédant
+      </button> <!--  -->
+      <button class="btn d-flex align-items-center " *ngIf="step < 4" (click)="stepNavigation('+')">
+        Suivant
+        <span class="material-symbols-outlined">arrow_right</span>
+      </button> <!--  -->
+      <button class="btn" *ngIf="step === 4" [disabled]="formulaireInscription.invalid" (click)="inscription()">Enregistrer</button> <!--  -->
+    </div>
+  </div>
+</div>

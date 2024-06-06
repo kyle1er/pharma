@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscriptionComponent implements OnInit {
 
-  step : number = 0;
+
 
   constructor() { }
 
@@ -15,7 +15,4 @@ export class InscriptionComponent implements OnInit {
   }
 
 
-  stepNavigation(signe : '+' | '-' = "+"){
-    this.step = eval(this.step + ""+ signe +" 1")
-  }
 }

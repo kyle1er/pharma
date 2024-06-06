@@ -8,6 +8,8 @@ import { MenuComponent } from './menu/menu.component';
 import { RouterModule } from '@angular/router';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { InscriptionModule } from '../inscription/inscription.module';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     RouterModule,
     DashBoardRoutingModule,
     NzDropDownModule,
-    NzTableModule
+    NzTableModule,
+    NzModalModule,
+    InscriptionModule
   ],
   declarations: [
     DashBoardComponent,

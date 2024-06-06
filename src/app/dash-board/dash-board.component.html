@@ -137,11 +137,11 @@
               <legend>Etablissement pharmaceutique ou employeur</legend>
 
               <div>
-                <div class="d-flex flex-wrap ">
+                <div class="d-flex flex-wrap justify-content-between" >
                   <span class="libelle">Raison sociale :</span>
                   <span class="valeur">............................................................................</span>
                 </div>
-                <div class="d-flex flex-wrap ">
+                <div class="d-flex flex-wrap justify-content-between" >
                   <div class="d-flex align-items-center">
                     <span class="libelle">Adresse postale :</span>
                     <span class="valeur">............................................................................</span>
@@ -156,7 +156,7 @@
                   </div>
                 </div>
 
-                <div class="d-flex flex-wrap ">
+                <div class="d-flex flex-wrap justify-content-between" >
                   <span class="libelle">Adresse géographique :</span>
                   <span class="valeur">............................................................................</span>
                 </div>
@@ -171,16 +171,16 @@
               <div>
                 <div class="d-flex flex-column">
                   <h4>Entourage immédiat</h4>
-                  <div class="d-flex">
+                  <div class="d-flex justify-content-between">
                     <span class="libelle">Nom et Prénoms :</span>
                     <span class="valeur">............................................................................</span>
                   </div>
                   <div class="d-flex flex-wrap">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                       <span class="libelle">Adresse :</span>
                       <span class="valeur">............................................................................</span>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                       <span class="libelle">Tél :</span>
                       <span class="valeur">............................................................................</span>
                     </div>
@@ -189,16 +189,16 @@
 
                 <div class="d-flex flex-column">
                   <h4>Entourage Professionnel</h4>
-                  <div class="d-flex">
+                  <div class="d-flex justify-content-between">
                     <span class="libelle">Nom et Prénoms :</span>
                     <span class="valeur">............................................................................</span>
                   </div>
                   <div class="d-flex flex-wrap">
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                       <span class="libelle">Adresse :</span>
                       <span class="valeur">............................................................................</span>
                     </div>
-                    <div class="d-flex">
+                    <div class="d-flex justify-content-between">
                       <span class="libelle">Tél :</span>
                       <span class="valeur">............................................................................</span>
                     </div>
@@ -265,7 +265,7 @@
 
       <div class="action d-flex justify-content-center align-items-center ">
 
-        <button class="btn btn-online d-flex align-items-center" >
+        <button class="btn btn-online d-flex align-items-center" (click)="isVisible = true" >
           <span class="material-symbols-outlined mx-1">
             edit_note
             </span>
@@ -277,3 +277,11 @@
     </div> -->
   </div>
 </div>
+
+
+
+<nz-modal [nzWidth]="1000" [nzFooter]=null nzCentered="true" [(nzVisible)]="isVisible" nzTitle="Modification de vos informations" (nzOnCancel)="isVisible = false" > <!--  -->
+  <ng-container *nzModalContent>
+    <app-form-inscription class="editer" [actionTitre]="'EDIT'" ></app-form-inscription>
+  </ng-container>
+</nz-modal>

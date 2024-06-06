@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WebServicesService } from '../services/webServices.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
-  constructor() { }
+  constructor( private cnx: WebServicesService ) { }
 
   ngOnInit() {
+
+    this.cnx.execute("test").subscribe( dat =>{
+      console.log( "Mon retour ", dat );
+    })
+
+    //   ({
+    //   next : (data)=>{
+    //     console.log("Mon retour ", data);
+    //   },
+    //   error : (err)=>{
+    //     console.log("Mon retour ", err);
+    //   }
+    // })
   }
 
 }

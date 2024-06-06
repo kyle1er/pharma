@@ -1,4 +1,5 @@
 .conteneur {
+  position: relative;
   overflow: hidden;
   min-height: 100vh;
   max-height: 100vh;
@@ -9,127 +10,15 @@
     // opacity: 0.25;
   }
 
-  &>.myForm {
+
+  app-form-inscription {
     position: absolute;
-    overflow: hidden;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    // min-height: 75vh !important;
+    // max-height: 75vh !important;
     min-width: 65%;
     max-width: 65%;
-    min-height: 70vh;
-    max-height: 70vh;
-    background-color: rgba(255, 255, 255, 0.905);
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
-
-    &>div {
-      flex: 1 1 50%;
-      overflow: hidden;
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-
-      &.formDiv {
-        padding: 0px 10px;
-        flex: 1 1 60%;
-        justify-content: space-between;
-
-        h2 {
-          // text-transform: uppercase;
-          text-decoration: underline;
-        }
-
-        input,
-        select {
-          outline-style: none;
-          // border: 1px solid gainsboro;
-          border: none;
-          border-bottom: 2px solid black;
-          padding: 5px 10px;
-          margin-bottom: 10px;
-
-          &.prenom {
-            flex: 1 1 80%;
-            margin-left: 5px;
-          }
-        }
-
-
-        fieldset {
-          padding: 0px 5px;
-          margin-bottom: 2px 5px;
-          // border: 1px solid gray;
-          &.titreL legend{
-            font-size: 15px;
-            font-weight: 700;
-
-            & +div {
-              input.lieu {
-                flex: 1 1 80%;
-                margin-left: 5px;
-              }
-
-              ol{
-                width: 100%;
-                li{
-                  flex: 0 1 45%;
-                }
-              }
-            }
-          }
-
-          &.birthInfo {
-            // padding: 0px 5px;
-            // background-color: gainsboro;
-
-            // input.naissance {
-            //   flex: 1 1 80%;
-            //   margin-left: 5px;
-            // }
-          }
-
-          &.etatCivil {
-
-            // border: 1px solid gray;
-            legend {
-              // background-color: gainsboro;
-              // color: #fff;
-              // padding: 3px 6px;
-
-            }
-
-            label,
-            input {
-              cursor: pointer;
-            }
-          }
-        }
-      }
-    }
-
-    /* ------ */
-    .action {
-      padding: 10px 5px 0px;
-
-      // border: 1px solid ;
-      button {
-        background-color: rgba(0, 0, 0, 0.566);
-        color: white;
-        font-weight: 700;
-        padding: 5px 10px;
-
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.3);
-        }
-
-        &:disabled {
-          cursor: not-allowed !important;
-        }
-      }
-    }
   }
 }

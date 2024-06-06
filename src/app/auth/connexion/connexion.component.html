@@ -1,14 +1,14 @@
 <div class="conteneur">
   <h2>Connexion</h2>
 
-  <div class="myForm">
+  <div class="myForm" [formGroup]="formulaireConnexion" >
     <div>
       <label for="pseudo">Pseudo</label>
-      <input type="text" id="pseudo">
+      <input type="text" id="pseudo" formControlName="pseudo">
     </div>
     <div>
       <label for="password">Mot de passe</label>
-      <input type="password" id="password">
+      <input type="password" id="password" formControlName="passWord">
     </div>
   </div>
 
@@ -20,7 +20,7 @@
   </div>
 
   <div class="login">
-    <button class="btn btn-outline" [routerLink]="['/pharma']" >Se connecter</button>
+    <button class="btn btn-outline" (click)="connexion()" type="submit" [disabled]="formulaireConnexion.invalid" >Se connecter</button><!-- [routerLink]="['/pharma']"  -->
   </div>
 
   <div class="createLogin">

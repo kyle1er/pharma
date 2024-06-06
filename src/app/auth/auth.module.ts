@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { MotOublieComponent } from './mot-oublie/mot-oublie.component';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     AuthRoutingModule,
     CommonModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ]
 })
 export class AuthModule { }

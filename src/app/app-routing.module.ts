@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGGuard } from './shared/auth-g.guard';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
     path:"auth", loadChildren: ()=> import('./auth/auth.module').then( auth => auth.AuthModule )
   },
   {
-    path:"pharma", loadChildren: ()=> import('./dash-board/dash-board.module').then( dash => dash.DashBoardModule )
+    path:"pharma", canActivate: [AuthGGuard] , loadChildren: ()=> import('./dash-board/dash-board.module').then( dash => dash.DashBoardModule )
   },
   {
     path:"**", redirectTo:"auth"
