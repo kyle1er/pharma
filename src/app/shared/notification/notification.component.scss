@@ -1,0 +1,40 @@
+.btnAction{
+  // display: block;
+  a{
+    color: var(--main-color);
+    font-weight: bold;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+// .btnAction{
+//   // margin-top: 5px;
+
+//   // button{
+//   //   padding: 10px 0px;
+//   //   width: 180px;
+//   //   cursor: pointer;
+//   //   border-radius: 5px;
+//   //   color: var(--text-color);
+
+//   //   &:first-of-type{
+//   //     color: var(--main-color);
+//   //     border: 1px solid var(--main-color);
+//   //     // border: none;
+
+//   //   }
+//   //   &:last-of-type{
+//   //     margin-left: 10px;
+//   //   }
+
+//   //   &:hover{
+//   //     color: var(--main-color);
+//   //   }
+
+//   //   &:disabled{
+//   //     cursor: not-allowed;
+//   //     // background-color: gainsboro;
+//   //   }
+//   // }
+// }

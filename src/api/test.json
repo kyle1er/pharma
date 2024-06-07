@@ -1,5 +1,5 @@
 {
-  "methode" : "POST",
-  "url" : "test",
+  "methode" : "GET",
+  "url" : "https://jsonplaceholder.typicode.com/posts",
   "params" : "test"
 }

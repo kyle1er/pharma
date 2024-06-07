@@ -8,13 +8,30 @@ import { WebServicesService } from '../services/webServices.service';
 })
 export class AuthComponent implements OnInit {
 
-  constructor( private cnx: WebServicesService ) { }
+  constructor() { }
 
   ngOnInit() {
+    sessionStorage.clear()
 
-    this.cnx.execute("test").subscribe( dat =>{
-      console.log( "Mon retour ", dat );
-    })
+    // this.cnx.authenticate("test").subscribe({
+    //   next: (data) => {
+    //     console.log("Mon retour ", data);
+    //   },
+    //   error: (err) => {
+    //     console.log("Mon retour err ", err);
+    //   }
+    // })
+
+
+
+    // this.cnx.execute("test").subscribe({
+    //   next: (data) => {
+    //     console.log("Mon retour ", data);
+    //   },
+    //   error: (err) => {
+    //     console.log("Mon retour err ", err);
+    //   }
+    // })
 
     //   ({
     //   next : (data)=>{

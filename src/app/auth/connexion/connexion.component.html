@@ -20,7 +20,7 @@
   </div>
 
   <div class="login">
-    <button class="btn btn-outline" (click)="connexion()" type="submit" [disabled]="formulaireConnexion.invalid" >Se connecter</button><!-- [routerLink]="['/pharma']"  -->
+    <button nz-button [nzLoading]="isLoadingOne" class="btn btn-outline" (click)="connexion()" type="submit" [disabled]="formulaireConnexion.invalid" >Se connecter</button><!-- [routerLink]="['/pharma']"  -->
   </div>
 
   <div class="createLogin">

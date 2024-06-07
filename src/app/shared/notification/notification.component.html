@@ -1,0 +1,23 @@
+<!-- NOTIFICATION' -->
+<nz-modal nzVisible={{modal.show}} [nzContent]="messageContent" nzClosable="false" [nzFooter]="null"  nzMaskClosable nzWidth="500px">
+  <ng-template #messageContent>
+    <div class="mx-3 text-center ">
+      <nz-result [nzStatus]="infoNotif.type" [nzTitle]="infoNotif.titre !== '' ? infoNotif.titre : ((infoNotif.type === 'success' ) ? 'Succès' : 'Echec' )" nzSubTitle=""></nz-result>
+      <div class="mb-5">
+        <span class="text-justify " [innerHTML]="infoNotif.message" ></span>
+      </div>
+      <div class="btnAction d-flex flex-column align-items-center my-3">
+        <button style="display: none;"></button>
+        <!-- <button *ngIf="infoNotif.bouton1" class="btn primary_background" [routerLink]="[infoNotif.bouton1.lien]" >{{infoNotif.bouton1.label}}</button> -->
+        <button *ngIf="infoNotif.bouton1" class="btn primary_background" (click)="modalAction('navigate', infoNotif.bouton1.lien)">{{infoNotif.bouton1.label}}</button>
+        <button *ngIf="!infoNotif.bouton1" class="btn primary_background" (click)="modalAction('ok')">OK</button>
+        <span *ngIf="infoNotif.bouton1 && infoNotif.bouton2 !=='' " class="my-2" >OU</span>
+        <!-- <a *ngIf="infoNotif.bouton2" [href]="this.infoNotif.bouton2.lien" >{{infoNotif.bouton2.label}}</a> -->
+        <!-- <span *ngIf="infoNotif.bouton2" [routerLink]="[infoNotif.bouton2.lien]" routerLinkActive="router-link-active" >{{infoNotif.bouton2.label}}</span> -->
+        <!-- <a *ngIf="infoNotif.bouton2" [routerLink]="[infoNotif.bouton2.lien]" routerLinkActive="router-link-active" >{{infoNotif.bouton2.label}}</a> -->
+        <a *ngIf="infoNotif.bouton2" (click)="modalAction('navigate')" >{{infoNotif.bouton2.label}}</a>
+      </div>
+    </div>
+  </ng-template>
+</nz-modal>
+
