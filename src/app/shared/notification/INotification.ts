@@ -18,7 +18,7 @@ export interface INotificationBtn{
     lien : string
   }
   bouton2 : {
-    label_? : String,
+    label? : String,
     lien? : string
   }
 }

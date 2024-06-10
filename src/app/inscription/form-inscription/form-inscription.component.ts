@@ -14,49 +14,49 @@ export class FormInscriptionComponent implements OnInit {
   step : number = 0;
   constructor( private fb: FormBuilder ) {
     this.formulaireInscription = fb.group({
-      nom : ['', [Validators.required]],
-      prenom : ['', [Validators.required]],
-      dateDepot : ['', [Validators.required]],
-      dateBirth : [null, [Validators.required]],
-      lieuBirth : ['', [Validators.required]],
-      etatCivil : [null, [Validators.required]],
-      nationalite : ['', [Validators.required]],
-      tel : ['', [Validators.required]],
-      mail : ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
-      quatier : ['', [Validators.required]],
-      dateSoutenance : ['', [Validators.required]],
-      lieuSoutenance : ['', [Validators.required]],
-      dateDelivranceDiplome : ['', [Validators.required]],
-      lieuDelivranceDiplome : ['', [Validators.required]],
+      Nom : ['', [Validators.required]],
+      Pnom : ['', [Validators.required]],
+      datedepot_dos : [null, [Validators.required]],
+      Datenaiss : [null, [Validators.required]],
+      Lieunaiss : ['', [Validators.required]],
+      Etatcivil : [null, [Validators.required]],
+      NationaliteID : ['', [Validators.required]],
+      Tel : ['', [Validators.required]],
+      Mail : ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
+      Adrgeo : ['', [Validators.required]],
+      DiplomeobtenuLe : ['', [Validators.required]],
+      Lieuobtentiondiplome : ['', [Validators.required]],
+      /* dateSoutenance : ['', [Validators.required]],
+      lieuSoutenance : ['', [Validators.required]], */
       sectionTable : ['', [Validators.required]],
-      sectionDemande : ['', [Validators.required]],
+      ChangementOrdre : [null, [Validators.required]],
 
       etabPharmaceutique : fb.group({
-        raisonSocial : ['', [Validators.required]],
-        adressePost : ['', [Validators.required]],
-        tel : ['', [Validators.required]],
-        fax : ['', [Validators.required]],
-        adresseGeographique : ['', [Validators.required]]
+        Raisonscial_emp : ['', [Validators.required]],
+        Adrpost_emp : ['', [Validators.required]],
+        Tel_emp : ['', [Validators.required]],
+        Fax_emp : ['', [Validators.required]],
+        Adrgeo_emp : ['', [Validators.required]]
       }),
 
       contact : fb.group({
         contactImmediat : fb.group({
-          nom_prenoms : ['', [Validators.required]],
+          Nomcontact_immed : ['', [Validators.required]],
           // prenom : ['', [Validators.required]],
-          adresse : [null, [Validators.required]],
-          tel : [null, [Validators.required]],
+          Adrcontact_immed : [null, [Validators.required]],
+          Telcontact_immed : [null, [Validators.required]],
         }),
 
         contactPro : fb.group({
-          nom_prenoms : ['', [Validators.required]],
+          Nomcontact_prof : ['', [Validators.required]],
           // prenom : ['', [Validators.required]],
-          adresse : [null, [Validators.required]],
-          tel : [null, [Validators.required]],
+          Adrcontact_prof : [null, [Validators.required]],
+          Telcontact_prof : [null, [Validators.required]],
         }),
       }),
 
-      attributionsOrdre : [null, [Validators.required]],
-      deontologie : [null, [Validators.required]],
+      CnceOrdre : [null, [Validators.required]],
+      CnceDeontologie : [null, [Validators.required]],
     })
   }
 

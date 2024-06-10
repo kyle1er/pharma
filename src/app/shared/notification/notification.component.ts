@@ -41,7 +41,7 @@ export class NotificationComponent implements OnInit {
       this.infoNotif = {
         ...this.infoNotif,
         bouton2 : {
-          label : this.infoNotif?.bouton2?.label || null,
+          label : this.infoNotif?.bouton2?.label || "",
           lien : this.router.url
         }
       }
