@@ -14,7 +14,7 @@ export class ConnexionComponent implements OnInit {
   isLoadingOne: boolean = false;
 
   constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router ) {
-    this.formulaireConnexion = fb.group({
+    this.formulaireConnexion = this.fb.group({
       pseudo : ['', [Validators.required]],
       passWord : ['', [Validators.required]],
     })
@@ -43,5 +43,10 @@ export class ConnexionComponent implements OnInit {
         console.log("Mon retour err ", err);
       }
     })
+  }
+
+
+  inscription(){
+    this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
   }
 }

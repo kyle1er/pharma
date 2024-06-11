@@ -24,6 +24,6 @@
   </div>
 
   <div class="createLogin">
-    <span [routerLink]="['/inscription']" >Créer un compte</span>
+    <span (click)="inscription()" >Créer un compte</span> <!-- [routerLink]="['/inscription', {state : '{ game: 21, finish: false }'}]" -->
   </div>
 </div>

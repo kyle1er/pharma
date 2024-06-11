@@ -1,4 +1,4 @@
-<div class="myForm d-flex">
+<div class="myForm d-flex" ><!-- *ngIf="mustShow" -->
   <div class="imagFond">
     <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
   </div>
@@ -86,8 +86,8 @@
           <fieldset class="titreL">
             <legend>Date de délivrance du diplôme</legend>
             <div class="d-flex justify-content-between">
-              <input type="date" id="" placeholder="Date de délivrance" formControlName="DiplomeDelivreLe">
-              <input class="lieu" type="text" placeholder="Lieu de délivrance" formControlName="lieuDelivranceDiplome">
+              <input type="date" class="flex-grow-1" id="" placeholder="Date de délivrance" formControlName="DiplomeDelivreLe">
+              <!-- <input class="lieu" type="text" placeholder="Lieu de délivrance" formControlName="lieuDelivranceDiplome"> -->
             </div>
           </fieldset>
 
@@ -96,19 +96,19 @@
             <div class="d-flex justify-content-between py-1 px-4">
               <label for="un">
                 1
-                <input type="radio" id="un" formControlName="sectionTable" [value]="1">
+                <input type="checkbox" id="un" [value]="'001'" #section1 (click)="setSectionDocs('Sections', section1.value)" > <!-- formControlName="sectionTable"  -->
               </label>
               <label for="deux">
                 2
-                <input type="radio" id="deux" formControlName="sectionTable" [value]="2">
+                <input type="checkbox" id="deux" [value]="'002'" #section2 (click)="setSectionDocs('Sections', section2.value)" > <!-- formControlName="sectionTable"  -->
               </label>
               <label for="trois">
                 3
-                <input type="radio" id="trois" formControlName="sectionTable" [value]="3">
+                <input type="checkbox" id="trois" [value]="'003'" #section3 (click)="setSectionDocs('Sections', section3.value)" > <!-- formControlName="sectionTable"  -->
               </label>
               <label for="quatre">
                 4
-                <input type="radio" id="quatre" formControlName="sectionTable" [value]="4">
+                <input type="checkbox" id="quatre" [value]="'004'" #section4 (click)="setSectionDocs('Sections', section4.value)" > <!-- formControlName="sectionTable"  -->
               </label>
             </div>
           </fieldset>
