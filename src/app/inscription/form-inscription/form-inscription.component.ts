@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-inscription',
@@ -13,6 +13,12 @@ export class FormInscriptionComponent implements OnInit {
 
   step: number = 0;
   mustShow: boolean = false;
+  nationnalite : Array<any> = [
+    {
+      libelle : "Côte d'ivoire",
+      code : 'CIV'
+    }
+  ];
 
   constructor(private fb: FormBuilder) {
 
@@ -55,7 +61,7 @@ export class FormInscriptionComponent implements OnInit {
       DiplomeDelivreLe: ['', [Validators.required]],
       /* dateSoutenance : ['', [Validators.required]],
       lieuSoutenance : ['', [Validators.required]], */
-      Sections: [null, [Validators.required]],
+      Sections: [[], [Validators.required]],
       ChangementOrdre: [null, [Validators.required]],
 
       etabPharmaceutique: fb.group({
@@ -88,6 +94,47 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.formulaireInscription.setValue({
+      "Nom": "YAH",
+      "Pnom": "FIRM",
+      "datedepot_dos": "2024-06-05",
+      "Datenaiss": "2024-05-27",
+      "Lieunaiss": "YAKRO",
+      "Etatcivil": "Marié",
+      "NationaliteID": "",
+      "Tel": "2250004542345",
+      "Mail": "test@test.com",
+      "Adrgeo": "Test",
+      "DiplomeobtenuLe": "2024-06-03",
+      "Lieuobtentiondiplome": "Obtention ",
+      "DiplomeDelivreLe": "2024-06-03",
+      "Sections": [
+          "004",
+          "003"
+      ],
+      "ChangementOrdre": true,
+      "etabPharmaceutique": {
+          "Raisonscial_emp": "Raison",
+          "Adrpost_emp": "BP",
+          "Tel_emp": "22527055043",
+          "Fax_emp": "",
+          "Adrgeo_emp": "BP2"
+      },
+      "contact": {
+          "contactImmediat": {
+              "Nomcontact_immed": "TR",
+              "Adrcontact_immed": "BPI",
+              "Telcontact_immed": "225042474444"
+          },
+          "contactPro": {
+              "Nomcontact_prof": "RT",
+              "Adrcontact_prof": "BPP",
+              "Telcontact_prof": "225434343334"
+          }
+      },
+      "CnceOrdre": "Très bien",
+      "CnceDeontologie": "Assez Bien"
+  })
     console.log(this.formulaireInscription);
 
   }
@@ -101,21 +148,39 @@ export class FormInscriptionComponent implements OnInit {
     console.log(this.formulaireInscription);
 
 
+    function dateIsValide(dt: string) {
+      try {
+        new Date( dt )
+        return true
+      } catch (error) {
+        return false
+      }
+    }
+
     const data = {
       token: "test",
       body: {
-        ...this.formulaireInscription,
+        ...this.formulaireInscription.value,
         ...this.formulaireInscription.controls['etabPharmaceutique'].value,
-        ...this.formulaireInscription.controls['contact'].value,
-        ...this.formulaireInscription.controls['contactPro'].value
+        ...this.formulaireInscription.controls['contact'].value['contactPro'],
+        ...this.formulaireInscription.controls['contact'].value['contactImmediat']
+      },
+      formpatDate : function () {
+        for (const key in this.body) {
+          if ( dateIsValide(this.body[key]) ) {
+            this.body[key] = String( this.body[key] ).replace(/-/g, '')
+            // this.body[key] = String( this.body[key] ).replace('-','').replace('/','')
+          }
+        }
       }
     }
 
 
-    for (const clef of ["etabPharmaceutique", "contact", "contactPro"]) {
+    for (const clef of ["etabPharmaceutique", "contact"]) {
       delete data.body[clef]
     }
 
+    data.formpatDate()
 
     console.log("sessions :: ", this.formulaireInscription.value);
     console.log("data === ", data);
@@ -124,6 +189,7 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   setSectionDocs(key: string, val: string) {
+    /* Sections */
 
     if (!this.formulaireInscription.contains(key)) return;
 
@@ -135,9 +201,14 @@ export class FormInscriptionComponent implements OnInit {
       listSection.push(val);
     }
 
-    this.formulaireInscription.patchValue({ key: listSection });
+    // this.formulaireInscription.addControl(key,new FormControl(listSection));
+    // this.formulaireInscription.patchValue({ 'Sections': listSection });
+    this.formulaireInscription.controls[key].setValue( listSection );
 
+
+    // console.log( "this.listSection ", key, listSection);
     console.log( "this.formulaireInscription ", this.formulaireInscription.value);
+    console.log( "this.formulaireInscription ", this.formulaireInscription);
 
 
   }

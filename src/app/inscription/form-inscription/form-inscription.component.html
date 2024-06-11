@@ -48,7 +48,7 @@
 
           <!-- <input type="text" placeholder="Nationnalité" formControlName="NationaliteID"> -->
            <select formControlName="NationaliteID" >
-            <!-- <option *ngFor="let item of list" value=""></option> -->
+            <option *ngFor="let item of nationnalite" [value]="item.code">{{item.libelle}}</option>
            </select>
 
           <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
@@ -121,11 +121,11 @@
             <div class="d-flex justify-content-center py-1 px-4">
               <label for="non" class="mx-2">
                 NON
-                <input type="radio" id="non" formControlName="ChangementOrdre" value="OUI">
+                <input type="radio" id="non" formControlName="ChangementOrdre" [value]="false">
               </label>
               <label for="oui" class="mx-2">
                 OUI
-                <input type="radio" id="oui" formControlName="ChangementOrdre" value="NON">
+                <input type="radio" id="oui" formControlName="ChangementOrdre" [value]="true">
               </label>
             </div>
           </fieldset>
