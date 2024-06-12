@@ -5,13 +5,16 @@ import { InscriptionComponent } from './inscription.component';
 import { RouterModule } from '@angular/router';
 import { InscriptionRoutingModule } from './inscription-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CheckButtonModule } from '../shared/checkButton/checkButton.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     InscriptionRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CheckButtonModule
   ],
   declarations: [
     InscriptionComponent,
