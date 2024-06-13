@@ -11,8 +11,9 @@ export class CheckButtonComponent implements OnInit {
   value : EventEmitter<any> = new EventEmitter()
   @Input()
   newValue : string | Array<string> = ""
-
+  @Input()
   typeButton: 'radio' | 'checkbox' = 'radio';
+
   listRadio : Array<any> = [
     {
       libelle : "Célibataire",
@@ -29,6 +30,24 @@ export class CheckButtonComponent implements OnInit {
     {
       libelle : "Veuf (ve)",
       valeur : "Veuf (ve)",
+    },
+  ]
+  listCheckBox : Array<any> = [
+    {
+      libelle : "1",
+      valeur : "1",
+    },
+    {
+      libelle : "2",
+      valeur : "2",
+    },
+    {
+      libelle : "3",
+      valeur : "3",
+    },
+    {
+      libelle : "4",
+      valeur : "4",
     },
   ]
 

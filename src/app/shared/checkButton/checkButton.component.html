@@ -1,8 +1,11 @@
 <div [ngSwitch]="typeButton" class="conteneur">
-  <div *ngSwitchCase="'checkbox'">
-
+  <div *ngSwitchCase="'checkbox'" class="checkBtn d-flex flex-wrap">
+    <span *ngFor="let item of listCheckBox">
+      <input type="checkbox" [id]="item.libelle" [value]="item.valeur">
+      <label [for]="item.libelle">{{item.libelle}}</label>
+    </span>
   </div>
-  <div *ngSwitchDefault class="radioBtnGrp d-flex flex-wrap ">
+  <div *ngSwitchDefault class="radioBtnGrp checkBtn d-flex flex-wrap ">
     <!-- <nz-radio-group [(ngModel)]="radioValue" nzButtonStyle="solid">
       <label nz-radio-button nzValue="A">Hangzhou</label>
       <label nz-radio-button nzValue="B">Shanghai</label>
