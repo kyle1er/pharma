@@ -27,7 +27,7 @@
           <fieldset class="titreL etatCivil">
             <legend>Etat civil</legend>
             <div>
-              <app-checkButton></app-checkButton>
+              <app-checkButton [newValue]="formulaireInscription.controls['Etatcivil'].value" (value)="formulaireInscription.patchValue({'Etatcivil' : $event})" ></app-checkButton>
             </div>
             <!-- <div class="d-flex justify-content-between py-1 px-4">
               <label for="Célibataire">
@@ -50,9 +50,22 @@
           </fieldset>
 
           <!-- <input type="text" placeholder="Nationnalité" formControlName="NationaliteID"> -->
-           <select formControlName="NationaliteID" >
-            <option *ngFor="let item of nationnalite" [value]="item.code">{{item.libelle}}</option>
-           </select>
+          <fieldset class="titreL etatCivil my-2">
+            <legend>Nationalité</legend>
+            <div>
+              <nz-select class="flex-grow-1" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner votre pays"  [ngModelOptions]="{standalone: true}" (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})" [ngModel]="formulaireInscription.controls['NationaliteID'].value">
+                <nz-option  *ngFor="let item of nationnalite" [nzLabel]="item.libelle" [nzValue]="item.code"></nz-option>
+              </nz-select>
+            </div>
+          </fieldset>
+          <!-- <div class="d-flex align-items-center my-2 ">
+            <label for="selectNation">Nationalité</label>
+
+            <select class="mx-2" id="selectNation" formControlName="NationaliteID">
+              <option value="" disabled selected>Sélectionner votre nationnalité</option>
+              <option *ngFor="let item of nationnalite" [value]="item.code">{{item.libelle}}</option>
+            </select>
+          </div> -->
 
           <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
           <input type="email" placeholder="Adresse mail" formControlName="Mail">

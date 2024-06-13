@@ -10,7 +10,7 @@
       <label nz-radio-button nzValue="D">Chengdu</label>
     </nz-radio-group> -->
     <span *ngFor="let item of listRadio" class="p-1 m-1">
-      <input type="radio" name="myRadioBtn" [id]="item.libelle" [value]="item.libelle">
+      <input type="radio" name="myRadioBtn" [id]="item.libelle" [value]="item.libelle" (click)="fnCheckRadio( item.valeur )" [checked]="item.valeur == newValue">
       <label [for]="item.libelle"> {{item.libelle}} </label>
     </span>
   </div>

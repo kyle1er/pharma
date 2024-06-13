@@ -212,4 +212,9 @@ export class FormInscriptionComponent implements OnInit {
 
 
   }
+
+
+  btnCheckRadio(val : any){
+    this.formulaireInscription.patchValue({'Etatcivil' : val})
+  }
 }

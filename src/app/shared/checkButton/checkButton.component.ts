@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-checkButton',
@@ -7,19 +7,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckButtonComponent implements OnInit {
 
+  @Output()
+  value : EventEmitter<any> = new EventEmitter()
+  @Input()
+  newValue : string | Array<string> = ""
+
   typeButton: 'radio' | 'checkbox' = 'radio';
   listRadio : Array<any> = [
     {
-      libelle : "Célibataire"
+      libelle : "Célibataire",
+      valeur : "Célibataire",
     },
     {
-      libelle : "Marié"
+      libelle : "Marié",
+      valeur : "Marié",
     },
     {
-      libelle : "Divorcé"
+      libelle : "Divorcé",
+      valeur : "Divorcé",
     },
     {
-      libelle : "Veuf (ve)"
+      libelle : "Veuf (ve)",
+      valeur : "Veuf (ve)",
     },
   ]
 
@@ -28,4 +37,8 @@ export class CheckButtonComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  fnCheckRadio( val : string ){
+    this.value.emit(val)
+  }
 }
