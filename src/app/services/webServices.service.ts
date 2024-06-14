@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 
@@ -22,7 +23,7 @@ export class WebServicesService {
 // iv = window.crypto.getRandomValues(new Uint8Array(16)); // Create a random Initialization Vector
 // encryptionKey : any = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   execute(fichier: string, params: any = "") {
     return new Observable(myNewData => {
@@ -172,4 +173,9 @@ export class WebServicesService {
 //     console.error(err);
 //   });
 // }
+
+
+routerInscription(){
+  this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
+}
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
 
 @Component({
   selector: 'app-form-inscription',
@@ -13,12 +14,71 @@ export class FormInscriptionComponent implements OnInit {
 
   step: number = 0;
   mustShow: boolean = false;
-  nationnalite : Array<any> = [
+  nationnalite: Array<any> = [
     {
-      libelle : "Côte d'ivoire",
-      code : 'CIV'
+      libelle: "Côte d'ivoire",
+      code: 'CIV'
     }
   ];
+
+  listEtatCivil : ICheckBtnData = {
+    typeBouton : 'radio',
+    dataList : [
+      {
+        libelle : "Célibataire",
+        valeur : "Célibataire",
+      },
+      {
+        libelle : "Marié",
+        valeur : "Marié",
+      },
+      {
+        libelle : "Divorcé",
+        valeur : "Divorcé",
+      },
+      {
+        libelle : "Veuf (ve)",
+        valeur : "Veuf (ve)",
+      },
+    ]
+  };
+
+  listSectionOrdre : ICheckBtnData = {
+    typeBouton : 'checkbox',
+    dataList : [
+      {
+        libelle : "1",
+        valeur : "1",
+      },
+      {
+        libelle : "2",
+        valeur : "2",
+      },
+      {
+        libelle : "3",
+        valeur : "3",
+      },
+      {
+        libelle : "4",
+        valeur : "4",
+      },
+    ]
+  }
+
+  listChangeSection : ICheckBtnData = {
+    typeBouton : 'radio',
+    dataList : [
+      {
+        libelle : "NON",
+        valeur : false,
+      },
+      {
+        libelle : "OUI",
+        valeur : true,
+      }
+    ]
+  }
+
 
   constructor(private fb: FormBuilder) {
 
@@ -52,7 +112,7 @@ export class FormInscriptionComponent implements OnInit {
       Datenaiss: [null, [Validators.required]],
       Lieunaiss: ['', [Validators.required]],
       Etatcivil: [null, [Validators.required]],
-      NationaliteID: ['', [Validators.required]],
+      NationaliteID: [null, [Validators.required]],
       Tel: ['', [Validators.required]],
       Mail: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
       Adrgeo: ['', [Validators.required]],
@@ -94,6 +154,7 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.formulaireInscription.setValue({
       "Nom": "YAH",
       "Pnom": "FIRM",
@@ -101,7 +162,7 @@ export class FormInscriptionComponent implements OnInit {
       "Datenaiss": "2024-05-27",
       "Lieunaiss": "YAKRO",
       "Etatcivil": "Marié",
-      "NationaliteID": "",
+      "NationaliteID": "CIV",
       "Tel": "2250004542345",
       "Mail": "test@test.com",
       "Adrgeo": "Test",
@@ -109,32 +170,32 @@ export class FormInscriptionComponent implements OnInit {
       "Lieuobtentiondiplome": "Obtention ",
       "DiplomeDelivreLe": "2024-06-03",
       "Sections": [
-          "004",
-          "003"
+        "1",
+        "2"
       ],
-      "ChangementOrdre": true,
+      "ChangementOrdre": false,
       "etabPharmaceutique": {
-          "Raisonscial_emp": "Raison",
-          "Adrpost_emp": "BP",
-          "Tel_emp": "22527055043",
-          "Fax_emp": "",
-          "Adrgeo_emp": "BP2"
+        "Raisonscial_emp": "Raison",
+        "Adrpost_emp": "BP",
+        "Tel_emp": "22527055043",
+        "Fax_emp": "",
+        "Adrgeo_emp": "BP2"
       },
       "contact": {
-          "contactImmediat": {
-              "Nomcontact_immed": "TR",
-              "Adrcontact_immed": "BPI",
-              "Telcontact_immed": "225042474444"
-          },
-          "contactPro": {
-              "Nomcontact_prof": "RT",
-              "Adrcontact_prof": "BPP",
-              "Telcontact_prof": "225434343334"
-          }
+        "contactImmediat": {
+          "Nomcontact_immed": "TR",
+          "Adrcontact_immed": "BPI",
+          "Telcontact_immed": "225042474444"
+        },
+        "contactPro": {
+          "Nomcontact_prof": "RT",
+          "Adrcontact_prof": "BPP",
+          "Telcontact_prof": "225434343334"
+        }
       },
       "CnceOrdre": "Très bien",
       "CnceDeontologie": "Assez Bien"
-  })
+    })
     console.log(this.formulaireInscription);
 
   }
@@ -150,7 +211,7 @@ export class FormInscriptionComponent implements OnInit {
 
     function dateIsValide(dt: string) {
       try {
-        new Date( dt )
+        new Date(dt)
         return true
       } catch (error) {
         return false
@@ -165,10 +226,10 @@ export class FormInscriptionComponent implements OnInit {
         ...this.formulaireInscription.controls['contact'].value['contactPro'],
         ...this.formulaireInscription.controls['contact'].value['contactImmediat']
       },
-      formpatDate : function () {
+      formpatDate: function () {
         for (const key in this.body) {
-          if ( dateIsValide(this.body[key]) ) {
-            this.body[key] = String( this.body[key] ).replace(/-/g, '')
+          if (dateIsValide(this.body[key])) {
+            this.body[key] = String(this.body[key]).replace(/-/g, '')
             // this.body[key] = String( this.body[key] ).replace('-','').replace('/','')
           }
         }
@@ -203,18 +264,18 @@ export class FormInscriptionComponent implements OnInit {
 
     // this.formulaireInscription.addControl(key,new FormControl(listSection));
     // this.formulaireInscription.patchValue({ 'Sections': listSection });
-    this.formulaireInscription.controls[key].setValue( listSection );
+    this.formulaireInscription.controls[key].setValue(listSection);
 
 
     // console.log( "this.listSection ", key, listSection);
-    console.log( "this.formulaireInscription ", this.formulaireInscription.value);
-    console.log( "this.formulaireInscription ", this.formulaireInscription);
+    console.log("this.formulaireInscription ", this.formulaireInscription.value);
+    console.log("this.formulaireInscription ", this.formulaireInscription);
 
 
   }
 
 
-  btnCheckRadio(val : any){
-    this.formulaireInscription.patchValue({'Etatcivil' : val})
+  btnCheckRadio(val: any) {
+    this.formulaireInscription.patchValue({ 'Etatcivil': val })
   }
 }

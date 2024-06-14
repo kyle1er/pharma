@@ -67,13 +67,13 @@
           }
         }
 
-        &.etatCivil {
-
-          label,
-          input {
-            cursor: pointer;
-          }
+        label,
+        input[type='radio'], input[type='checkbox'] {
+          cursor: pointer;
         }
+        // &.etatCivil {
+
+        // }
       }
     }
   }
@@ -88,13 +88,15 @@
       color: white;
       font-weight: 700;
       padding: 5px 10px;
+      border-radius: 5px;
+      border: none;
 
       &:hover {
-        background-color: rgba(0, 0, 0, 0.3);
+        background-color: rgba(0, 0, 0, 0.8);
       }
 
-      &:disabled {
-        cursor: not-allowed !important;
+      &:disabled{
+        cursor: not-allowed;
       }
     }
   }

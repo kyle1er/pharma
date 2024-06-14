@@ -47,6 +47,7 @@ export class ConnexionComponent implements OnInit {
 
 
   inscription(){
-    this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
+    // this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
+    this.cnx.routerInscription()
   }
 }

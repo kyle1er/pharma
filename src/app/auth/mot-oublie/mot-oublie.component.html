@@ -13,7 +13,7 @@
   </div>
 
   <div class="soumettre">
-    <button class="btn btn-outline" [disabled]="formulairePwdForget.invalid" (click)="pwdForget()">Soumettre</button>
+    <button class="" [disabled]="formulairePwdForget.invalid" (click)="pwdForget()">Soumettre</button>
   </div>
 
   <div class="createLogin d-flex justify-content-between">
@@ -21,6 +21,6 @@
       <span class="material-symbols-outlined">
         arrow_left
         </span> Annuler</span>
-    <span [routerLink]="['/inscription']" >Créer un compte</span>
+    <span (click)="inscription()" >Créer un compte</span>
   </div>
 </div>

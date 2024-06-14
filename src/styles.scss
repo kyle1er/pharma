@@ -1,19 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 // @import url();
-*{
-  --vert : #3D9C3D
+* {
+  --vert: #3D9C3D;
+  --vert_opacity: 61, 156, 61;
 }
 
 
-input{
+input {
   background-color: rgba(67, 185, 73, 0.116);
 }
 
-:disabled{
+:disabled {
   cursor: not-allowed;
-  // filter: alpha(opacity=65);
-  // -webkit-box-shadow: none;
-  // box-shadow: none;
-  // opacity: .65;
+}
 
+
+.soumettre button,
+button.send {
+  padding: 5px 10px;
+  text-align: center;
+  border-radius: 10px;
+  width: 100%;
+  color: white !important;
+  font-weight: 700;
+  border: none;
+  background-color: var(--vert) !important;
+
+  &:disabled {
+    background-color: rgba(var(--vert_opacity), 0.5) !important;
+  }
+
+  &:hover {
+    background-color: rgba(var(--vert_opacity), 0.8) !important;
+  }
 }

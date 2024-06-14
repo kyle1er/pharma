@@ -1,7 +1,7 @@
 <div [ngSwitch]="typeButton" class="conteneur">
   <div *ngSwitchCase="'checkbox'" class="checkBtn d-flex flex-wrap">
-    <span *ngFor="let item of listCheckBox">
-      <input type="checkbox" [id]="item.libelle" [value]="item.valeur">
+    <span *ngFor="let item of dataListe">
+      <input type="checkbox" (click)="fnCheckRadio( item.valeur )" [id]="item.libelle" [value]="item.valeur" [checked]=" defaultValue.includes( ''+item.valeur)">
       <label [for]="item.libelle">{{item.libelle}}</label>
     </span>
   </div>
@@ -12,8 +12,8 @@
       <label nz-radio-button nzValue="C">Beijing</label>
       <label nz-radio-button nzValue="D">Chengdu</label>
     </nz-radio-group> -->
-    <span *ngFor="let item of listRadio" class="p-1 m-1">
-      <input type="radio" name="myRadioBtn" [id]="item.libelle" [value]="item.libelle" (click)="fnCheckRadio( item.valeur )" [checked]="item.valeur == newValue">
+    <span *ngFor="let item of dataListe" class="p-1 m-1">
+      <input type="radio" [name]="'myRadioBtn_'+ myTimer" [id]="item.libelle" [value]="item.libelle" (click)="fnCheckRadio( item.valeur )" [checked]="item.valeur == defaultValue">
       <label [for]="item.libelle"> {{item.libelle}} </label>
     </span>
   </div>

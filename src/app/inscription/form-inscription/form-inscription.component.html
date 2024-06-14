@@ -27,7 +27,7 @@
           <fieldset class="titreL etatCivil">
             <legend>Etat civil</legend>
             <div>
-              <app-checkButton [typeButton]="'radio'" [newValue]="formulaireInscription.controls['Etatcivil'].value" (value)="formulaireInscription.patchValue({'Etatcivil' : $event})" ></app-checkButton>
+              <app-checkButton [checkBtnData]="listEtatCivil" [defaultValue]="formulaireInscription.controls['Etatcivil'].value" (value)="formulaireInscription.patchValue({'Etatcivil' : $event})" ></app-checkButton>
             </div>
             <!-- <div class="d-flex justify-content-between py-1 px-4">
               <label for="Célibataire">
@@ -110,7 +110,7 @@
           <fieldset class="titreL">
             <legend>Section du tableau de l’Ordre souhaitée</legend>
             <div class="d-flex justify-content-between py-1 px-4">
-              <app-checkButton [typeButton]="'checkbox'" [newValue]="formulaireInscription.controls['Etatcivil'].value" (value)="formulaireInscription.patchValue({'Etatcivil' : $event})" ></app-checkButton>
+              <app-checkButton [checkBtnData]="listSectionOrdre" [defaultValue]="formulaireInscription.controls['Sections'].value" (value)="setSectionDocs('Sections', $event)" ></app-checkButton>
               <!-- <label for="un">
                 1
                 <input type="checkbox" id="un" [value]="'001'" #section1 (click)="setSectionDocs('Sections', section1.value)" >
@@ -135,7 +135,10 @@
           <!-- - -->
           <fieldset class="titreL">
             <legend>Demande de changement de section</legend>
-            <div class="d-flex justify-content-center py-1 px-4">
+            <div>
+              <app-checkButton [checkBtnData]="listChangeSection" [defaultValue]="formulaireInscription.controls['ChangementOrdre'].value" (value)="formulaireInscription.patchValue({'ChangementOrdre' : $event})" ></app-checkButton>
+            </div>
+            <!-- <div class="d-flex justify-content-center py-1 px-4">
               <label for="non" class="mx-2">
                 NON
                 <input type="radio" id="non" formControlName="ChangementOrdre" [value]="false">
@@ -144,7 +147,7 @@
                 OUI
                 <input type="radio" id="oui" formControlName="ChangementOrdre" [value]="true">
               </label>
-            </div>
+            </div> -->
           </fieldset>
 
         </div>
@@ -408,15 +411,18 @@
 
 
     <div class="action d-flex justify-content-between ">
-      <button class="btn d-flex align-items-center " [disabled]="step <= 0" (click)="stepNavigation('-')">
+      <button class="d-flex align-items-center " [disabled]="step <= 0" (click)="stepNavigation('-')">
         <span class="material-symbols-outlined">arrow_left</span>
         Précédant
       </button> <!--  -->
-      <button class="btn d-flex align-items-center " *ngIf="step < 4" (click)="stepNavigation('+')">
+      <button class="d-flex align-items-center " *ngIf="step < 3" (click)="stepNavigation('+')">
         Suivant
         <span class="material-symbols-outlined">arrow_right</span>
       </button> <!--  -->
-      <button class="btn" *ngIf="step === 4" [disabled]="formulaireInscription.invalid" (click)="inscription()">Enregistrer</button> <!--  -->
+      <button class="d-flex align-items-center" *ngIf="step === 3" [disabled]="formulaireInscription.invalid" (click)="inscription()">
+        Enregistrer
+        <!-- <span class="material-symbols-outlined">save</span> -->
+      </button> <!--  -->
     </div>
   </div>
 </div>
