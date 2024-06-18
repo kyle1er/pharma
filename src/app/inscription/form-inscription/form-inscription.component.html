@@ -53,8 +53,8 @@
           <fieldset class="titreL etatCivil my-2">
             <legend>Nationalité</legend>
             <div>
-              <nz-select class="flex-grow-1" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner votre pays"  [ngModelOptions]="{standalone: true}" (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})" [ngModel]="formulaireInscription.controls['NationaliteID'].value">
-                <nz-option  *ngFor="let item of nationnalite" [nzLabel]="item.libelle" [nzValue]="item.code"></nz-option>
+              <nz-select class="flex-grow-1" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner votre nationnalité"  [ngModelOptions]="{standalone: true}" (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})" [ngModel]="formulaireInscription.controls['NationaliteID'].value">
+                <nz-option  *ngFor="let item of nationnalite" [nzLabel]="item._Libelle" [nzValue]="item._i"></nz-option>
               </nz-select>
             </div>
           </fieldset>
@@ -258,7 +258,13 @@
             <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
             <div class="d-flex justify-content-between py-1 px-4">
 
-              <label for="attributionstresbien">Très bien
+              <span *ngFor="let appre of appreciation">
+                <label [for]="'CnceOrdre'+ appre._libelle" *ngIf="appre.UseOrdre" >{{appre._libelle | titlecase}}
+                  <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre" [value]="appre._libelle">
+                </label>
+              </span>
+
+              <!-- <label for="attributionstresbien">Très bien
                 <input type="radio" id="attributionstresbien" formControlName="CnceOrdre" value="Très bien">
               </label>
 
@@ -268,7 +274,7 @@
 
               <label for="attributionsassezbien">Assez Bien
                 <input type="radio" id="attributionsassezbien" formControlName="CnceOrdre" value="Assez Bien">
-              </label>
+              </label> -->
 
             </div>
           </fieldset>
@@ -279,18 +285,19 @@
             <legend>Je connais le code de déontologie pharmaceutique</legend>
             <div class="d-flex justify-content-between py-1 px-4">
 
-
-              <label for="codetresbien">Très bien
-                <input type="radio" id="codetresbien" formControlName="CnceDeontologie" value="Très bien">
-              </label>
-
+              <span *ngFor="let appre of appreciation">
+                <label [for]="'CnceDeontologie'+ appre._libelle" *ngIf="appre.UseDeontologie" >{{appre._libelle | titlecase}}
+                  <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie" [value]="appre._libelle">
+                </label>
+              </span>
+<!--
               <label for="codebien">Bien
                 <input type="radio" id="codebien" formControlName="CnceDeontologie" value="Bien">
               </label>
 
               <label for="codeassezbien">Assez Bien
                 <input type="radio" id="codeassezbien" formControlName="CnceDeontologie" value="Assez Bien">
-              </label>
+              </label> -->
 
             </div>
           </fieldset>

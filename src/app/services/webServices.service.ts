@@ -20,8 +20,8 @@ export class WebServicesService {
 
 
   // Key Generation
-// iv = window.crypto.getRandomValues(new Uint8Array(16)); // Create a random Initialization Vector
-// encryptionKey : any = null;
+  // iv = window.crypto.getRandomValues(new Uint8Array(16)); // Create a random Initialization Vector
+  // encryptionKey : any = null;
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -39,19 +39,19 @@ export class WebServicesService {
         if (api.statut) {
           if (api.data.methode === "GET") {
             this.http.get(api.data.url + "?" + params).subscribe({
-              next : ( dataGet )=>{
+              next: (dataGet) => {
                 myNewData.next(dataGet);
               },
-              error : ( err )=>{
+              error: (err) => {
                 myNewData.error(err);
               }
             })
           } else if (api.data.methode === "POST") {
             this.http.post(api.data.url, params).subscribe({
-              next : ( dataPost )=>{
+              next: (dataPost) => {
                 myNewData.next(dataPost);
               },
-              error : ( err )=>{
+              error: (err) => {
                 myNewData.error(err);
               }
             })
@@ -104,25 +104,25 @@ export class WebServicesService {
 
 
 
-  authenticate(fichier: string, params: any = ""){
+  authenticate(fichier: string, params: any = "") {
     sessionStorage.clear()
-    return new Observable(obser =>{
+    return new Observable(obser => {
 
-      this.execute( fichier, params ).subscribe({
-        next : ( data )=>{
+      this.execute(fichier, params).subscribe({
+        next: (data) => {
           // console.log("my data == ", data);
 
           sessionStorage.setItem("auth", JSON.stringify(data));
           obser.next({
-            statut : 1,
-            data : ""
+            statut: 1,
+            data: ""
           })
         },
-        error : ( err )=>{
+        error: (err) => {
           console.log("my data err == ", err);
           obser.error({
-            statut : -1,
-            data : err
+            statut: -1,
+            data: err
           })
         }
       })
@@ -135,47 +135,47 @@ export class WebServicesService {
 
 
 
-//   private genereKey() {
+  //   private genereKey() {
 
-//     // Generate a secure encryption key
-//     window.crypto.subtle.generateKey({ name: 'AES-CBC', length: 256 }, true, ['encrypt', 'decrypt']).then(key => {
-//       this.encryptionKey = key;
-//     }).catch(err => {
-//       console.error(err);
-//     });
-//   }
-
-
-// // Function to Encrypt Text
-// private encryptData() {
-
-//   this.genereKey();
-
-//   let encoder = new TextEncoder();
-//   let dataToEncrypt = encoder.encode('Secure Text');
-
-//   window.crypto.subtle.encrypt({ name: 'AES-CBC', iv: this.iv }, this.encryptionKey, dataToEncrypt).then(cipherText => {
-//     let encryptedData = new Uint8Array(cipherText);
-//     console.log(`Cipher text: ${Array.from(encryptedData).join(",")}`); // Display the encrypted data
-//   }).catch(err => {
-//     console.error(err);
-//   });
-// }
-
-// // Function to Decrypt Text
-// private decryptData() {
-//   let encryptedData = new Uint8Array([/*Cipher text data comes here*/]); // Add the encrypted data
-
-//   window.crypto.subtle.decrypt({ name: 'AES-CBC', iv: this.iv }, this.encryptionKey, encryptedData.buffer).then(plainText => {
-//     let decoder = new TextDecoder();
-//     console.log(`Plain text: ${decoder.decode(plainText)}`);  // Display the decrypted data
-//   }).catch(err => {
-//     console.error(err);
-//   });
-// }
+  //     // Generate a secure encryption key
+  //     window.crypto.subtle.generateKey({ name: 'AES-CBC', length: 256 }, true, ['encrypt', 'decrypt']).then(key => {
+  //       this.encryptionKey = key;
+  //     }).catch(err => {
+  //       console.error(err);
+  //     });
+  //   }
 
 
-routerInscription(){
-  this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
-}
+  // // Function to Encrypt Text
+  // private encryptData() {
+
+  //   this.genereKey();
+
+  //   let encoder = new TextEncoder();
+  //   let dataToEncrypt = encoder.encode('Secure Text');
+
+  //   window.crypto.subtle.encrypt({ name: 'AES-CBC', iv: this.iv }, this.encryptionKey, dataToEncrypt).then(cipherText => {
+  //     let encryptedData = new Uint8Array(cipherText);
+  //     console.log(`Cipher text: ${Array.from(encryptedData).join(",")}`); // Display the encrypted data
+  //   }).catch(err => {
+  //     console.error(err);
+  //   });
+  // }
+
+  // // Function to Decrypt Text
+  // private decryptData() {
+  //   let encryptedData = new Uint8Array([/*Cipher text data comes here*/]); // Add the encrypted data
+
+  //   window.crypto.subtle.decrypt({ name: 'AES-CBC', iv: this.iv }, this.encryptionKey, encryptedData.buffer).then(plainText => {
+  //     let decoder = new TextDecoder();
+  //     console.log(`Plain text: ${decoder.decode(plainText)}`);  // Display the decrypted data
+  //   }).catch(err => {
+  //     console.error(err);
+  //   });
+  // }
+
+
+  routerInscription() {
+    this.router.navigate(['/inscription'], { state: { param: { inscription: 'yes', finish: false } } })
+  }
 }

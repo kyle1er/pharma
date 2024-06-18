@@ -1,6 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { WebServicesService } from 'src/app/services/webServices.service';
 import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
+
+interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
+interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
+interface section { _i: string, _libelle: string };
+interface fonction { _i: string, _libelle: string };
+
+
 
 @Component({
   selector: 'app-form-inscription',
@@ -14,73 +22,119 @@ export class FormInscriptionComponent implements OnInit {
 
   step: number = 0;
   mustShow: boolean = false;
-  nationnalite: Array<any> = [
+  nationnalite: Array<nationnalite> = [
     {
-      libelle: "Côte d'ivoire",
-      code: 'CIV'
+      "_i": 8,
+      "_Libelle": "IVOIRIENNE",
+      "_desa": false
     }
   ];
 
-  listEtatCivil : ICheckBtnData = {
-    typeBouton : 'radio',
-    dataList : [
+  appreciation: appreciation[] = [
+    {
+        "_i": 1,
+        "_libelle": "TRES BIEN",
+        "UseOrdre": true,
+        "UseDeontologie": true,
+        "_desa": false
+    },
+    {
+        "_i": 2,
+        "_libelle": "BIEN",
+        "UseOrdre": false,
+        "UseDeontologie": true,
+        "_desa": false
+    },
+    {
+        "_i": 3,
+        "_libelle": "ASSEZ-BIEN",
+        "UseOrdre": true,
+        "UseDeontologie": true,
+        "_desa": false
+    }
+];
+  section: section[] = [
+    {
+        "_i": "S1",
+        "_libelle": "SECTION 1"
+    },
+    {
+        "_i": "S2",
+        "_libelle": "SECTION 2"
+    },
+    {
+        "_i": "S3",
+        "_libelle": "SECTION 3"
+    },
+    {
+        "_i": "S4",
+        "_libelle": "SECTION 4"
+    }
+];
+  fonction!: fonction[];
+
+  listEtatCivil: ICheckBtnData = {
+    typeBouton: 'radio',
+    dataList: [
       {
-        libelle : "Célibataire",
-        valeur : "Célibataire",
+        libelle: "Célibataire",
+        valeur: "Célibataire",
       },
       {
-        libelle : "Marié",
-        valeur : "Marié",
+        libelle: "Marié",
+        valeur: "Marié",
       },
       {
-        libelle : "Divorcé",
-        valeur : "Divorcé",
+        libelle: "Divorcé",
+        valeur: "Divorcé",
       },
       {
-        libelle : "Veuf (ve)",
-        valeur : "Veuf (ve)",
+        libelle: "Veuf (ve)",
+        valeur: "Veuf (ve)",
       },
     ]
   };
 
-  listSectionOrdre : ICheckBtnData = {
-    typeBouton : 'checkbox',
-    dataList : [
-      {
-        libelle : "1",
-        valeur : "1",
-      },
-      {
-        libelle : "2",
-        valeur : "2",
-      },
-      {
-        libelle : "3",
-        valeur : "3",
-      },
-      {
-        libelle : "4",
-        valeur : "4",
-      },
-    ]
+  listSectionOrdre: ICheckBtnData = {
+    typeBouton: 'checkbox',
+    dataList : JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+    // dataList: [
+    //   {
+    //     libelle: "1",
+    //     valeur: "1",
+    //   },
+    //   {
+    //     libelle: "2",
+    //     valeur: "2",
+    //   },
+    //   {
+    //     libelle: "3",
+    //     valeur: "3",
+    //   },
+    //   {
+    //     libelle: "4",
+    //     valeur: "4",
+    //   },
+    // ]
   }
 
-  listChangeSection : ICheckBtnData = {
-    typeBouton : 'radio',
-    dataList : [
+  listChangeSection: ICheckBtnData = {
+    typeBouton: 'radio',
+    dataList: [
       {
-        libelle : "NON",
-        valeur : false,
+        libelle: "NON",
+        valeur: false,
       },
       {
-        libelle : "OUI",
-        valeur : true,
+        libelle: "OUI",
+        valeur: true,
       }
     ]
   }
 
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private items: WebServicesService) {
 
     // console.log( "date new 2 ==> ", this.activateRoute.snapshot.data );
 
@@ -101,6 +155,41 @@ export class FormInscriptionComponent implements OnInit {
 
 
     // })
+
+    // const params =
+    items.execute('comboCheckboxRadio', [
+      {
+        "item": "doc",
+        "desa": 0
+      },
+      {
+        "item": "nationalite"
+      },
+      {
+        "item": "appreciation"
+      }, {
+        "item": "section"
+      },
+      {
+        "item": "fonction"
+      }
+    ]).subscribe({
+      next: (value: any) => {
+        console.log("list items === ", value);
+        /* ---------------- */
+        /* ---------------- */
+        this.nationnalite = value['description']['nationnalite'] as Array<nationnalite>;
+        this.appreciation = value['description']['appreciation'] as Array<appreciation>;
+
+        this.section = value['description']['section'] as Array<section>;
+        this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+        this.fonction = value['description']['fonction'] as Array<fonction>;
+
+      },
+      error: (err) => {
+        console.log("error list items === ", err);
+      },
+    })
 
 
 

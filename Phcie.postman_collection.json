@@ -1,0 +1,276 @@
+{
+	"info": {
+		"_postman_id": "a8bd1ac9-99db-4642-93df-1e1a22aacd00",
+		"name": "Phcie",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21236385"
+	},
+	"item": [
+		{
+			"name": "Get Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\n    \"body\": \n        [\n            {\n                \"item\": \"doc\",\n                \"desa\": 0\n            },\n            {\n                \"item\": \"nationalite\"\n            },\n            {\n                \"item\": \"appreciation\"\n            },{\n                \"item\": \"section\"\n            },\n            {\n                \"item\": \"fonction\"\n            }\n        ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_get_param",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_get_param"
+					]
+				},
+				"description": "This is a PUT request and it is used to overwrite an existing piece of data. For instance, after you create an entity with a POST request, you may want to modify that later. You can do that using a PUT request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful PUT request typically returns a `200 OK`, `201 Created`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"id\": 7\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_delete_param",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_delete_param"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Statut",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful DELETE request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"desa\": 0, //(0 ==> Activé , 1==> Désactivé)\r\n        \"id\": 8\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_des_param",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_des_param"
+					]
+				},
+				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "set Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"data\": {\r\n            \"_i\": 1,\r\n            \"_libelle\": \"xx\"\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_set_param",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_set_param"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Inscription Phcien",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nom\": \"BEUGRE\",\r\n    \"Pnom\": \"MARIOTTE\",\r\n    \"Datenaiss\": \"20001012\",\r\n    \"Lieunaiss\": \"DALOA\",\r\n    \"NationaliteID\": 8,\r\n    \"Etatcivil\": 1,\r\n    \"Tel\": \"0759658918\",\r\n    \"Mail\": \"b.angemariotte@gmail.com\",\r\n    \"DiplomeobtenuLe\": \"20001012\",\r\n    \"Lieuobtentiondiplome\": \"PIGIER COTE D'IVOIRE\",\r\n    \"DiplomeDelivreLe\": \"20001013\",\r\n    \"ChangementOrdre\": 1,\r\n    \"Raisonscial_emp\": \"PHCIE DU BONHEUR\",\r\n    \"Adrpost_emp\": \"RIVERA PALMERAIE\",\r\n    \"Tel_emp\": \"0759658918\",\r\n    \"Fax_emp\": \"ABIDJAN BP 01\",\r\n    \"Adrgeo_emp\": \"DERRIERE LE MARCHE\",\r\n    \"Nomcontact_immed\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_immed\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_immed\": \"0759658918\",\r\n    \"Nomcontact_prof\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_prof\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_prof\": \"0759658918\",\r\n    \"CnceDeontologie\": 1,\r\n    \"CnceOrdre\": 1,\r\n    \"Adrgeo\": \"COCODY ANGRE\",\r\n    \"datedepot_dos\": \"20240607\",\r\n    \"fonctions\" : [\"1\"],\r\n    \"sections\" : [\"S1\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_inscription",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_inscription"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Liste des inscriptions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nom\": \"BEUGRE\",\r\n    \"Pnom\": \"MARIOTTE\",\r\n    \"Datenaiss\": \"20001012\",\r\n    \"Lieunaiss\": \"DALOA\",\r\n    \"NationaliteID\": 8,\r\n    \"Etatcivil\": 1,\r\n    \"Tel\": \"0759658918\",\r\n    \"Mail\": \"b.angemariotte@gmail.com\",\r\n    \"DiplomeobtenuLe\": \"20001012\",\r\n    \"Lieuobtentiondiplome\": \"PIGIER COTE D'IVOIRE\",\r\n    \"DiplomeDelivreLe\": \"20001013\",\r\n    \"ChangementOrdre\": 1,\r\n    \"Raisonscial_emp\": \"PHCIE DU BONHEUR\",\r\n    \"Adrpost_emp\": \"RIVERA PALMERAIE\",\r\n    \"Tel_emp\": \"0759658918\",\r\n    \"Fax_emp\": \"ABIDJAN BP 01\",\r\n    \"Adrgeo_emp\": \"DERRIERE LE MARCHE\",\r\n    \"Nomcontact_immed\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_immed\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_immed\": \"0759658918\",\r\n    \"Nomcontact_prof\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_prof\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_prof\": \"0759658918\",\r\n    \"CnceDeontologie\": 1,\r\n    \"CnceOrdre\": 1,\r\n    \"Adrgeo\": \"COCODY ANGRE\",\r\n    \"datedepot_dos\": \"20240607\",\r\n    \"fonctions\" : [\"1\"],\r\n    \"sections\" : [\"S1\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_inscription",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_inscription"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		},
+		{
+			"key": "lien",
+			"value": "149.202.84.49:1000/api_pchien"
+		}
+	]
+}

@@ -1,0 +1,20 @@
+{
+  "methode": "POST",
+  "url": "http://149.202.84.49:8080/api_phcien/_get_param",
+  "params": [
+    {
+      "item": "doc",
+      "desa": 1
+    },
+    {
+      "item": "nationalite",
+      "desa": 0
+    },
+    {
+      "item": "appreciation"
+    },
+    {
+      "item": "type"
+    }
+  ]
+}
