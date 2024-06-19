@@ -7,6 +7,7 @@ interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
 interface section { _i: string, _libelle: string };
 interface fonction { _i: string, _libelle: string };
+interface documents { _i: number, _libelle: string, _desa : boolean };
 
 
 
@@ -20,6 +21,7 @@ export class FormInscriptionComponent implements OnInit {
   formulaireInscription !: FormGroup;
   @Input() actionTitre: "NEW" | "EDIT" = "NEW";
 
+  listOfSelectedValue : Array<number> = []
   step: number = 0;
   mustShow: boolean = false;
   nationnalite: Array<nationnalite> = [
@@ -32,46 +34,118 @@ export class FormInscriptionComponent implements OnInit {
 
   appreciation: appreciation[] = [
     {
-        "_i": 1,
-        "_libelle": "TRES BIEN",
-        "UseOrdre": true,
-        "UseDeontologie": true,
-        "_desa": false
+      "_i": 1,
+      "_libelle": "TRES BIEN",
+      "UseOrdre": true,
+      "UseDeontologie": true,
+      "_desa": false
     },
     {
-        "_i": 2,
-        "_libelle": "BIEN",
-        "UseOrdre": false,
-        "UseDeontologie": true,
-        "_desa": false
+      "_i": 2,
+      "_libelle": "BIEN",
+      "UseOrdre": false,
+      "UseDeontologie": true,
+      "_desa": false
     },
     {
-        "_i": 3,
-        "_libelle": "ASSEZ-BIEN",
-        "UseOrdre": true,
-        "UseDeontologie": true,
-        "_desa": false
+      "_i": 3,
+      "_libelle": "ASSEZ-BIEN",
+      "UseOrdre": true,
+      "UseDeontologie": true,
+      "_desa": false
     }
-];
+  ];
   section: section[] = [
     {
-        "_i": "S1",
-        "_libelle": "SECTION 1"
+      "_i": "S1",
+      "_libelle": "SECTION 1"
     },
     {
-        "_i": "S2",
-        "_libelle": "SECTION 2"
+      "_i": "S2",
+      "_libelle": "SECTION 2"
     },
     {
-        "_i": "S3",
-        "_libelle": "SECTION 3"
+      "_i": "S3",
+      "_libelle": "SECTION 3"
     },
     {
-        "_i": "S4",
-        "_libelle": "SECTION 4"
+      "_i": "S4",
+      "_libelle": "SECTION 4"
+    }
+  ];
+  fonction: fonction[] = [
+    {
+        "_i": "14",
+        "_libelle": "En Attente de poste"
+    },
+    {
+        "_i": "12",
+        "_libelle": "Enseignant"
+    },
+    {
+        "_i": "7",
+        "_libelle": "administrateurs des établissements de grossistes-répartiteurs"
+    },
+    {
+        "_i": "6",
+        "_libelle": "administrateurs des établissements pharmaceutiques de fabrication"
+    },
+    {
+        "_i": "11",
+        "_libelle": "fonctionnaire"
+    },
+    {
+        "_i": "5",
+        "_libelle": "gérants"
+    },
+    {
+        "_i": "10",
+        "_libelle": "les pharmaciens droguistes"
+    },
+    {
+        "_i": "2",
+        "_libelle": "pharmaciens assistants"
+    },
+    {
+        "_i": "15",
+        "_libelle": "pharmaciens biologistes"
+    },
+    {
+        "_i": "3",
+        "_libelle": "pharmaciens gérants d’officines"
+    },
+    {
+        "_i": "16",
+        "_libelle": "pharmaciens hospitaliers privés"
+    },
+    {
+        "_i": "4",
+        "_libelle": "pharmaciens propriétaires"
+    },
+    {
+        "_i": "8",
+        "_libelle": "pharmaciens salariés des établissements pharmaceutiques de fabrication"
+    },
+    {
+        "_i": "9",
+        "_libelle": "pharmaciens salariés des établissements pharmaceutiques de grossistes-répartiteurs"
+    },
+    {
+        "_i": "1",
+        "_libelle": "pharmaciens titulaires"
+    },
+    {
+        "_i": "13",
+        "_libelle": "retraités"
     }
 ];
-  fonction!: fonction[];
+documents : Array<documents> = [
+  {
+      "_i": 1,
+      "_libelle": "INFO",
+      "_desa": false
+  }
+]
 
   listEtatCivil: ICheckBtnData = {
     typeBouton: 'radio',
@@ -97,7 +171,7 @@ export class FormInscriptionComponent implements OnInit {
 
   listSectionOrdre: ICheckBtnData = {
     typeBouton: 'checkbox',
-    dataList : JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+    dataList: JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
     // dataList: [
     //   {
     //     libelle: "1",
@@ -180,6 +254,7 @@ export class FormInscriptionComponent implements OnInit {
         /* ---------------- */
         this.nationnalite = value['description']['nationnalite'] as Array<nationnalite>;
         this.appreciation = value['description']['appreciation'] as Array<appreciation>;
+        this.documents = value['description']['appreciation'] as Array<appreciation>;
 
         this.section = value['description']['section'] as Array<section>;
         this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
