@@ -1,7 +1,7 @@
 .myForm {
   // position: absolute;
-  min-height: 95vh ;
-  max-height: 10vh ;
+  min-height: 95vh;
+  max-height: 10vh;
   overflow: hidden;
 
   background-color: rgba(255, 255, 255, 0.905);
@@ -47,30 +47,60 @@
       fieldset {
         padding: 0px 5px;
         margin-bottom: 2px 5px;
+
         // border: 1px solid gray;
-        &.titreL legend{
+        &.titreL legend {
           font-size: 15px;
           font-weight: 700;
 
-          & +div {
+          &+div {
             input.lieu {
               flex: 1 1 80%;
               margin-left: 5px;
             }
 
-            ol{
+            ol {
               width: 100%;
-              li{
+
+              li {
                 flex: 0 1 45%;
               }
             }
           }
         }
 
+
+        ul {
+          width: 100%;
+
+          .fichierImport{
+            background-color: #dcdcdc7d;
+            padding-left: 10px;
+            font-style: italic;
+            width: 100%;
+            border-radius: 10px 0 0 10px;
+
+            &>span {
+                flex: 0 0 100%;
+                text-overflow: ellipsis;
+                text-wrap: nowrap;
+                overflow: hidden;
+              }
+
+            button {
+              border: none;
+              color: red;
+              // background-color: transparent;
+            }
+          }
+        }
+
         label,
-        input[type='radio'], input[type='checkbox'] {
+        input[type='radio'],
+        input[type='checkbox'] {
           cursor: pointer;
         }
+
         // &.etatCivil {
 
         // }
@@ -95,7 +125,7 @@
         background-color: rgba(0, 0, 0, 0.8);
       }
 
-      &:disabled{
+      &:disabled {
         cursor: not-allowed;
       }
     }

@@ -7,7 +7,7 @@ interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
 interface section { _i: string, _libelle: string };
 interface fonction { _i: string, _libelle: string };
-interface documents { _i: number, _libelle: string, _desa : boolean };
+interface documents { _i: number, _libelle: string, _desa: boolean };
 
 
 
@@ -18,10 +18,19 @@ interface documents { _i: number, _libelle: string, _desa : boolean };
 })
 export class FormInscriptionComponent implements OnInit {
 
+  listFile: Array<{
+    _id: number,
+    file: any
+  }> = []
+
+
+
+
+
   formulaireInscription !: FormGroup;
   @Input() actionTitre: "NEW" | "EDIT" = "NEW";
 
-  listOfSelectedValue : Array<number> = []
+  listOfSelectedValue: Array<number> = []
   step: number = 0;
   mustShow: boolean = false;
   nationnalite: Array<nationnalite> = [
@@ -75,77 +84,82 @@ export class FormInscriptionComponent implements OnInit {
   ];
   fonction: fonction[] = [
     {
-        "_i": "14",
-        "_libelle": "En Attente de poste"
+      "_i": "14",
+      "_libelle": "En Attente de poste"
     },
     {
-        "_i": "12",
-        "_libelle": "Enseignant"
+      "_i": "12",
+      "_libelle": "Enseignant"
     },
     {
-        "_i": "7",
-        "_libelle": "administrateurs des établissements de grossistes-répartiteurs"
+      "_i": "7",
+      "_libelle": "administrateurs des établissements de grossistes-répartiteurs"
     },
     {
-        "_i": "6",
-        "_libelle": "administrateurs des établissements pharmaceutiques de fabrication"
+      "_i": "6",
+      "_libelle": "administrateurs des établissements pharmaceutiques de fabrication"
     },
     {
-        "_i": "11",
-        "_libelle": "fonctionnaire"
+      "_i": "11",
+      "_libelle": "fonctionnaire"
     },
     {
-        "_i": "5",
-        "_libelle": "gérants"
+      "_i": "5",
+      "_libelle": "gérants"
     },
     {
-        "_i": "10",
-        "_libelle": "les pharmaciens droguistes"
+      "_i": "10",
+      "_libelle": "les pharmaciens droguistes"
     },
     {
-        "_i": "2",
-        "_libelle": "pharmaciens assistants"
+      "_i": "2",
+      "_libelle": "pharmaciens assistants"
     },
     {
-        "_i": "15",
-        "_libelle": "pharmaciens biologistes"
+      "_i": "15",
+      "_libelle": "pharmaciens biologistes"
     },
     {
-        "_i": "3",
-        "_libelle": "pharmaciens gérants d’officines"
+      "_i": "3",
+      "_libelle": "pharmaciens gérants d’officines"
     },
     {
-        "_i": "16",
-        "_libelle": "pharmaciens hospitaliers privés"
+      "_i": "16",
+      "_libelle": "pharmaciens hospitaliers privés"
     },
     {
-        "_i": "4",
-        "_libelle": "pharmaciens propriétaires"
+      "_i": "4",
+      "_libelle": "pharmaciens propriétaires"
     },
     {
-        "_i": "8",
-        "_libelle": "pharmaciens salariés des établissements pharmaceutiques de fabrication"
+      "_i": "8",
+      "_libelle": "pharmaciens salariés des établissements pharmaceutiques de fabrication"
     },
     {
-        "_i": "9",
-        "_libelle": "pharmaciens salariés des établissements pharmaceutiques de grossistes-répartiteurs"
+      "_i": "9",
+      "_libelle": "pharmaciens salariés des établissements pharmaceutiques de grossistes-répartiteurs"
     },
     {
-        "_i": "1",
-        "_libelle": "pharmaciens titulaires"
+      "_i": "1",
+      "_libelle": "pharmaciens titulaires"
     },
     {
-        "_i": "13",
-        "_libelle": "retraités"
+      "_i": "13",
+      "_libelle": "retraités"
     }
-];
-documents : Array<documents> = [
-  {
+  ];
+  documents: Array<documents> = [
+    {
       "_i": 1,
       "_libelle": "INFO",
       "_desa": false
-  }
-]
+    },
+    {
+      "_i": 2,
+      "_libelle": "PASSEPORT",
+      "_desa": false
+    },
+  ]
 
   listEtatCivil: ICheckBtnData = {
     typeBouton: 'radio',
@@ -441,5 +455,42 @@ documents : Array<documents> = [
 
   btnCheckRadio(val: any) {
     this.formulaireInscription.patchValue({ 'Etatcivil': val })
+  }
+
+
+  uploadFile(id: number, myFile: any) {
+    console.log(myFile);
+    // console.log('#fichier_'+ id +' + .fichierImport > span');
+
+    // const myFile = file //as HTMLInputElement
+
+    if (!myFile.target.files[0]) return
+
+    this.listFile.push({
+      _id: id,
+      file: myFile.target.files[0]
+    })
+
+    const timSpan = setInterval(()=>{
+      const mySpan = document.querySelector('#name_'+ id)
+      console.log(mySpan);
+      if (mySpan) {
+        clearInterval(timSpan)
+        mySpan!.textContent = myFile.target.files[0].name
+      }
+    }, 10)
+
+  }
+
+  fileIsUpload(id: number) {
+    console.log("this.listFile ", this.listFile);
+
+    return this.listFile.find((elt) => elt._id === id) != undefined
+  }
+
+  deleteFile(id: number) {
+    console.log("this.listFile ", this.listFile);
+    this.listFile = this.listFile.filter((elt) => elt._id !== id)
+    // return true
   }
 }
