@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { WebServicesService } from 'src/app/services/webServices.service';
 import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
+import { inscriptionData } from 'src/app/shared/dto/inscriptionData';
 
 interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
@@ -18,10 +19,7 @@ interface documents { _i: number, _libelle: string, _desa: boolean };
 })
 export class FormInscriptionComponent implements OnInit {
 
-  listFile: Array<{
-    _id: number,
-    file: any
-  }> = []
+  listFile: Array<{ id?: number, key: string, fileName: string, file: File }> = []
 
 
 
@@ -222,7 +220,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private items: WebServicesService) {
+  constructor(private fb: FormBuilder, private myService: WebServicesService) {
 
     // console.log( "date new 2 ==> ", this.activateRoute.snapshot.data );
 
@@ -245,7 +243,7 @@ export class FormInscriptionComponent implements OnInit {
     // })
 
     // const params =
-    items.execute('comboCheckboxRadio', [
+    this.myService.execute('getItems', [
       {
         "item": "doc",
         "desa": 0
@@ -347,10 +345,7 @@ export class FormInscriptionComponent implements OnInit {
       "DiplomeobtenuLe": "2024-06-03",
       "Lieuobtentiondiplome": "Obtention ",
       "DiplomeDelivreLe": "2024-06-03",
-      "Sections": [
-        "1",
-        "2"
-      ],
+      "Sections": [],
       "ChangementOrdre": false,
       "etabPharmaceutique": {
         "Raisonscial_emp": "Raison",
@@ -396,14 +391,17 @@ export class FormInscriptionComponent implements OnInit {
       }
     }
 
+    const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value)
+
     const data = {
-      token: "test",
-      body: {
-        ...this.formulaireInscription.value,
-        ...this.formulaireInscription.controls['etabPharmaceutique'].value,
-        ...this.formulaireInscription.controls['contact'].value['contactPro'],
-        ...this.formulaireInscription.controls['contact'].value['contactImmediat']
-      },
+      token: "testxxxxxxxxxxxxx",
+      body: { ...inscriptionData_.myData, dossier: this.myService.uploadFile(this.listFile) },
+      // body: {
+      //   ...this.formulaireInscription.value,
+      //   ...this.formulaireInscription.controls['etabPharmaceutique'].value,
+      //   ...this.formulaireInscription.controls['contact'].value['contactPro'],
+      //   ...this.formulaireInscription.controls['contact'].value['contactImmediat']
+      // },
       formpatDate: function () {
         for (const key in this.body) {
           if (dateIsValide(this.body[key])) {
@@ -412,12 +410,13 @@ export class FormInscriptionComponent implements OnInit {
           }
         }
       }
+
     }
 
 
-    for (const clef of ["etabPharmaceutique", "contact"]) {
-      delete data.body[clef]
-    }
+    // for (const clef of ["etabPharmaceutique", "contact"]) {
+    //   delete data.body[clef]
+    // }
 
     data.formpatDate()
 
@@ -458,7 +457,7 @@ export class FormInscriptionComponent implements OnInit {
   }
 
 
-  uploadFile(id: number, myFile: any) {
+  uploadFile(id: number, key: string, myFile: any) {
     console.log(myFile);
     // console.log('#fichier_'+ id +' + .fichierImport > span');
 
@@ -467,12 +466,14 @@ export class FormInscriptionComponent implements OnInit {
     if (!myFile.target.files[0]) return
 
     this.listFile.push({
-      _id: id,
+      key,
+      fileName: myFile.target.files[0].name,
+      id,
       file: myFile.target.files[0]
     })
 
-    const timSpan = setInterval(()=>{
-      const mySpan = document.querySelector('#name_'+ id)
+    const timSpan = setInterval(() => {
+      const mySpan = document.querySelector('#name_' + id)
       console.log(mySpan);
       if (mySpan) {
         clearInterval(timSpan)
@@ -485,12 +486,13 @@ export class FormInscriptionComponent implements OnInit {
   fileIsUpload(id: number) {
     console.log("this.listFile ", this.listFile);
 
-    return this.listFile.find((elt) => elt._id === id) != undefined
+    return this.listFile.find((elt) => elt.id === id) != undefined
   }
 
   deleteFile(id: number) {
     console.log("this.listFile ", this.listFile);
-    this.listFile = this.listFile.filter((elt) => elt._id !== id)
+    this.listFile = this.listFile.filter((elt) => elt.id !== id)
     // return true
   }
+
 }

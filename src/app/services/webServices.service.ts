@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
@@ -16,8 +17,12 @@ interface myUri {
   providedIn: 'root'
 })
 
+
+
+
 export class WebServicesService {
 
+  private config = environment
 
   // Key Generation
   // iv = window.crypto.getRandomValues(new Uint8Array(16)); // Create a random Initialization Vector
@@ -38,7 +43,7 @@ export class WebServicesService {
 
         if (api.statut) {
           if (api.data.methode === "GET") {
-            this.http.get(api.data.url + "?" + params).subscribe({
+            this.http.get(this.config.url + "/" + api.data.url + "?" + params).subscribe({
               next: (dataGet) => {
                 myNewData.next(dataGet);
               },
@@ -47,7 +52,7 @@ export class WebServicesService {
               }
             })
           } else if (api.data.methode === "POST") {
-            this.http.post(api.data.url, params).subscribe({
+            this.http.post(this.config.url + "/" + api.data.url, params).subscribe({
               next: (dataPost) => {
                 myNewData.next(dataPost);
               },
@@ -177,5 +182,22 @@ export class WebServicesService {
 
   routerInscription() {
     this.router.navigate(['/inscription'], { state: { param: { inscription: 'yes', finish: false } } })
+  }
+
+  uploadFile(data: Array<{ id?: number, key: string, fileName: string, file: File }>) {
+    const formData = new FormData();
+
+
+    console.log(" data === ", data);
+
+
+    for (const dt of data) {
+      formData.append(dt.key, dt.file, dt.fileName)
+    }
+
+    console.log("formData INFO == ", formData.getAll('INFO'));
+
+
+    return formData
   }
 }

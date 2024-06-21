@@ -1,0 +1,7 @@
+{
+  "methode" : "GET",
+  "url" : "api_phcien/_get_inscriptions",
+  "params" : {
+    "mail" : ""
+  }
+}

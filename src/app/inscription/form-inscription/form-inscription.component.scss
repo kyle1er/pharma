@@ -70,22 +70,35 @@
         }
 
 
+        .infoDoc {
+          font-size: 11px;
+          font-style: italic;
+          color: #a3a3a3;
+          background-color: gainsboro;
+          border-radius: 5px;
+        }
+
+
         ul {
           width: 100%;
 
-          .fichierImport{
+          label {
+            font-weight: 500;
+          }
+
+          .fichierImport {
             background-color: #dcdcdc7d;
             padding-left: 10px;
             font-style: italic;
-            width: 100%;
+            width: 90%;
             border-radius: 10px 0 0 10px;
 
             &>span {
-                flex: 0 0 100%;
-                text-overflow: ellipsis;
-                text-wrap: nowrap;
-                overflow: hidden;
-              }
+              flex: 0 0 100%;
+              text-overflow: ellipsis;
+              text-wrap: nowrap;
+              overflow: hidden;
+            }
 
             button {
               border: none;

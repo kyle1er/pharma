@@ -3,10 +3,10 @@ export class inscriptionData {
   private _myData: any;
   private _myDataReceived: any;
 
-  constructor(type: 'objetSimple' | 'ObjetConstruction', objet: any) {
+  constructor(typeOfObjet: 'objetSimple' | 'ObjetConstruction', objet: any) {
     this._myDataReceived = {...objet};
 
-    switch (type) {
+    switch (typeOfObjet) {
       case 'ObjetConstruction':
         this.ObjetConstruction(objet)
         break;

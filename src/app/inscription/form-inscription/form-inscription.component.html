@@ -333,18 +333,23 @@
         <div class="d-flex flex-column">
           <label for=""><b>Foncion(s)</b></label>
           <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
-            [(ngModel)]="listOfSelectedValue">
+            [(ngModel)]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}">
             <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
           </nz-select>
           <!-- <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template> -->
 
           <fieldset class="titreL mt-3">
             <legend>Liste des dossiers à fournir</legend>
-            <div class="d-flex justify-content-between mt-2 py-1 px-4">
+            <span class="infoDoc d-flex align-items-center p-3 " ><span class="material-symbols-outlined mx-1">
+              info
+              </span>
+              Cliquez sur le nom du dossier à fournir pour importer le fichier correspondant
+            </span>
+            <div class="mt-2 py-1">
               <ul>
                 <li *ngFor="let item of documents"class="d-flex justify-content-between flex-column flex-wrap">
                   <label [for]="'fichier_'+ item._i" class="mx-2" >{{ item._libelle }}</label>
-                  <input (change)="uploadFile(item._i, $event)" style="display: none;" class="mx-2" type="file" accept="." name="" [id]="'fichier_'+ item._i">
+                  <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2" type="file" accept="." name="" [id]="'fichier_'+ item._i">
                   <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i)">
                     <span [id]="'name_'+ item._i" ></span>
                     <button (click)="deleteFile(item._i)">
