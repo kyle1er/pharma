@@ -43,7 +43,7 @@ export class WebServicesService {
 
         if (api.statut) {
           if (api.data.methode === "GET") {
-            this.http.get(this.config.url + "/" + api.data.url + "?" + params).subscribe({
+            this.http.get( this.config.url + "?" + params).subscribe({
               next: (dataGet) => {
                 myNewData.next(dataGet);
               },
@@ -52,7 +52,7 @@ export class WebServicesService {
               }
             })
           } else if (api.data.methode === "POST") {
-            this.http.post(this.config.url + "/" + api.data.url, params).subscribe({
+            this.http.post( this.config.url + api.data.url, params).subscribe({
               next: (dataPost) => {
                 myNewData.next(dataPost);
               },

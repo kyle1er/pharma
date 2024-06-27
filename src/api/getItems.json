@@ -1,6 +1,6 @@
 {
   "methode": "POST",
-  "url": "api_phcien/_get_param",
+  "url": "_get_param",
   "params": [
     {
       "item": "doc",

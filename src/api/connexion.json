@@ -1,0 +1,8 @@
+{
+  "methode": "POST",
+  "url": "_login",
+  "params": {
+    "email": "b.angemariotte@gmail.com",
+    "pwd": "012345"
+  }
+}

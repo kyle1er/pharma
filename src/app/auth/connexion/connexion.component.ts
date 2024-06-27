@@ -15,8 +15,10 @@ export class ConnexionComponent implements OnInit {
 
   constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router ) {
     this.formulaireConnexion = this.fb.group({
-      pseudo : ['', [Validators.required]],
-      passWord : ['', [Validators.required]],
+      email : ['', [Validators.required]],
+      pwd : ['', [Validators.required]],
+      // pseudo : ['', [Validators.required]],
+      // passWord : ['', [Validators.required]],
     })
   }
 
@@ -31,7 +33,7 @@ export class ConnexionComponent implements OnInit {
     console.log(this.formulaireConnexion);
     this.isLoadingOne = true;
 
-    this.cnx.authenticate("test").subscribe({
+    this.cnx.authenticate("connexion", this.formulaireConnexion.value).subscribe({
       next: (data) => {
         this.isLoadingOne = false;
         console.log("Mon retour ", data);

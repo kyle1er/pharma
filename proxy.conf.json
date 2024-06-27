@@ -1,0 +1,10 @@
+{
+    "/globalpayapi/*": {
+        "target": "http://192.168.20.221:2053/",
+        "secure": false
+    },
+    "/api_phcien/*": {
+        "target": "http://149.202.84.49:8080/",
+        "secure": false
+    }
+}

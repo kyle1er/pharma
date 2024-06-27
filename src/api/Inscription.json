@@ -1,6 +1,6 @@
 {
   "methode" : "POST",
-  "url" : "api_phcien/_inscription",
+  "url" : "_inscription",
   "params" : {
     "Nom": "BEUGRE",
     "Pnom": "MARIOTTE",

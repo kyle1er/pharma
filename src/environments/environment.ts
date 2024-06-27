@@ -4,7 +4,14 @@
 
 export const environment = {
   production: false,
-  url : "http://149.202.84.49:8080"
+  url_ : "/",// "http://149.202.84.49:8080",
+  baseUrl : "api_phcien",
+  get url() {
+    return this.url_ + this.baseUrl +"/"
+  }
+  // urlConstruction : function () {
+  //   return (this.url +"/"+ this.baseUrl +"/")
+  // }
 };
 
 /*
