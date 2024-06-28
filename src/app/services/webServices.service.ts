@@ -30,7 +30,7 @@ export class WebServicesService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  execute(fichier: string, params: any = "") {
+  execute(fichier: string, params: any = "", token : boolean = true) {
     return new Observable(myNewData => {
 
       let api: { statut: number, data: myUri };
@@ -52,6 +52,12 @@ export class WebServicesService {
               }
             })
           } else if (api.data.methode === "POST") {
+            if (token) {
+              params = {
+                ...params,
+                token : sessionStorage.getItem('auth')
+              }
+            }
             this.http.post( this.config.url + api.data.url, params).subscribe({
               next: (dataPost) => {
                 myNewData.next(dataPost);
@@ -113,14 +119,14 @@ export class WebServicesService {
     sessionStorage.clear()
     return new Observable(obser => {
 
-      this.execute(fichier, params).subscribe({
-        next: (data) => {
-          // console.log("my data == ", data);
+      this.execute(fichier, params, false).subscribe({
+        next: (data : any) => {
+          console.log("my data == ", data);
 
-          sessionStorage.setItem("auth", JSON.stringify(data));
+          sessionStorage.setItem("auth", data['description']['token']);
           obser.next({
             statut: 1,
-            data: ""
+            data
           })
         },
         error: (err) => {
@@ -200,4 +206,5 @@ export class WebServicesService {
 
     return formData
   }
+
 }

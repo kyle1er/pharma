@@ -1,3 +1,4 @@
+import { NotificationModule } from './../shared/notification/notification.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthComponent } from './auth.component';
@@ -19,7 +20,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
-    NzButtonModule
+    NzButtonModule,
+    NotificationModule
   ]
 })
 export class AuthModule { }

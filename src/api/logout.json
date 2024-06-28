@@ -1,0 +1,7 @@
+{
+  "methode": "POST",
+  "url": "_logOut",
+  "params": {
+    "token": "****************"
+  }
+}

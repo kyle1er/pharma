@@ -9,9 +9,6 @@ export const environment = {
   get url() {
     return this.url_ + this.baseUrl +"/"
   }
-  // urlConstruction : function () {
-  //   return (this.url +"/"+ this.baseUrl +"/")
-  // }
 };
 
 /*

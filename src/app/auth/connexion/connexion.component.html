@@ -27,3 +27,7 @@
     <span (click)="inscription()" >Créer un compte</span> <!-- [routerLink]="['/inscription', {state : '{ game: 21, finish: false }'}]" -->
   </div>
 </div>
+
+
+
+<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifActivate" (isFermer)="infoNotifActivate = false" ></app-notification>

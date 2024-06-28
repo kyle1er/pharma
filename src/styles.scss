@@ -15,6 +15,14 @@ input {
 }
 
 
+
+// ::ng-deep{
+//   .ant-modal-content{
+//     border-radius: 20px !important;
+//     overflow: hidden !important;
+//   }
+// }
+
 .soumettre button,
 button.send {
   padding: 5px 10px;
@@ -34,3 +42,4 @@ button.send {
     background-color: rgba(var(--vert_opacity), 0.8) !important;
   }
 }
+

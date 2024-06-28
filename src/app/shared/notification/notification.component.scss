@@ -6,35 +6,50 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  button{
+    background-color: var(--vert);
+  }
 }
 
-// .btnAction{
-//   // margin-top: 5px;
 
-//   // button{
-//   //   padding: 10px 0px;
-//   //   width: 180px;
-//   //   cursor: pointer;
-//   //   border-radius: 5px;
-//   //   color: var(--text-color);
 
-//   //   &:first-of-type{
-//   //     color: var(--main-color);
-//   //     border: 1px solid var(--main-color);
-//   //     // border: none;
+::ng-deep{
+  .ant-modal-content{
+    border-radius: 20px !important;
+    overflow: hidden !important;
+  }
+}
 
-//   //   }
-//   //   &:last-of-type{
-//   //     margin-left: 10px;
-//   //   }
 
-//   //   &:hover{
-//   //     color: var(--main-color);
-//   //   }
 
-//   //   &:disabled{
-//   //     cursor: not-allowed;
-//   //     // background-color: gainsboro;
-//   //   }
-//   // }
-// }
+.btnAction{
+  margin-top: 5px;
+
+  button{
+    padding: 10px 0px;
+    width: 180px;
+    cursor: pointer;
+    border-radius: 5px;
+    color: white;
+
+    &:first-of-type{
+      color: var(--vert);
+      border: 1px solid var(--vert);
+      // border: none;
+
+    }
+    &:last-of-type{
+      margin-left: 10px;
+    }
+
+    // &:hover{
+    //   color: var(--vert);
+    // }
+
+    &:disabled{
+      cursor: not-allowed;
+      // background-color: gainsboro;
+    }
+  }
+}

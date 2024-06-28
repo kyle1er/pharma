@@ -1,12 +1,303 @@
 {
 	"info": {
-		"_postman_id": "a8bd1ac9-99db-4642-93df-1e1a22aacd00",
+		"_postman_id": "811840fe-a980-4390-974e-4ae2797bee0a",
 		"name": "Phcie",
 		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21236385"
+		"_exporter_id": "23122596",
+		"_collection_link": "https://globalpay-spring-4-teams-180842.postman.co/workspace/Pharma~f9367aad-108b-4687-ae51-335b0ae92d43/collection/23122596-811840fe-a980-4390-974e-4ae2797bee0a?action=share&source=collection_link&creator=23122596"
 	},
 	"item": [
+		{
+			"name": "ADMINISTRATION",
+			"item": [
+				{
+					"name": "Ajouter des Items",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": {{token}},\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"data\": {\r\n            \"_i\": 1,\r\n            \"_libelle\": \"xx\"\r\n        }\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_set_param",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_set_param"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Item",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": {{token}},\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"id\": 7\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_delete_param",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_delete_param"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Statut",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful DELETE request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": {{token}},\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"desa\": 0, //(0 ==> Activé , 1==> Désactivé)\r\n        \"id\": 8\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_des_param",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_des_param"
+							]
+						},
+						"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
+					},
+					"response": []
+				},
+				{
+					"name": "Liste des inscriptions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": {{token}},\r\n    \"body\": {\r\n        \"debut\":\"\",\r\n        \"fin\":\"\",\r\n        \"statut\":\"\",\r\n        \"fonctions\": [\r\n            \"1\"\r\n        ],\r\n        \"sections\":[\r\n            \"S1\"\r\n        ]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_get_inscriptions",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_get_inscriptions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AUTHENTIFICATION",
+			"item": [
+				{
+					"name": "Update mot de passe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"{{token}}\",\r\n    \"body\": {\r\n        \"new_pwd\": \"012345\",\r\n        \"old_pwd\": \"0759658918\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_update_pwd",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_update_pwd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogOut",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// {\r\n//     \"token\": {{token}}\r\n// }\r\n\r\n{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAiaWF0IjoiMjAyNC0wNi0yOFQxNzowODoxOS41MTkiLCAic3ViIjoxLCAibmFtZSI6IkJFVUdSRSBN\\r\\nQVJJT1RURSIgfQ==.y91XCBqaCPoTSzXSforgZw/9V2vqSKb5oPl/Pa//5yU=\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_logOut",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_logOut"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "LogIn",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"b.angemariotte@gmail.com\",\r\n    \"pwd\": \"012345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_login",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reinistialiser le mot de passe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"b.angemariotte@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "149.202.84.49:8080/api_phcien/_init_pwd",
+							"host": [
+								"149",
+								"202",
+								"84",
+								"49"
+							],
+							"port": "8080",
+							"path": [
+								"api_phcien",
+								"_init_pwd"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "Get Item",
 			"event": [
@@ -52,138 +343,13 @@
 			"response": []
 		},
 		{
-			"name": "Delete Item",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful DELETE request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
+			"name": "Inscription Pharmacien",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"id\": 7\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_delete_param",
-					"host": [
-						"149",
-						"202",
-						"84",
-						"49"
-					],
-					"port": "8080",
-					"path": [
-						"api_phcien",
-						"_delete_param"
-					]
-				},
-				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "Update Statut",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Successful DELETE request\", function () {",
-							"    pm.expect(pm.response.code).to.be.oneOf([200, 202, 204]);",
-							"});",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"desa\": 0, //(0 ==> Activé , 1==> Désactivé)\r\n        \"id\": 8\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_des_param",
-					"host": [
-						"149",
-						"202",
-						"84",
-						"49"
-					],
-					"port": "8080",
-					"path": [
-						"api_phcien",
-						"_des_param"
-					]
-				},
-				"description": "This is a DELETE request, and it is used to delete data that was previously created via a POST request. You typically identify the entity being updated by including an identifier in the URL (eg. `id=1`).\n\nA successful DELETE request typically returns a `200 OK`, `202 Accepted`, or `204 No Content` response code."
-			},
-			"response": []
-		},
-		{
-			"name": "set Item",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"item\": \"nationalite\",\r\n        \"data\": {\r\n            \"_i\": 1,\r\n            \"_libelle\": \"xx\"\r\n        }\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_set_param",
-					"host": [
-						"149",
-						"202",
-						"84",
-						"49"
-					],
-					"port": "8080",
-					"path": [
-						"api_phcien",
-						"_set_param"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Inscription Phcien",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"Nom\": \"BEUGRE\",\r\n    \"Pnom\": \"MARIOTTE\",\r\n    \"Datenaiss\": \"20001012\",\r\n    \"Lieunaiss\": \"DALOA\",\r\n    \"NationaliteID\": 8,\r\n    \"Etatcivil\": 1,\r\n    \"Tel\": \"0759658918\",\r\n    \"Mail\": \"b.angemariotte@gmail.com\",\r\n    \"DiplomeobtenuLe\": \"20001012\",\r\n    \"Lieuobtentiondiplome\": \"PIGIER COTE D'IVOIRE\",\r\n    \"DiplomeDelivreLe\": \"20001013\",\r\n    \"ChangementOrdre\": 1,\r\n    \"Raisonscial_emp\": \"PHCIE DU BONHEUR\",\r\n    \"Adrpost_emp\": \"RIVERA PALMERAIE\",\r\n    \"Tel_emp\": \"0759658918\",\r\n    \"Fax_emp\": \"ABIDJAN BP 01\",\r\n    \"Adrgeo_emp\": \"DERRIERE LE MARCHE\",\r\n    \"Nomcontact_immed\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_immed\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_immed\": \"0759658918\",\r\n    \"Nomcontact_prof\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_prof\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_prof\": \"0759658918\",\r\n    \"CnceDeontologie\": 1,\r\n    \"CnceOrdre\": 1,\r\n    \"Adrgeo\": \"COCODY ANGRE\",\r\n    \"datedepot_dos\": \"20240607\",\r\n    \"fonctions\" : [\"1\"],\r\n    \"sections\" : [\"S1\"]\r\n}",
+					"raw": "{\r\n    \"Nom\": \"BEUGRE\",\r\n    \"Pnom\": \"MARIOTTE\",\r\n    \"Datenaiss\": \"20001012\",\r\n    \"Lieunaiss\": \"DALOA\",\r\n    \"NationaliteID\": 8,\r\n    \"Etatcivil\": 1,\r\n    \"Tel\": \"0759658918\",\r\n    \"Mail\": \"b.angemariotte@gmail.com\",\r\n    \"DiplomeobtenuLe\": \"20001012\",\r\n    \"Lieuobtentiondiplome\": \"PIGIER COTE D'IVOIRE\",\r\n    \"DiplomeDelivreLe\": \"20001013\",\r\n    \"ChangementOrdre\": 1,\r\n    \"Raisonscial_emp\": \"PHCIE DU BONHEUR\",\r\n    \"Adrpost_emp\": \"RIVERA PALMERAIE\",\r\n    \"Tel_emp\": \"0759658918\",\r\n    \"Fax_emp\": \"ABIDJAN BP 01\",\r\n    \"Adrgeo_emp\": \"DERRIERE LE MARCHE\",\r\n    \"Nomcontact_immed\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_immed\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_immed\": \"0759658918\",\r\n    \"Nomcontact_prof\": \"BEUGRE ANGE\",\r\n    \"Adrcontact_prof\": \"RIVERA PALMERAIE\",\r\n    \"Telcontact_prof\": \"0759658918\",\r\n    \"CnceDeontologie\": 1,\r\n    \"CnceOrdre\": 1,\r\n    \"Adrgeo\": \"COCODY ANGRE\",\r\n    \"datedepot_dos\": \"20240607\",\r\n    \"fonctions\" : [\"1\"],\r\n    \"sections\" : [\"S1\"]\r\n}\r\n\r\n\r\n\r\n// {\r\n//     \"Nom\": \"BEUGRE\",\r\n//     \"Pnom\": \"MARIOTTE\",\r\n//     \"Datenaiss\": \"20001012\",\r\n//     \"Lieunaiss\": \"DALOA\",\r\n//     \"NationaliteID\": 8,\r\n//     \"Etatcivil\": 1,\r\n//     \"Tel\": \"0759658918\",\r\n//     \"Mail\": \"b.angemariotte@gmail.com\",\r\n//     \"DiplomeobtenuLe\": \"20001012\",\r\n//     \"Lieuobtentiondiplome\": \"PIGIER COTE D'IVOIRE\",\r\n//     \"DiplomeDelivreLe\": \"20001013\",\r\n//     \"ChangementOrdre\": 1,\r\n//     \"Raisonscial_emp\": \"PHCIE DU BONHEUR\",\r\n//     \"Adrpost_emp\": \"RIVERA PALMERAIE\",\r\n//     \"Tel_emp\": \"0759658918\",\r\n//     \"Fax_emp\": \"ABIDJAN BP 01\",\r\n//     \"Adrgeo_emp\": \"DERRIERE LE MARCHE\",\r\n//     \"Nomcontact_immed\": \"BEUGRE ANGE\",\r\n//     \"Adrcontact_immed\": \"RIVERA PALMERAIE\",\r\n//     \"Telcontact_immed\": \"0759658918\",\r\n//     \"Nomcontact_prof\": \"BEUGRE ANGE\",\r\n//     \"Adrcontact_prof\": \"RIVERA PALMERAIE\",\r\n//     \"Telcontact_prof\": \"0759658918\",\r\n//     \"CnceDeontologie\": 1,\r\n//     \"CnceOrdre\": 1,\r\n//     \"Adrgeo\": \"COCODY ANGRE\",\r\n//     \"datedepot_dos\": \"20240607\",\r\n//     \"fonctions\": [\r\n//         \"1\"\r\n//     ],\r\n//     \"sections\": [\r\n//         \"S1\"\r\n//     ],\r\n//     \"Docs_fournis\": [\r\n//         {\r\n//             \"DocID\": 1,\r\n//             \"DocMemo\": \"xxxxxxxxxxxxxxx\"\r\n//         },\r\n//         {\r\n//             \"DocID\": 2,\r\n//             \"DocMemo\": \"xxxxxxxxxxxxxxx\"\r\n//         }\r\n//     ]\r\n// }",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -208,13 +374,13 @@
 			"response": []
 		},
 		{
-			"name": "Liste des inscriptions",
+			"name": "Ajouter de nouvelles sections",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"debut\":\"\",\r\n        \"fin\":\"\",\r\n        \"statut\":\"\",\r\n        \"fonctions\": [\r\n            \"1\"\r\n        ],\r\n        \"sections\": [\r\n            \"S1\"\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"token\": \"{{token}}\",\r\n    \"body\": {\r\n         \"sections\" : [\"S1\"],\r\n          \"PhcienID\" : 1 // Pas obligatoire si token est un utilisateur pchien // a utiliser dans l'interface ADMIN\r\n    }\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -222,7 +388,7 @@
 					}
 				},
 				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_get_inscriptions",
+					"raw": "149.202.84.49:8080/api_phcien/_add_section_ins",
 					"host": [
 						"149",
 						"202",
@@ -232,7 +398,69 @@
 					"port": "8080",
 					"path": [
 						"api_phcien",
-						"_get_inscriptions"
+						"_add_section_ins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajouter de nouvelles fonctions",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"{{token}}\",\r\n    \"body\": {\r\n         \"Fonctions\" : [1,2,3],\r\n         \"PhcienID\" : 1  // Pas obligatoire si token est un utilisateur pchien // a utiliser dans l'interface ADMIN\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_add_fonction_ins",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_add_fonction_ins"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajouter de nouvelles fonctions Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"token\": \"{{token}}\",\r\n    \"body\": {\r\n         \"Fonctions\" : [1,2,3],\r\n         \"PhcienID\" : 1  // Pas obligatoire si token est un utilisateur pchien\r\n    }\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "149.202.84.49:8080/api_phcien/_add_fonction_ins",
+					"host": [
+						"149",
+						"202",
+						"84",
+						"49"
+					],
+					"port": "8080",
+					"path": [
+						"api_phcien",
+						"_add_fonction_ins"
 					]
 				}
 			},
@@ -245,7 +473,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"{{token}}\"\r\n}",
+					"raw": "{\r\n    \"token\": \"{{token}}\",\r\n    \"body\": {\r\n         \"PhcienID\" : 1  // Pas obligatoire si token est un utilisateur pchien // a utiliser dans l'interface ADMIN\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -276,7 +504,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n       \r\n        \"fonctions\": [\r\n            \"1\"\r\n        ]\r\n    }\r\n}",
+					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n        \"fonctions\": [\r\n            \"1\"\r\n        ]\r\n    }\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -295,68 +523,6 @@
 					"path": [
 						"api_phcien",
 						"_get_ins_docs_a_fournir"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Connexion",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"b.angemariotte@gmail.com\",\r\n    \"pwd\": \"012345\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_login",
-					"host": [
-						"149",
-						"202",
-						"84",
-						"49"
-					],
-					"port": "8080",
-					"path": [
-						"api_phcien",
-						"_login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update mot de passe",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"token\": \"xxxxxxxxxxxxxxxxxx\",\r\n    \"body\": {\r\n       \r\n        \"fonctions\": [\r\n            \"1\"\r\n        ]\r\n    }\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "149.202.84.49:8080/api_phcien/_login",
-					"host": [
-						"149",
-						"202",
-						"84",
-						"49"
-					],
-					"port": "8080",
-					"path": [
-						"api_phcien",
-						"_login"
 					]
 				}
 			},
@@ -391,6 +557,11 @@
 		{
 			"key": "base_url",
 			"value": "149.202.84.49:1000/api_pchien"
+		},
+		{
+			"key": "token_back",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyAiaWF0IjoiMjAyNC0wNi0yN1QwNzo1MzowOC43OTYiLCAic3ViIjoxLCAibmFtZSI6IkJFVUdSRSBN\\r\\nQVJJT1RURSIgfQ==.TVrv9oFMXrF5T0OX2hL2KPYwMzmKW+e1HLQQKZbjAkM=",
+			"type": "string"
 		}
 	]
 }
