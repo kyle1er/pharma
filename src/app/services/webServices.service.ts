@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { myFile } from '../shared/interface/myFile';
 
 
 interface myUri {
@@ -10,6 +11,9 @@ interface myUri {
   url: string
   params: any
 }
+
+
+// interface myFile { DocID: number, DocName: string, DocExtention: string, DocMemo: any }
 
 
 
@@ -190,21 +194,34 @@ export class WebServicesService {
     this.router.navigate(['/inscription'], { state: { param: { inscription: 'yes', finish: false } } })
   }
 
-  uploadFile(data: Array<{ id?: number, key: string, fileName: string, file: File }>) {
-    const formData = new FormData();
+  // uploadFile(data: Array<{ id?: number, key: string, fileName: string, file: File }>) {
+  uploadFile( data: myFile[] ) {
+
+    console.log("data === ", data);
+
+    // const formData : myFile ;
 
 
-    console.log(" data === ", data);
+    // const formData = new FormData();
+    // console.log(" data === ", data);
+    // for (const dt of data) {
+    //   formData.append(dt.key, dt.file, dt.fileName)
+    // }
+
+    // console.log("formData INFO == ", formData.getAll('INFO'));
 
 
-    for (const dt of data) {
-      formData.append(dt.key, dt.file, dt.fileName)
+
+    for (let dt of data) {
+
+      const reader = new FileReader();
+      reader.readAsDataURL( dt.File$ as File );
+      reader.onload = ()=>{
+        dt.DocMemo = reader.result;
+      }
     }
 
-    console.log("formData INFO == ", formData.getAll('INFO'));
-
-
-    return formData
+    return data
   }
 
 }

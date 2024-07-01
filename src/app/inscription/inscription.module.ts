@@ -7,6 +7,8 @@ import { InscriptionRoutingModule } from './inscription-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckButtonModule } from '../shared/checkButton/checkButton.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+
 
 
 @NgModule({
@@ -17,7 +19,8 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
     ReactiveFormsModule,
     CheckButtonModule,
     NzSelectModule,
-    FormsModule
+    FormsModule,
+    NzButtonModule
 
   ],
   declarations: [

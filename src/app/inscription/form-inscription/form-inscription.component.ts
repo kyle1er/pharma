@@ -1,14 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { WebServicesService } from 'src/app/services/webServices.service';
 import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
 import { inscriptionData } from 'src/app/shared/dto/inscriptionData';
+import { myFile } from 'src/app/shared/interface/myFile';
 
 interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
 interface section { _i: string, _libelle: string };
 interface fonction { _i: string, _libelle: string };
-interface documents { _i: number, _libelle: string, _desa: boolean };
+interface documents { _i: number, _libelle: string, _desa: boolean, fileName?: string };
 
 
 
@@ -19,7 +21,8 @@ interface documents { _i: number, _libelle: string, _desa: boolean };
 })
 export class FormInscriptionComponent implements OnInit {
 
-  listFile: Array<{ id?: number, key: string, fileName: string, file: File }> = []
+  // listFile: Array<{ id?: number, key: string, fileName: string, file: File }> = []
+  listFile: Array<myFile> = []
 
 
 
@@ -27,6 +30,8 @@ export class FormInscriptionComponent implements OnInit {
 
   formulaireInscription !: FormGroup;
   @Input() actionTitre: "NEW" | "EDIT" = "NEW";
+
+  isLoading : boolean = false;
 
   listOfSelectedValue: Array<number> = []
   step: number = 0;
@@ -220,7 +225,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private myService: WebServicesService) {
+  constructor(private fb: FormBuilder, private myService: WebServicesService, private route : Router) {
 
     // console.log( "date new 2 ==> ", this.activateRoute.snapshot.data );
 
@@ -259,7 +264,7 @@ export class FormInscriptionComponent implements OnInit {
       {
         "item": "fonction"
       }
-    ]).subscribe({
+    ], false).subscribe({
       next: (value: any) => {
         console.log("list items === ", value);
         /* ---------------- */
@@ -322,6 +327,10 @@ export class FormInscriptionComponent implements OnInit {
           Adrcontact_prof: [null, [Validators.required]],
           Telcontact_prof: [null, [Validators.required]],
         }),
+
+        // Docs_fournis: [null, [Validators.required]],
+        // fonctions: [null, [Validators.required]],
+
       }),
 
       CnceOrdre: [null, [Validators.required]],
@@ -338,7 +347,7 @@ export class FormInscriptionComponent implements OnInit {
       "Datenaiss": "2024-05-27",
       "Lieunaiss": "YAKRO",
       "Etatcivil": "Marié",
-      "NationaliteID": "CIV",
+      "NationaliteID": 8,
       "Tel": "2250004542345",
       "Mail": "test@test.com",
       "Adrgeo": "Test",
@@ -378,11 +387,15 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   inscription() {
+    this.isLoading = true;
     console.log(this.formulaireInscription.value);
     console.log(this.formulaireInscription);
 
 
     function dateIsValide(dt: string) {
+      if (typeof dt !== 'string') {
+        return false
+      }
       try {
         new Date(dt)
         return true
@@ -391,38 +404,36 @@ export class FormInscriptionComponent implements OnInit {
       }
     }
 
-    const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value)
+
+    // console.log("listOfSelectedValue  === ", this.listOfSelectedValue);
+
+
+    const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value);
+    const Docs_fournis = this.myService.uploadFile(Object.assign([], this.listFile));
 
     const data = {
-      token: "testxxxxxxxxxxxxx",
-      body: { ...inscriptionData_.myData, dossier: this.myService.uploadFile(this.listFile) },
-      // body: {
-      //   ...this.formulaireInscription.value,
-      //   ...this.formulaireInscription.controls['etabPharmaceutique'].value,
-      //   ...this.formulaireInscription.controls['contact'].value['contactPro'],
-      //   ...this.formulaireInscription.controls['contact'].value['contactImmediat']
-      // },
-      formpatDate: function () {
-        for (const key in this.body) {
-          if (dateIsValide(this.body[key])) {
-            this.body[key] = String(this.body[key]).replace(/-/g, '')
-            // this.body[key] = String( this.body[key] ).replace('-','').replace('/','')
+      Docs_fournis,
+      fonctions: this.listOfSelectedValue,
+      ...inscriptionData_.myData,
+      formatDate: function () {
+        for (const key in this) {
+          if (dateIsValide(this[key])) {
+            this[key] = String(this[key]).replace(/-/g, '')
           }
         }
       }
-
     }
 
-
-    // for (const clef of ["etabPharmaceutique", "contact"]) {
-    //   delete data.body[clef]
-    // }
-
-    data.formpatDate()
+    data.formatDate()
 
     console.log("sessions :: ", this.formulaireInscription.value);
     console.log("data === ", data);
 
+
+
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 5000);
 
   }
 
@@ -439,8 +450,6 @@ export class FormInscriptionComponent implements OnInit {
       listSection.push(val);
     }
 
-    // this.formulaireInscription.addControl(key,new FormControl(listSection));
-    // this.formulaireInscription.patchValue({ 'Sections': listSection });
     this.formulaireInscription.controls[key].setValue(listSection);
 
 
@@ -459,18 +468,26 @@ export class FormInscriptionComponent implements OnInit {
 
   uploadFile(id: number, key: string, myFile: any) {
     console.log(myFile);
-    // console.log('#fichier_'+ id +' + .fichierImport > span');
-
-    // const myFile = file //as HTMLInputElement
 
     if (!myFile.target.files[0]) return
 
+    const [DocName, DocExtention] = (function separeNameExtention(_params: string) {
+      const listElt = _params.split('.')
+      return [listElt[0] || '', ((listElt.length - 1) > 0) ? listElt[listElt.length - 1] || '' : '']
+    })(myFile.target.files[0].name)
+
     this.listFile.push({
-      key,
-      fileName: myFile.target.files[0].name,
-      id,
-      file: myFile.target.files[0]
+      DocName,
+      DocID: id,
+      DocExtention,
+      File$: myFile.target.files[0]
     })
+
+    for (const doc of this.documents) {
+      if (doc._i === id) {
+        doc.fileName = myFile.target.files[0].name
+      }
+    }
 
     const timSpan = setInterval(() => {
       const mySpan = document.querySelector('#name_' + id)
@@ -484,15 +501,25 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   fileIsUpload(id: number) {
-    console.log("this.listFile ", this.listFile);
+    // console.log("this.listFile ", this.listFile);
+    // console.log("this.documents ", this.documents);
 
-    return this.listFile.find((elt) => elt.id === id) != undefined
+    return this.listFile.find((elt) => elt.DocID === id) != undefined
   }
 
   deleteFile(id: number) {
-    console.log("this.listFile ", this.listFile);
-    this.listFile = this.listFile.filter((elt) => elt.id !== id)
+    // console.log("this.listFile ", this.listFile);
+    this.listFile = this.listFile.filter((elt) => elt.DocID !== id)
     // return true
   }
 
+
+  getListDoc(fonction: any[]) {
+    // console.log("fonction ==== ", fonction);
+    this.listOfSelectedValue = [...fonction]
+  }
+
+  closeForm(){
+    this.route.navigateByUrl('auth/connexion')
+  }
 }

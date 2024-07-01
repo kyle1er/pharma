@@ -59,6 +59,9 @@ export class inscriptionData {
       ...data['contact']['contactPro'],
       ...data['contact']['contactImmediat']
     }
+
+    delete this._myData['etabPharmaceutique']
+    delete this._myData['contact']
   }
 
   get myData(){

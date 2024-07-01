@@ -1,4 +1,9 @@
 <div class="myForm d-flex"><!-- *ngIf="mustShow" -->
+  <button (click)="closeForm()" class="closeBtn" *ngIf="actionTitre === 'NEW'">
+    <span class="material-symbols-outlined">
+      close
+      </span>
+  </button>
   <div class="imagFond">
     <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
   </div>
@@ -333,7 +338,7 @@
         <div class="d-flex flex-column">
           <label for=""><b>Foncion(s)</b></label>
           <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
-            [(ngModel)]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}">
+            [ngModel]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}" (ngModelChange)="getListDoc($event)" >
             <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
           </nz-select>
           <!-- <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template> -->
@@ -349,9 +354,9 @@
               <ul>
                 <li *ngFor="let item of documents"class="d-flex justify-content-between flex-column flex-wrap">
                   <label [for]="'fichier_'+ item._i" class="mx-2" >{{ item._libelle }}</label>
-                  <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2" type="file" accept="." name="" [id]="'fichier_'+ item._i">
+                  <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2" type="file" accept="image/jpeg,image/jpg,image/png,application/pdf,image/x-eps" name="" [id]="'fichier_'+ item._i">
                   <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i)">
-                    <span [id]="'name_'+ item._i" ></span>
+                    <span [id]="'name_'+ item._i" >{{item?.fileName}}</span>
                     <button (click)="deleteFile(item._i)">
                       <span class="material-symbols-outlined">
                         delete_forever
@@ -378,7 +383,7 @@
         Suivant
         <span class="material-symbols-outlined">arrow_right</span>
       </button> <!--  -->
-      <button class="d-flex align-items-center" *ngIf="step === 4" [disabled]="formulaireInscription.invalid"
+      <button  nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 4" [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
         (click)="inscription()">
         Enregistrer
         <!-- <span class="material-symbols-outlined">save</span> -->

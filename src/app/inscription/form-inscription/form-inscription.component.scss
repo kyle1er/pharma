@@ -1,5 +1,5 @@
 .myForm {
-  // position: absolute;
+  position: relative;
   min-height: 95vh;
   max-height: 10vh;
   overflow: hidden;
@@ -147,5 +147,22 @@
 
   nz-select {
     min-width: 200px;
+  }
+
+
+  /* -------------------- */
+  /* -------------------- */
+  /* -------------------- */
+
+  .closeBtn{
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    // background-color: var(--vert_opacity);
+    color: var(--vert);
   }
 }
