@@ -60,6 +60,12 @@ export class ConnexionComponent implements OnInit {
       error: (err) => {
         this.isLoadingOne = false;
         console.log("Mon retour err ", err);
+        this.infoNotif = {
+          type : 'error',
+          message : "Une erreur est survenue lors de la connexion\nVeuillez réessayer s'il vous plaît."
+        };
+
+        this.infoNotifActivate = true;
       }
     })
   }

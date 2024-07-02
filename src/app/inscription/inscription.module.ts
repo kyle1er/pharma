@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CheckButtonModule } from '../shared/checkButton/checkButton.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NotificationModule } from '../shared/notification/notification.module';
 
 
 
@@ -20,7 +21,8 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     CheckButtonModule,
     NzSelectModule,
     FormsModule,
-    NzButtonModule
+    NzButtonModule,
+    NotificationModule
 
   ],
   declarations: [

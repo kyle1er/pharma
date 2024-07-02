@@ -5,6 +5,7 @@ import { WebServicesService } from 'src/app/services/webServices.service';
 import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
 import { inscriptionData } from 'src/app/shared/dto/inscriptionData';
 import { myFile } from 'src/app/shared/interface/myFile';
+import { INotification } from 'src/app/shared/notification/INotification';
 
 interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
@@ -31,7 +32,12 @@ export class FormInscriptionComponent implements OnInit {
   formulaireInscription !: FormGroup;
   @Input() actionTitre: "NEW" | "EDIT" = "NEW";
 
-  isLoading : boolean = false;
+  isLoading: boolean = false;
+  infoNotif: INotification = {
+    type: 'error',
+    message: ''
+  };
+  infoNotifShow: boolean = false;
 
   listOfSelectedValue: Array<number> = []
   step: number = 0;
@@ -225,7 +231,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private myService: WebServicesService, private route : Router) {
+  constructor(private fb: FormBuilder, private myService: WebServicesService, private route: Router) {
 
     // console.log( "date new 2 ==> ", this.activateRoute.snapshot.data );
 
@@ -248,42 +254,50 @@ export class FormInscriptionComponent implements OnInit {
     // })
 
     // const params =
-    this.myService.execute('getItems', [
-      {
-        "item": "doc",
-        "desa": 0
-      },
-      {
-        "item": "nationalite"
-      },
-      {
-        "item": "appreciation"
-      }, {
-        "item": "section"
-      },
-      {
-        "item": "fonction"
-      }
-    ], false).subscribe({
-      next: (value: any) => {
-        console.log("list items === ", value);
-        /* ---------------- */
-        /* ---------------- */
-        this.nationnalite = value['description']['nationnalite'] as Array<nationnalite>;
-        this.appreciation = value['description']['appreciation'] as Array<appreciation>;
-        this.documents = value['description']['appreciation'] as Array<appreciation>;
+    if (this.actionTitre === 'NEW') {
+      this.myService.execute('getItems', [
+        {
+          "item": "doc",
+          "desa": 0
+        },
+        {
+          "item": "nationalite"
+        },
+        {
+          "item": "appreciation"
+        }, {
+          "item": "section"
+        },
+        {
+          "item": "fonction"
+        }
+      ], false).subscribe({
+        next: (value: any) => {
+          console.log("list items === ", value);
+          /* ---------------- */
+          /* ---------------- */
+          this.nationnalite = value['description']['nationnalite'] as Array<nationnalite>;
+          this.appreciation = value['description']['appreciation'] as Array<appreciation>;
+          this.documents = value['description']['appreciation'] as Array<appreciation>;
 
-        this.section = value['description']['section'] as Array<section>;
-        this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
-        this.fonction = value['description']['fonction'] as Array<fonction>;
+          this.section = value['description']['section'] as Array<section>;
+          this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+          this.fonction = value['description']['fonction'] as Array<fonction>;
 
-      },
-      error: (err) => {
-        console.log("error list items === ", err);
-      },
-    })
+        },
+        error: (err) => {
+          console.log("error list items === ", err);
+          this.infoNotif = {
+            message: "Erreur lors du chargement des documents à fournir",
+            type: 'error'
+          }
+
+          this.infoNotifShow = false;
+        },
+      })
 
 
+    }
 
 
     this.formulaireInscription = this.fb.group({
@@ -516,10 +530,30 @@ export class FormInscriptionComponent implements OnInit {
 
   getListDoc(fonction: any[]) {
     // console.log("fonction ==== ", fonction);
-    this.listOfSelectedValue = [...fonction]
+    this.listOfSelectedValue = [...fonction];
+    this.infoNotifShow = true;
+
+
+    this.myService.execute('get_documents', [...this.listOfSelectedValue]).subscribe({
+      next: (value) => {
+
+        console.log("document === ", value);
+        this.documents = value as documents[];
+        this.infoNotifShow = false;
+
+      },
+      error: (err) => {
+        this.infoNotif = {
+          message: "Erreur lors du chargement des documents à fournir",
+          type: 'error'
+        }
+
+        this.infoNotifShow = false;
+      },
+    })
   }
 
-  closeForm(){
+  closeForm() {
     this.route.navigateByUrl('auth/connexion')
   }
 }

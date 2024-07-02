@@ -391,3 +391,7 @@
     </div>
   </div>
 </div>
+
+
+
+<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifShow" (isFermer)="infoNotifShow = false" ></app-notification>
