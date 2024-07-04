@@ -63,4 +63,20 @@
       color: rgb(0, 119, 166);
     }
   }
+
+
+  .btnEye{
+    position: relative;
+
+    input[type="password"]{
+      padding-right: 35px;
+    }
+    span{
+      position: absolute;
+      top: 50%;
+      right: 5px;
+      transform: translateY(-50%);
+      cursor: pointer;
+    }
+  }
 }

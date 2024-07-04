@@ -8,7 +8,12 @@
     </div>
     <div>
       <label for="password">Mot de passe</label>
-      <input type="password" id="password" formControlName="pwd">
+      <div class="d-flex btnEye">
+        <input type="password" id="password" formControlName="pwd" #passWord>
+        <span class="material-symbols-outlined" #me (click)="showPassWord(passWord, me)">
+          visibility
+          </span>
+      </div>
     </div>
   </div>
 

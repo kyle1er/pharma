@@ -75,4 +75,10 @@ export class ConnexionComponent implements OnInit {
     // this.router.navigate(['/inscription'], {state : { param : {inscription: 'yes', finish: false} }} )
     this.cnx.routerInscription()
   }
+
+  showPassWord( input : HTMLInputElement, span : HTMLSpanElement ){
+    console.log("input === ", input);
+    input.type = ( input.type === 'text') ? 'password' : 'text'
+    span.innerText = ( span.innerText === 'visibility' ) ? 'visibility_off' : 'visibility'
+  }
 }

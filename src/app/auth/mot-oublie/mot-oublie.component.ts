@@ -14,7 +14,7 @@ export class MotOublieComponent implements OnInit {
 
   constructor( private fb: FormBuilder, private cnx : WebServicesService ) {
     this.formulairePwdForget = fb.group({
-      pseudo : ['', [Validators.required]],
+      // pseudo : ['', [Validators.required]],
       mail : ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
     })
   }

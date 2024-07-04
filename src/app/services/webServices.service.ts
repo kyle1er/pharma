@@ -126,8 +126,11 @@ export class WebServicesService {
       this.execute(fichier, params, false).subscribe({
         next: (data : any) => {
           console.log("my data == ", data);
+          console.log("my data['status'] == ", data['status']);
 
-          sessionStorage.setItem("auth", data['description']['token']);
+          if ( data['status'] ) {
+            sessionStorage.setItem("auth", data['description']['token']);
+          }
           obser.next({
             statut: 1,
             data
