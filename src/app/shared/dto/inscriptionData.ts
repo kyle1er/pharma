@@ -4,7 +4,7 @@ export class inscriptionData {
   private _myDataReceived: any;
 
   constructor(typeOfObjet: 'objetSimple' | 'ObjetConstruction', objet: any) {
-    this._myDataReceived = {...objet};
+    this._myDataReceived = { ...objet };
 
     switch (typeOfObjet) {
       case 'ObjetConstruction':
@@ -12,7 +12,7 @@ export class inscriptionData {
         break;
 
       default:
-        this.objetSimple( objet )
+        this.objetSimple(objet)
         break;
     }
   }
@@ -20,22 +20,22 @@ export class inscriptionData {
 
   private objetSimple(data: any) {
     const etabPharmaceutique = {
-      Raisonscial_emp: data.Raisonscial_emp,
-      Adrpost_emp: data.Adrpost_emp,
-      Tel_emp: data.Tel_emp,
-      Fax_emp: data.Fax_emp,
-      Adrgeo_emp: data.Adrgeo_emp
+      Raisonscial_emp: data?.Raisonscial_emp,
+      Adrpost_emp: data?.Adrpost_emp,
+      Tel_emp: data?.Tel_emp,
+      Fax_emp: data?.Fax_emp,
+      Adrgeo_emp: data?.Adrgeo_emp
     }
     const contact = {
-      contactPro: {
-        Nomcontact_immed: data.Nomcontact_immed,
-        Adrcontact_immed: data.Adrcontact_immed,
-        Telcontact_immed: data.Telcontact_immed
-      },
       contactImmediat: {
-        Nomcontact_prof: data.Nomcontact_prof,
-        Adrcontact_prof: data.Adrcontact_prof,
-        Telcontact_prof: data.Telcontact_prof
+        Nomcontact_immed: data?.Nomcontact_immed,
+        Adrcontact_immed: data?.Adrcontact_immed,
+        Telcontact_immed: data?.Telcontact_immed
+      },
+      contactPro: {
+        Nomcontact_prof: data?.Nomcontact_prof,
+        Adrcontact_prof: data?.Adrcontact_prof,
+        Telcontact_prof: data?.Telcontact_prof
 
       }
     }
@@ -64,10 +64,10 @@ export class inscriptionData {
     delete this._myData['contact']
   }
 
-  get myData(){
+  get myData() {
     return this._myData
   }
-  get myDataOriginal(){
+  get myDataOriginal() {
     return this._myDataReceived
   }
 }

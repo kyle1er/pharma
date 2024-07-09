@@ -8,12 +8,14 @@ import { MotOublieComponent } from './mot-oublie/mot-oublie.component';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { PassWordEditComponent } from './passWordEdit/passWordEdit.component';
 
 @NgModule({
   declarations: [
     AuthComponent,
     ConnexionComponent,
-    MotOublieComponent
+    MotOublieComponent,
+    PassWordEditComponent
   ],
   imports: [
     AuthRoutingModule,

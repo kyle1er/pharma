@@ -1,287 +1,29 @@
 <div class="conteneur">
   <!-- <img [src]="'assets/images/pill-681121_1280.jpg'" alt=""> -->
 
-  <div id="layout" class="d-flex flex-column">
+  <div id="layout" class="d-flex flex-column" *ngIf="!isLoading">
 
     <!-- <div id="left">
       <app-menu></app-menu>
     </div> -->
     <div id="tete">
       <!-- HEADER -->
-      <app-header></app-header>
+      <app-header [userData]="userData" ></app-header>
       <!-- HEADER -->
     </div>
 
     <!-- <div class="home$ d-flex flex-column "> -->
 
-    <div id="data" class="d-flex justify-content-arround align-items-center flex-column ">
+    <div id="data">
       <!-- DATA LIST -->
-
-      <div class="conteneurInfo">
-
-          <h3 class="p-5 mb-5">FICHE DE RENSEIGNEMENT POUR L’INSCRIPTION A UN DES TABLEAUX DE L’ORDRE</h3>
-          <div class="infos d-flex flex-column">
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Date de dépôt complet du dossier complet :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Nom :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Prénoms :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Date et lieu de naissance :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Etat civil :</span>
-              <div class="d-flex justify-content-arround align-items-center">
-                <label class="d-flex align-items-center " >
-                  Célibataire
-                  <input type="checkbox" disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  Marié
-                  <input type="checkbox" checked disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  Divorcé
-                  <input type="checkbox" disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  Veuf (ve)
-                  <input type="checkbox" disabled>
-                </label>
-              </div>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Adresse personnelle :</span>
-              <div class="d-flex justify-content-arround align-items-center">
-                <label class="d-flex align-items-center " >
-                  Tel.
-                  <input type="checkbox" disabled checked>
-                </label>
-                <label class="d-flex align-items-center " >
-                  Mail
-                  <input type="checkbox" disabled>
-                </label>
-              </div>
-            </div>
-
-
-
-
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Situation géographique actuelle (Quartier) :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Date et lieu d’obtention du diplôme (soutenance) :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Date de délivrance du diplôme :</span>
-              <span class="valeur">............................................................................</span>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Section du tableau de l’Ordre souhaitée :</span>
-              <div class="d-flex justify-content-arround align-items-center">
-                <label class="d-flex align-items-center " >
-                  1
-                  <input type="checkbox" checked disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  2
-                  <input type="checkbox" disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  3
-                  <input type="checkbox" disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  4
-                  <input type="checkbox" disabled>
-                </label>
-              </div>
-            </div>
-
-            <div class="d-flex flex-wrap ">
-              <span class="libelle">Demande de changement de section :</span>
-              <div class="d-flex justify-content-arround align-items-center">
-                <label class="d-flex align-items-center " >
-                  OUI
-                  <input type="checkbox" disabled>
-                </label>
-                <label class="d-flex align-items-center " >
-                  NON
-                  <input type="checkbox" checked disabled>
-                </label>
-              </div>
-            </div>
-
-            <fieldset>
-              <legend>Etablissement pharmaceutique ou employeur</legend>
-
-              <div>
-                <div class="d-flex flex-wrap justify-content-between" >
-                  <span class="libelle">Raison sociale :</span>
-                  <span class="valeur">............................................................................</span>
-                </div>
-                <div class="d-flex flex-wrap justify-content-between" >
-                  <div class="d-flex align-items-center">
-                    <span class="libelle">Adresse postale :</span>
-                    <span class="valeur">............................................................................</span>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <span class="libelle">Tel :</span>
-                    <span class="valeur">............................................................................</span>
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <span class="libelle">fax :</span>
-                    <span class="valeur">............................................................................</span>
-                  </div>
-                </div>
-
-                <div class="d-flex flex-wrap justify-content-between" >
-                  <span class="libelle">Adresse géographique :</span>
-                  <span class="valeur">............................................................................</span>
-                </div>
-              </div>
-
-            </fieldset>
-
-
-            <fieldset>
-              <legend>Personnes à contacter</legend>
-
-              <div>
-                <div class="d-flex flex-column">
-                  <h4>Entourage immédiat</h4>
-                  <div class="d-flex justify-content-between">
-                    <span class="libelle">Nom et Prénoms :</span>
-                    <span class="valeur">............................................................................</span>
-                  </div>
-                  <div class="d-flex flex-wrap">
-                    <div class="d-flex justify-content-between">
-                      <span class="libelle">Adresse :</span>
-                      <span class="valeur">............................................................................</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      <span class="libelle">Tél :</span>
-                      <span class="valeur">............................................................................</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="d-flex flex-column">
-                  <h4>Entourage Professionnel</h4>
-                  <div class="d-flex justify-content-between">
-                    <span class="libelle">Nom et Prénoms :</span>
-                    <span class="valeur">............................................................................</span>
-                  </div>
-                  <div class="d-flex flex-wrap">
-                    <div class="d-flex justify-content-between">
-                      <span class="libelle">Adresse :</span>
-                      <span class="valeur">............................................................................</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                      <span class="libelle">Tél :</span>
-                      <span class="valeur">............................................................................</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-
-            </fieldset>
-
-
-            <fieldset>
-              <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
-
-              <div class="d-flex flex-wrap ">
-                <div class="d-flex align-items-center">
-                  <label class="d-flex align-items-center " >
-                    Très bien
-                    <input type="checkbox" disabled>
-                  </label>
-                  <label class="d-flex align-items-center " >
-                    Bien
-                    <input type="checkbox" checked disabled>
-                  </label>
-                  <label class="d-flex align-items-center " >
-                    Assez Bien
-                    <input type="checkbox" disabled>
-                  </label>
-                </div>
-              </div>
-
-            </fieldset>
-
-            <fieldset>
-              <legend>Je connais le code de déontologie pharmaceutique</legend>
-
-              <div class="d-flex flex-wrap ">
-                <div class="d-flex align-items-center">
-                  <label class="d-flex align-items-center " >
-                    Très bien
-                    <input type="checkbox" disabled>
-                  </label>
-                  <label class="d-flex align-items-center " >
-                    Bien
-                    <input type="checkbox" disabled>
-                  </label>
-                  <label class="d-flex align-items-center " >
-                    Assez Bien
-                    <input type="checkbox" checked disabled>
-                  </label>
-                </div>
-              </div>
-
-            </fieldset>
-
-            <i>
-              Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies pour la constitution
-              du dossier d’inscription.
-            </i>
-
-          </div>
-
-      </div>
-
-      <div class="action d-flex justify-content-center align-items-center ">
-
-        <button class="btn btn-online d-flex align-items-center" (click)="isVisible = true" >
-          <span class="material-symbols-outlined mx-1">
-            edit_note
-            </span>
-          Modifier</button>
-      </div>
-
+      <router-outlet></router-outlet>
     </div>
     <!-- <div id="right" class="d-flex flex-column justify-content-between">
     </div> -->
   </div>
+  <div class="d-flex justify-content-center text-primary" style="position: absolute; top:50%; left:50%; transform:translate(-50%, -50%); width: 3rem; height: 3rem;" *ngIf="isLoading">
+    <div class="spinner-grow" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 </div>
-
-
-
-<nz-modal [nzWidth]="1000" [nzFooter]=null nzCentered="true" [(nzVisible)]="isVisible" nzTitle="Modification de vos informations" (nzOnCancel)="isVisible = false" > <!--  -->
-  <ng-container *nzModalContent>
-    <app-form-inscription class="editer" [actionTitre]="'EDIT'" ></app-form-inscription>
-  </ng-container>
-</nz-modal>

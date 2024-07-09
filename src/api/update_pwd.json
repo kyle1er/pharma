@@ -1,0 +1,11 @@
+{
+  "methode": "POST",
+  "url": "_update_pwd",
+  "params": {
+    "token": "{{token}}",
+    "body": {
+      "new_pwd": "012345",
+      "old_pwd": "0759658918"
+    }
+  }
+}

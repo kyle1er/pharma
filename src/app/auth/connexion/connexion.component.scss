@@ -2,7 +2,7 @@
   // min-width: 60%;
   // text-align: center;
 
-  h2{
+  h2 {
     margin-bottom: 25px;
   }
 
@@ -29,18 +29,18 @@
   }
 
 
-  .secondaireAction{
-    label[for="rememberMe"]{
+  .secondaireAction {
+    label[for="rememberMe"] {
       cursor: pointer;
     }
 
-    span{
+    span {
       cursor: pointer;
       text-decoration: underline;
     }
   }
 
-  .login{
+  .login {
     margin: 15px auto;
     // button{
     //   padding: 5px 10px;
@@ -56,27 +56,31 @@
     // }
   }
 
-  .createLogin{
+  .createLogin {
     text-align: right;
-    span{
+
+    span {
       cursor: pointer;
       color: rgb(0, 119, 166);
     }
   }
 
+  // .password {
 
-  .btnEye{
-    position: relative;
+  //   .btnEye {
+  //     position: relative;
 
-    input[type="password"]{
-      padding-right: 35px;
-    }
-    span{
-      position: absolute;
-      top: 50%;
-      right: 5px;
-      transform: translateY(-50%);
-      cursor: pointer;
-    }
-  }
+  //     input[type="password"] {
+  //       padding-right: 35px;
+  //     }
+
+  //     span {
+  //       position: absolute;
+  //       top: 50%;
+  //       right: 5px;
+  //       transform: translateY(-50%);
+  //       cursor: pointer;
+  //     }
+  //   }
+  // }
 }

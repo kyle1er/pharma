@@ -26,7 +26,8 @@ interface myUri {
 
 export class WebServicesService {
 
-  private config = environment
+  private config = environment;
+  private userData : any;
 
   // Key Generation
   // iv = window.crypto.getRandomValues(new Uint8Array(16)); // Create a random Initialization Vector
@@ -41,7 +42,7 @@ export class WebServicesService {
 
       this.loadFile(fichier).subscribe(data => {
         api = data;
-        console.log("my api ", api);
+        // console.log("my api ", api);
 
         /* ------- */
 
@@ -64,6 +65,8 @@ export class WebServicesService {
             }
             this.http.post( this.config.url + api.data.url, params).subscribe({
               next: (dataPost) => {
+                // console.log("dataPost === ", dataPost);
+
                 myNewData.next(dataPost);
               },
               error: (err) => {
@@ -152,6 +155,64 @@ export class WebServicesService {
   }
 
 
+  routerInscription() {
+    this.router.navigate(['/inscription'], { state: { param: { inscription: 'yes', finish: false } } })
+  }
+
+
+  uploadFile( data: myFile[] ) {
+
+    console.log("data === ", data);
+
+    // const formData : myFile ;
+
+
+    // const formData = new FormData();
+    // console.log(" data === ", data);
+    // for (const dt of data) {
+    //   formData.append(dt.key, dt.file, dt.fileName)
+    // }
+
+    // console.log("formData INFO == ", formData.getAll('INFO'));
+
+
+
+    for (let dt of data) {
+
+      const reader = new FileReader();
+      reader.readAsDataURL( dt.File$ as File );
+      reader.onload = ()=>{
+        dt.DocMemo = reader.result;
+      }
+    }
+
+    return data
+  }
+
+  setUserInfos( data$ : any ){
+    // this.userData = {
+    //   nom : data$['Nom'],
+    //   prenom : data$['Pnom']
+    // }
+    this.userData = {...data$}
+  }
+
+  getUserInfos() : Observable<any> {
+    // this.userData = null;
+    return new Observable((obser) =>{
+      const time = setInterval(()=>{
+        if (this.userData) {
+          clearInterval(time);
+          obser.next( this.userData )
+        }
+      }, 100)
+    })
+  }
+}
+
+
+
+
 
   //   private genereKey() {
 
@@ -192,39 +253,3 @@ export class WebServicesService {
   //   });
   // }
 
-
-  routerInscription() {
-    this.router.navigate(['/inscription'], { state: { param: { inscription: 'yes', finish: false } } })
-  }
-
-  // uploadFile(data: Array<{ id?: number, key: string, fileName: string, file: File }>) {
-  uploadFile( data: myFile[] ) {
-
-    console.log("data === ", data);
-
-    // const formData : myFile ;
-
-
-    // const formData = new FormData();
-    // console.log(" data === ", data);
-    // for (const dt of data) {
-    //   formData.append(dt.key, dt.file, dt.fileName)
-    // }
-
-    // console.log("formData INFO == ", formData.getAll('INFO'));
-
-
-
-    for (let dt of data) {
-
-      const reader = new FileReader();
-      reader.readAsDataURL( dt.File$ as File );
-      reader.onload = ()=>{
-        dt.DocMemo = reader.result;
-      }
-    }
-
-    return data
-  }
-
-}

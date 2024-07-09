@@ -7,7 +7,7 @@
   <div class="imagFond">
     <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
   </div>
-  <div class="formDiv d-flex flex-column">
+  <div class="formDiv d-flex flex-column ">
     <div [formGroup]="formulaireInscription">
 
       <h2>{{ actionTitre === 'NEW' ? "Formulaire d'inscription" : "Modification des informations"}}</h2>
@@ -64,7 +64,7 @@
                 [ngModelOptions]="{standalone: true}"
                 (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})"
                 [ngModel]="formulaireInscription.controls['NationaliteID'].value">
-                <nz-option *ngFor="let item of nationnalite" [nzLabel]="item._Libelle" [nzValue]="item._i"></nz-option>
+                <nz-option *ngFor="let item of nationalite" [nzLabel]="item._Libelle" [nzValue]="item._i"></nz-option>
               </nz-select>
             </div>
           </fieldset>
@@ -73,7 +73,7 @@
 
             <select class="mx-2" id="selectNation" formControlName="NationaliteID">
               <option value="" disabled selected>Sélectionner votre nationnalité</option>
-              <option *ngFor="let item of nationnalite" [value]="item.code">{{item.libelle}}</option>
+              <option *ngFor="let item of nationalite" [value]="item.code">{{item.libelle}}</option>
             </select>
           </div> -->
 
@@ -100,7 +100,7 @@
             <legend>Date de dépôt complet du dossier complet</legend>
             <div class="d-flex justify-content-between">
               <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
-                formControlName="datedepot_dos">
+                formControlName="Datedepot_dos">
             </div>
           </fieldset>
           <fieldset class="titreL">

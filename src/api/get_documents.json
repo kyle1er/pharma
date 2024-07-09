@@ -2,7 +2,6 @@
   "methode": "POST",
   "url": "_get_ins_docs_a_fournir",
   "params": {
-    "token": "xxxxxxxxxxxxxxxxxx",
     "body": {
         "fonctions": [
             "1"

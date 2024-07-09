@@ -4,7 +4,7 @@
       <img [src]="'assets/images/management-2161487_1280.jpg'" alt="">
     </div>
     <span>
-      Bienvenue, {{"M. John"}}
+      Bienvenue, {{(userData?.nom || '') +' '+ (userData?.prenom || '')}}
     </span>
   </div>
 
@@ -14,13 +14,14 @@
         <img [src]="'assets/images/world-1185076_1280.png'" alt="">
       </div>
       <div class="user d-flex justify-content-between align-items-center ">
-        <span id="name"> {{"John"}} </span>
+        <span id="name"> {{userData?.prenom || ''}} </span>
         <span #compte class="material-symbols-outlined" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"><!-- (mouseout)="showMenu(compte)" (click)="showMenu(compte)" -->
           arrow_drop_down
           </span>
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
               <!-- <li nz-menu-item>Compte</li> -->
+              <li nz-menu-item [routerLink]="['/pharma/passWord-edit']" >Mot de passe</li>
               <li nz-menu-item (click)="deconnecte()" >Se déconnecter</li>
             </ul>
           </nz-dropdown-menu>

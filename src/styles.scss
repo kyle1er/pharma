@@ -43,3 +43,64 @@ button.send {
   }
 }
 
+.action {
+  position: sticky;
+  bottom: -17px;
+  // background-color: #ffffffd6;
+  background-color: transparent;
+  padding: 15px;
+  width: 100%;
+
+
+  button {
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0px 0px 5px var(--vert);
+    background-color: var(--vert);
+    color: white;
+    transition: .5s;
+    padding: 8px 10px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.633);
+      color: var(--vert);
+    }
+  }
+
+}
+
+.password {
+
+  .btnEye {
+    position: relative;
+
+    input[type="password"] {
+      padding-right: 35px;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+
+      &.eyeSpan {
+        cursor: pointer;
+        right: 5px;
+      }
+
+      &.checkSpan {
+        right: -25px;
+      }
+    }
+  }
+}
+
+
+.checkSpan {
+  // background-color: var(--vert);
+  color: var(--vert);
+
+  &.red {
+    color: red;
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "methode" : "POST",
+  "url" : "_get_inscription",
+  "params" : {
+    "token": "{{token}}",
+    "body": {
+         "PhcienID" : "1"
+    }
+}
+}

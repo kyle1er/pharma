@@ -1,7 +1,0 @@
-{
-  "methode" : "GET",
-  "url" : "_get_inscriptions",
-  "params" : {
-    "mail" : ""
-  }
-}

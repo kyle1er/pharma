@@ -10,6 +10,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { InscriptionModule } from '../inscription/inscription.module';
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { InscriptionModule } from '../inscription/inscription.module';
     DashBoardComponent,
     MenuComponent,
     HeaderComponent,
-    DataTableComponent
+    DataTableComponent,
+    AccueilComponent
   ]
 })
 export class DashBoardModule { }

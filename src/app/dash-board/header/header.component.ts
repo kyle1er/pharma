@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { WebServicesService } from 'src/app/services/webServices.service';
 
@@ -9,9 +9,14 @@ import { WebServicesService } from 'src/app/services/webServices.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() userData : any
   constructor( private route : Router, private webService : WebServicesService ) { }
 
   ngOnInit() {
+    // this.webService.getUserInfos().subscribe((dat)=>{
+    //   console.log(" header data user ", dat);
+    //   this.userData = dat;
+    // })
   }
 
 
@@ -39,5 +44,9 @@ export class HeaderComponent implements OnInit {
 
     // sessionStorage.removeItem("auth");
     // .clear("auth")
+  }
+
+  getUserInfos(){
+    this.webService.getUserInfos()
   }
 }

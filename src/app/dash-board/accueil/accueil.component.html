@@ -1,0 +1,274 @@
+<div class="conteneurAcc d-flex justify-content-arround align-items-center flex-column ">
+  <!-- DATA LIST -->
+
+  <div class="conteneurInfo">
+
+      <h3 class="p-5 mb-5">FICHE DE RENSEIGNEMENT POUR L’INSCRIPTION A UN DES TABLEAUX DE L’ORDRE</h3>
+      <div class="infos d-flex flex-column">
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Date de dépôt complet du dossier complet :</span>
+          <span class="valeur">{{formulaireInscription['Datedepot_dos']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Nom :</span>
+          <span class="valeur">{{formulaireInscription['Nom']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Prénoms :</span>
+          <span class="valeur">{{formulaireInscription['Pnom']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Date et lieu de naissance :</span>
+          <span class="valeur">{{formulaireInscription['Datenaiss'] +' à '+ formulaireInscription['Lieunaiss']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Etat civil :</span>
+          <div class="d-flex justify-content-arround align-items-center">
+            <label class="d-flex align-items-center " >
+              Célibataire
+              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 1)">
+            </label>
+            <label class="d-flex align-items-center " >
+              Marié
+              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 2)">
+            </label>
+            <label class="d-flex align-items-center " >
+              Divorcé
+              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 3)">
+            </label>
+            <label class="d-flex align-items-center " >
+              Veuf (ve)
+              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 4)">
+            </label>
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Adresse personnelle :</span>
+          <div class="d-flex justify-content-arround align-items-center">
+            <label class="d-flex align-items-center " >
+              {{ 'Tel. : '+ formulaireInscription['Tel']}}
+            </label>
+            <label class="d-flex align-items-center " >
+              {{ 'Mail : '+ formulaireInscription['Mail']}}
+            </label>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Situation géographique actuelle (Quartier) :</span>
+          <span class="valeur">{{formulaireInscription['Adrgeo']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Date et lieu d’obtention du diplôme (soutenance) :</span>
+          <span class="valeur">{{formulaireInscription['DiplomeobtenuLe'] +' à '+ formulaireInscription['Lieuobtentiondiplome']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Date de délivrance du diplôme :</span>
+          <span class="valeur">{{formulaireInscription['DiplomeDelivreLe']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Section du tableau de l’Ordre souhaitée :</span>
+          <div class="d-flex justify-content-arround align-items-center">
+            <label class="d-flex align-items-center " *ngFor="let item of formulaireInscription['Sections']">
+              {{item._libelle}}
+              <!-- <input type="checkbox" checked disabled> -->
+            </label>
+            <!-- <label class="d-flex align-items-center " >
+              2
+              <input type="checkbox" disabled>
+            </label>
+            <label class="d-flex align-items-center " >
+              3
+              <input type="checkbox" disabled>
+            </label>
+            <label class="d-flex align-items-center " >
+              4
+              <input type="checkbox" disabled>
+            </label> -->
+          </div>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Demande de changement de section :</span>
+          <div class="d-flex justify-content-arround align-items-center">
+            <label class="d-flex align-items-center " >
+              OUI
+              <input type="checkbox" [checked]="checkValue('ChangementOrdre', true)" disabled>
+            </label>
+            <label class="d-flex align-items-center " >
+              NON
+              <input type="checkbox" [checked]="checkValue('ChangementOrdre', false)" disabled>
+            </label>
+          </div>
+        </div>
+
+        <fieldset>
+          <legend>Etablissement pharmaceutique ou employeur</legend>
+
+          <div>
+            <div class="d-flex flex-wrap justify-content-between" >
+              <span class="libelle">Raison sociale :</span>
+              <span class="valeur">{{formulaireInscription['Raisonscial_emp']}}</span>
+            </div>
+            <div class="d-flex flex-wrap justify-content-between" >
+              <div class="d-flex align-items-center">
+                <span class="libelle">Adresse postale :</span>
+                <span class="valeur">{{formulaireInscription['Adrpost_emp']}}</span>
+              </div>
+              <div class="d-flex align-items-center mx-2">
+                <span class="libelle">Tel :</span>
+                <span class="valeur">{{formulaireInscription['Tel_emp']}}</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <span class="libelle">Fax :</span>
+                <span class="valeur">{{formulaireInscription['Fax_emp']}}</span>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between" >
+              <span class="libelle">Adresse géographique :</span>
+              <span class="valeur">{{formulaireInscription['Adrgeo_emp']}}</span>
+            </div>
+          </div>
+
+        </fieldset>
+
+
+        <fieldset>
+          <legend>Personnes à contacter</legend>
+
+          <div>
+            <div class="d-flex flex-column">
+              <h4>Entourage immédiat</h4>
+              <div class="d-flex justify-content-between">
+                <span class="libelle">Nom et Prénoms :</span>
+                <span class="valeur">{{formulaireInscription['Nomcontact_prof']}}</span>
+              </div>
+              <div class="d-flex flex-wrap">
+                <div class="d-flex justify-content-between">
+                  <span class="libelle">Adresse :</span>
+                  <span class="valeur">{{formulaireInscription['Adrcontact_prof']}}</span>
+                </div>
+                <div class="d-flex justify-content-between mx-2">
+                  <span class="libelle">Tél :</span>
+                  <span class="valeur">{{formulaireInscription['Telcontact_prof']}}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-column">
+              <h4>Entourage Professionnel</h4>
+              <div class="d-flex justify-content-between">
+                <span class="libelle">Nom et Prénoms :</span>
+                <span class="valeur">{{formulaireInscription['Nomcontact_immed']}}</span>
+              </div>
+              <div class="d-flex flex-wrap">
+                <div class="d-flex justify-content-between">
+                  <span class="libelle">Adresse :</span>
+                  <span class="valeur">{{formulaireInscription['Adrcontact_immed']}}</span>
+                </div>
+                <div class="d-flex justify-content-between mx-2">
+                  <span class="libelle">Tél :</span>
+                  <span class="valeur">{{formulaireInscription['Telcontact_immed']}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </fieldset>
+
+
+        <fieldset>
+          <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
+
+          <div class="d-flex flex-wrap ">
+            <div class="d-flex align-items-center">
+              <label class="d-flex align-items-center " >
+                Très bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_ordre', 'Tres bien')" >
+              </label>
+              <label class="d-flex align-items-center " >
+                Bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_ordre', 'Bien')" >
+              </label>
+              <label class="d-flex align-items-center " >
+                Assez Bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_ordre', 'Assez Bien')" >
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Je connais le code de déontologie pharmaceutique</legend>
+
+          <div class="d-flex flex-wrap ">
+            <div class="d-flex align-items-center">
+              <label class="d-flex align-items-center " >
+                Très bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_deonto', 'Tres bien')">
+              </label>
+              <label class="d-flex align-items-center " >
+                Bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_deonto', 'Bien')">
+              </label>
+              <label class="d-flex align-items-center " >
+                Assez Bien
+                <input type="checkbox" disabled [checked]="checkValue('lib_appr_deonto', 'Assez Bien')">
+              </label>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <i>
+          Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies pour la constitution
+          du dossier d’inscription.
+        </i>
+
+      </div>
+
+  </div>
+
+  <div class="action d-flex justify-content-center align-items-center ">
+
+    <button class="btn btn-online d-flex align-items-center" (click)="isVisible = true; isEdit = 'EDIT'" >
+      <span class="material-symbols-outlined mx-1">
+        edit_note
+        </span>
+      Modifier</button>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<nz-modal [nzWidth]="1000" [nzFooter]=null nzCentered="true" [(nzVisible)]="isVisible" nzTitle="Modification de vos informations" (nzOnCancel)="isVisible = false" > <!--  -->
+  <ng-container *nzModalContent>
+    <app-form-inscription class="editer" [actionTitre]="'EDIT'" [data]="formulaireInscription" ></app-form-inscription>
+  </ng-container>
+</nz-modal>

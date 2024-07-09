@@ -50,87 +50,29 @@
       background-color: rgba(255, 255, 255, 0.823);
       position: relative;
 
-      .conteneurInfo {
-
-        &>h3 {
-          margin: 5px 40px;
-          border: 1px solid black;
-          border-radius: 15px;
-        }
-
-
-        .infos {
-          padding: 20px;
-
-          &>div,
-          &>fieldset>div {
-            justify-content: space-between;
-
-            .libelle {
-              font-weight: bold;
-            }
-
-            label {
-              margin-right: 15px;
-
-              input {
-                margin-left: 5px;
-              }
-            }
-          }
-
-          &>fieldset {
-            margin-top: 15px;
-            margin-bottom: 15px;
-
-            legend {
-              font-style: italic;
-              font-size: 17px;
-
-              &+div {
-                padding: 0 15px;
-
-                h4 {
-                  font-size: 14px;
-                  margin-top: 5px;
-
-                  &~div {
-                    padding: 0 10px;
-                  }
-                }
-              }
-            }
-          }
-
-          i {
-            margin: 15px 0;
-          }
-        }
-      }
-
-      .action {
-        position: sticky;
-        bottom: -17px;
-        background-color: #ffffffd6;
-        padding: 15px;
-        width: 100%;
+      // .action {
+      //   position: sticky;
+      //   bottom: -17px;
+      //   background-color: #ffffffd6;
+      //   padding: 15px;
+      //   width: 100%;
 
 
-        button {
-          border-radius: 5px;
-          border: none;
-          box-shadow: 0px 0px 5px var(--vert);
-          background-color: var(--vert);
-          color: white;
-          transition: .5s;
+      //   button {
+      //     border-radius: 5px;
+      //     border: none;
+      //     box-shadow: 0px 0px 5px var(--vert);
+      //     background-color: var(--vert);
+      //     color: white;
+      //     transition: .5s;
 
-          &:hover {
-            background-color: rgba(255, 255, 255, 0.633);
-            color: var(--vert);
-          }
-        }
+      //     &:hover {
+      //       background-color: rgba(255, 255, 255, 0.633);
+      //       color: var(--vert);
+      //     }
+      //   }
 
-      }
+      // }
     }
   }
 }

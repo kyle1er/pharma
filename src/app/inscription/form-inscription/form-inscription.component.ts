@@ -6,8 +6,10 @@ import { ICheckBtnData } from 'src/app/shared/checkButton/ICheckBtnData';
 import { inscriptionData } from 'src/app/shared/dto/inscriptionData';
 import { myFile } from 'src/app/shared/interface/myFile';
 import { INotification } from 'src/app/shared/notification/INotification';
+import * as moment from 'moment';
+import * as lodash from 'lodash';
 
-interface nationnalite { _i: number, _Libelle: string, _desa: boolean };
+interface nationalite { _i: number, _Libelle: string, _desa: boolean };
 interface appreciation { _i: number, _libelle: string, UseOrdre: boolean, UseDeontologie: boolean, _desa: boolean };
 interface section { _i: string, _libelle: string };
 interface fonction { _i: string, _libelle: string };
@@ -22,8 +24,12 @@ interface documents { _i: number, _libelle: string, _desa: boolean, fileName?: s
 })
 export class FormInscriptionComponent implements OnInit {
 
+
+  @Input() data: any;
   // listFile: Array<{ id?: number, key: string, fileName: string, file: File }> = []
-  listFile: Array<myFile> = []
+  listFile: Array<myFile> = [];
+  enModeTest: boolean = false;
+
 
 
 
@@ -42,133 +48,12 @@ export class FormInscriptionComponent implements OnInit {
   listOfSelectedValue: Array<number> = []
   step: number = 0;
   mustShow: boolean = false;
-  nationnalite: Array<nationnalite> = [
-    {
-      "_i": 8,
-      "_Libelle": "IVOIRIENNE",
-      "_desa": false
-    }
-  ];
+  nationalite: Array<nationalite> = [];
 
-  appreciation: appreciation[] = [
-    {
-      "_i": 1,
-      "_libelle": "TRES BIEN",
-      "UseOrdre": true,
-      "UseDeontologie": true,
-      "_desa": false
-    },
-    {
-      "_i": 2,
-      "_libelle": "BIEN",
-      "UseOrdre": false,
-      "UseDeontologie": true,
-      "_desa": false
-    },
-    {
-      "_i": 3,
-      "_libelle": "ASSEZ-BIEN",
-      "UseOrdre": true,
-      "UseDeontologie": true,
-      "_desa": false
-    }
-  ];
-  section: section[] = [
-    {
-      "_i": "S1",
-      "_libelle": "SECTION 1"
-    },
-    {
-      "_i": "S2",
-      "_libelle": "SECTION 2"
-    },
-    {
-      "_i": "S3",
-      "_libelle": "SECTION 3"
-    },
-    {
-      "_i": "S4",
-      "_libelle": "SECTION 4"
-    }
-  ];
-  fonction: fonction[] = [
-    {
-      "_i": "14",
-      "_libelle": "En Attente de poste"
-    },
-    {
-      "_i": "12",
-      "_libelle": "Enseignant"
-    },
-    {
-      "_i": "7",
-      "_libelle": "administrateurs des établissements de grossistes-répartiteurs"
-    },
-    {
-      "_i": "6",
-      "_libelle": "administrateurs des établissements pharmaceutiques de fabrication"
-    },
-    {
-      "_i": "11",
-      "_libelle": "fonctionnaire"
-    },
-    {
-      "_i": "5",
-      "_libelle": "gérants"
-    },
-    {
-      "_i": "10",
-      "_libelle": "les pharmaciens droguistes"
-    },
-    {
-      "_i": "2",
-      "_libelle": "pharmaciens assistants"
-    },
-    {
-      "_i": "15",
-      "_libelle": "pharmaciens biologistes"
-    },
-    {
-      "_i": "3",
-      "_libelle": "pharmaciens gérants d’officines"
-    },
-    {
-      "_i": "16",
-      "_libelle": "pharmaciens hospitaliers privés"
-    },
-    {
-      "_i": "4",
-      "_libelle": "pharmaciens propriétaires"
-    },
-    {
-      "_i": "8",
-      "_libelle": "pharmaciens salariés des établissements pharmaceutiques de fabrication"
-    },
-    {
-      "_i": "9",
-      "_libelle": "pharmaciens salariés des établissements pharmaceutiques de grossistes-répartiteurs"
-    },
-    {
-      "_i": "1",
-      "_libelle": "pharmaciens titulaires"
-    },
-    {
-      "_i": "13",
-      "_libelle": "retraités"
-    }
-  ];
-  documents: Array<documents> = [
-    {
-      "_i": 1,
-      "_libelle": "INFO",
-      "_desa": false
-    },
-    {
-      "_i": 2,
-      "_libelle": "PASSEPORT",
-      "_desa": false
-    },
-  ]
+  appreciation: appreciation[] = [];
+  section: section[] = [];
+  fonction: fonction[] = [];
+  documents: Array<documents> = [];
 
   listEtatCivil: ICheckBtnData = {
     typeBouton: 'radio',
@@ -194,25 +79,7 @@ export class FormInscriptionComponent implements OnInit {
 
   listSectionOrdre: ICheckBtnData = {
     typeBouton: 'checkbox',
-    dataList: JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
-    // dataList: [
-    //   {
-    //     libelle: "1",
-    //     valeur: "1",
-    //   },
-    //   {
-    //     libelle: "2",
-    //     valeur: "2",
-    //   },
-    //   {
-    //     libelle: "3",
-    //     valeur: "3",
-    //   },
-    //   {
-    //     libelle: "4",
-    //     valeur: "4",
-    //   },
-    // ]
+    dataList: [] /* JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle')) */
   }
 
   listChangeSection: ICheckBtnData = {
@@ -233,77 +100,10 @@ export class FormInscriptionComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private myService: WebServicesService, private route: Router) {
 
-    // console.log( "date new 2 ==> ", this.activateRoute.snapshot.data );
-
-    // console.log( " router.routerState 0 ==> ", router.routerState);
-    // console.log( " router.routerState 1 ==> ", router.routerState.root.data);
-    // console.log( " router.routerState 2 ==> ", router.routerState.snapshot);
-
-    // this.activateRoute.paramMap.subscribe( obs =>{
-    //   // console.log("obs.get('state') ", obs.get('state'));
-    //   // console.log(" window.history.state ", window.history.state);
-    //   // console.log( "receive ", window.history.state);
-
-    //   if ( JSON.stringify( window.history.state['param']) != JSON.stringify( { inscription: 'yes', finish: false } ) ) {
-    //     router.navigateByUrl( '/auth' )
-    //   }else{
-    //     this.mustShow = true;
-    //   }
-
-
-    // })
-
-    // const params =
-    if (this.actionTitre === 'NEW') {
-      this.myService.execute('getItems', [
-        {
-          "item": "doc",
-          "desa": 0
-        },
-        {
-          "item": "nationalite"
-        },
-        {
-          "item": "appreciation"
-        }, {
-          "item": "section"
-        },
-        {
-          "item": "fonction"
-        }
-      ], false).subscribe({
-        next: (value: any) => {
-          console.log("list items === ", value);
-          /* ---------------- */
-          /* ---------------- */
-          this.nationnalite = value['description']['nationnalite'] as Array<nationnalite>;
-          this.appreciation = value['description']['appreciation'] as Array<appreciation>;
-          this.documents = value['description']['appreciation'] as Array<appreciation>;
-
-          this.section = value['description']['section'] as Array<section>;
-          this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
-          this.fonction = value['description']['fonction'] as Array<fonction>;
-
-        },
-        error: (err) => {
-          console.log("error list items === ", err);
-          this.infoNotif = {
-            message: "Erreur lors du chargement des documents à fournir",
-            type: 'error'
-          }
-
-          this.infoNotifShow = false;
-        },
-      })
-
-
-    }
-
-
     this.formulaireInscription = this.fb.group({
       Nom: ['', [Validators.required]],
       Pnom: ['', [Validators.required]],
-      datedepot_dos: [null, [Validators.required]],
+      Datedepot_dos: [null, [Validators.required]],
       Datenaiss: [null, [Validators.required]],
       Lieunaiss: ['', [Validators.required]],
       Etatcivil: [null, [Validators.required]],
@@ -354,45 +154,303 @@ export class FormInscriptionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.formulaireInscription.setValue({
-      "Nom": "YAH",
-      "Pnom": "FIRM",
-      "datedepot_dos": "2024-06-05",
-      "Datenaiss": "2024-05-27",
-      "Lieunaiss": "YAKRO",
-      "Etatcivil": "Marié",
-      "NationaliteID": 8,
-      "Tel": "2250004542345",
-      "Mail": "test@test.com",
-      "Adrgeo": "Test",
-      "DiplomeobtenuLe": "2024-06-03",
-      "Lieuobtentiondiplome": "Obtention ",
-      "DiplomeDelivreLe": "2024-06-03",
-      "Sections": [],
-      "ChangementOrdre": false,
-      "etabPharmaceutique": {
-        "Raisonscial_emp": "Raison",
-        "Adrpost_emp": "BP",
-        "Tel_emp": "22527055043",
-        "Fax_emp": "",
-        "Adrgeo_emp": "BP2"
-      },
-      "contact": {
-        "contactImmediat": {
-          "Nomcontact_immed": "TR",
-          "Adrcontact_immed": "BPI",
-          "Telcontact_immed": "225042474444"
+    if (this.enModeTest) {
+      this.formulaireInscription.setValue({
+        "Nom": "YAH",
+        "Pnom": "FIRM",
+        "datedepot_dos": "2024-06-05",
+        "Datenaiss": "2024-05-27",
+        "Lieunaiss": "YAKRO",
+        "Etatcivil": "Marié",
+        "NationaliteID": 8,
+        "Tel": "2250004542345",
+        "Mail": "test@test.com",
+        "Adrgeo": "Test",
+        "DiplomeobtenuLe": "2024-06-03",
+        "Lieuobtentiondiplome": "Obtention ",
+        "DiplomeDelivreLe": "2024-06-03",
+        "Sections": [],
+        "ChangementOrdre": false,
+        "etabPharmaceutique": {
+          "Raisonscial_emp": "Raison",
+          "Adrpost_emp": "BP",
+          "Tel_emp": "22527055043",
+          "Fax_emp": "",
+          "Adrgeo_emp": "BP2"
         },
-        "contactPro": {
-          "Nomcontact_prof": "RT",
-          "Adrcontact_prof": "BPP",
-          "Telcontact_prof": "225434343334"
+        "contact": {
+          "contactImmediat": {
+            "Nomcontact_immed": "TR",
+            "Adrcontact_immed": "BPI",
+            "Telcontact_immed": "225042474444"
+          },
+          "contactPro": {
+            "Nomcontact_prof": "RT",
+            "Adrcontact_prof": "BPP",
+            "Telcontact_prof": "225434343334"
+          }
+        },
+        "CnceOrdre": "Très bien",
+        "CnceDeontologie": "Assez Bien"
+      })
+      this.nationalite = [
+        {
+          "_i": 8,
+          "_Libelle": "IVOIRIENNE",
+          "_desa": false
         }
-      },
-      "CnceOrdre": "Très bien",
-      "CnceDeontologie": "Assez Bien"
-    })
-    console.log(this.formulaireInscription);
+      ];
+
+      this.appreciation = [
+        {
+          "_i": 1,
+          "_libelle": "TRES BIEN",
+          "UseOrdre": true,
+          "UseDeontologie": true,
+          "_desa": false
+        },
+        {
+          "_i": 2,
+          "_libelle": "BIEN",
+          "UseOrdre": false,
+          "UseDeontologie": true,
+          "_desa": false
+        },
+        {
+          "_i": 3,
+          "_libelle": "ASSEZ-BIEN",
+          "UseOrdre": true,
+          "UseDeontologie": true,
+          "_desa": false
+        }
+      ];
+      this.section = [
+        {
+          "_i": "S1",
+          "_libelle": "SECTION 1"
+        },
+        {
+          "_i": "S2",
+          "_libelle": "SECTION 2"
+        },
+        {
+          "_i": "S3",
+          "_libelle": "SECTION 3"
+        },
+        {
+          "_i": "S4",
+          "_libelle": "SECTION 4"
+        }
+      ];
+      this.fonction = [
+        {
+          "_i": "14",
+          "_libelle": "En Attente de poste"
+        },
+        {
+          "_i": "12",
+          "_libelle": "Enseignant"
+        },
+        {
+          "_i": "7",
+          "_libelle": "administrateurs des établissements de grossistes-répartiteurs"
+        },
+        {
+          "_i": "6",
+          "_libelle": "administrateurs des établissements pharmaceutiques de fabrication"
+        },
+        {
+          "_i": "11",
+          "_libelle": "fonctionnaire"
+        },
+        {
+          "_i": "5",
+          "_libelle": "gérants"
+        },
+        {
+          "_i": "10",
+          "_libelle": "les pharmaciens droguistes"
+        },
+        {
+          "_i": "2",
+          "_libelle": "pharmaciens assistants"
+        },
+        {
+          "_i": "15",
+          "_libelle": "pharmaciens biologistes"
+        },
+        {
+          "_i": "3",
+          "_libelle": "pharmaciens gérants d’officines"
+        },
+        {
+          "_i": "16",
+          "_libelle": "pharmaciens hospitaliers privés"
+        },
+        {
+          "_i": "4",
+          "_libelle": "pharmaciens propriétaires"
+        },
+        {
+          "_i": "8",
+          "_libelle": "pharmaciens salariés des établissements pharmaceutiques de fabrication"
+        },
+        {
+          "_i": "9",
+          "_libelle": "pharmaciens salariés des établissements pharmaceutiques de grossistes-répartiteurs"
+        },
+        {
+          "_i": "1",
+          "_libelle": "pharmaciens titulaires"
+        },
+        {
+          "_i": "13",
+          "_libelle": "retraités"
+        }
+      ];
+      this.documents = [
+        {
+          "_i": 1,
+          "_libelle": "INFO",
+          "_desa": false
+        },
+        {
+          "_i": 2,
+          "_libelle": "PASSEPORT",
+          "_desa": false
+        },
+      ]
+
+      this.listEtatCivil = {
+        typeBouton: 'radio',
+        dataList: [
+          {
+            libelle: "Célibataire",
+            valeur: "Célibataire",
+          },
+          {
+            libelle: "Marié",
+            valeur: "Marié",
+          },
+          {
+            libelle: "Divorcé",
+            valeur: "Divorcé",
+          },
+          {
+            libelle: "Veuf (ve)",
+            valeur: "Veuf (ve)",
+          },
+        ]
+      };
+
+      this.listSectionOrdre = {
+        typeBouton: 'checkbox',
+        dataList: JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+        // dataList: [
+        //   {
+        //     libelle: "1",
+        //     valeur: "1",
+        //   },
+        //   {
+        //     libelle: "2",
+        //     valeur: "2",
+        //   },
+        //   {
+        //     libelle: "3",
+        //     valeur: "3",
+        //   },
+        //   {
+        //     libelle: "4",
+        //     valeur: "4",
+        //   },
+        // ]
+      }
+    } else {
+
+
+
+      this.myService.execute('getItems', [
+        /* {
+          "item": "doc",
+          "desa": 0
+        }, */
+        {
+          "item": "nationalite"
+        },
+        {
+          "item": "appreciation"
+        }, {
+          "item": "section"
+        },
+        {
+          "item": "fonction"
+        }
+      ], false).subscribe({
+        next: (value: any) => {
+          console.log("list items === ", value);
+          /* ---------------- */
+          /* ---------------- */
+          this.nationalite = value['description']['nationalite'] as Array<nationalite>;
+          this.appreciation = value['description']['appreciation'] as Array<appreciation>;
+          // this.documents = value['description']['appreciation'] as Array<appreciation>;
+
+          this.section = value['description']['section'] as Array<section>;
+          this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+          this.fonction = value['description']['fonction'] as Array<fonction>;
+
+          if (this.actionTitre === 'EDIT') {
+
+            /* --------------------------- */
+            /* SUPPRESSION DES CLES NON NECESSAIRE */
+            /* --------------------------- */
+
+            console.log("data recu ===== ", {...this.data});
+            const data$ = new inscriptionData('objetSimple', this.data);
+            console.log("data transform 0 ===== ", {...data$});
+            // console.log("data$.myData ==== ", data$.myData);
+
+
+            const lstKeyData = Object.keys( data$.myData );
+            const deleteKey = (()=>{
+              const lstKeyForm = Object.keys( this.formulaireInscription.value );
+              const deleteKey = lodash.difference( lstKeyData, lstKeyForm )
+              console.log("deleteKey ===== ", deleteKey);
+
+              for (const key of deleteKey) {
+                delete data$.myData[key]
+              }
+            })()
+
+            const formateDate = (()=>{
+              // const key = Object.keys( this.data )
+              for (const iterator of lstKeyData) {
+                if (dateIsValide(data$.myData[iterator])) {
+                  data$.myData[iterator] = moment(data$.myData[iterator], 'DD-MM-YYYY').format("YYYY-MM-DD")
+                }
+              }
+            })()
+
+            console.log("data transform date ===== ", {...data$});
+            this.formulaireInscription.setValue({ ...data$.myData })
+            // console.log("formulaireInscription === ", this.formulaireInscription);
+
+
+
+          }
+        },
+        error: (err) => {
+          console.log("error list items === ", err);
+          this.infoNotif = {
+            message: "Erreur lors du chargement des documents à fournir",
+            type: 'error'
+          }
+
+          this.infoNotifShow = false;
+        },
+      })
+    }
+
+    // console.log(this.formulaireInscription);
 
   }
 
@@ -402,25 +460,6 @@ export class FormInscriptionComponent implements OnInit {
 
   inscription() {
     this.isLoading = true;
-    console.log(this.formulaireInscription.value);
-    console.log(this.formulaireInscription);
-
-
-    function dateIsValide(dt: string) {
-      if (typeof dt !== 'string') {
-        return false
-      }
-      try {
-        new Date(dt)
-        return true
-      } catch (error) {
-        return false
-      }
-    }
-
-
-    // console.log("listOfSelectedValue  === ", this.listOfSelectedValue);
-
 
     const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value);
     const Docs_fournis = this.myService.uploadFile(Object.assign([], this.listFile));
@@ -440,7 +479,7 @@ export class FormInscriptionComponent implements OnInit {
 
     data.formatDate()
 
-    console.log("sessions :: ", this.formulaireInscription.value);
+    // console.log("sessions :: ", this.formulaireInscription.value);
     console.log("data === ", data);
 
 
@@ -531,15 +570,21 @@ export class FormInscriptionComponent implements OnInit {
   getListDoc(fonction: any[]) {
     // console.log("fonction ==== ", fonction);
     this.listOfSelectedValue = [...fonction];
-    this.infoNotifShow = true;
+    // this.infoNotifShow = true;
 
+    console.log("liste des fonctions === ", this.listOfSelectedValue);
 
-    this.myService.execute('get_documents', [...this.listOfSelectedValue]).subscribe({
-      next: (value) => {
+    const params = {
+      body: {
+        fonctions: this.listOfSelectedValue
+      }
+    }
+    this.myService.execute('get_documents', params).subscribe({
+      next: (value: any) => {
 
         console.log("document === ", value);
-        this.documents = value as documents[];
-        this.infoNotifShow = false;
+        this.documents = value['description'] as documents[];
+        // this.infoNotifShow = false;
 
       },
       error: (err) => {
@@ -548,7 +593,7 @@ export class FormInscriptionComponent implements OnInit {
           type: 'error'
         }
 
-        this.infoNotifShow = false;
+        this.infoNotifShow = true;
       },
     })
   }
@@ -557,3 +602,22 @@ export class FormInscriptionComponent implements OnInit {
     this.route.navigateByUrl('auth/connexion')
   }
 }
+
+
+
+function dateIsValide(dt: string, format : string = 'DD-MM-YYYY') {
+  if (typeof dt !== 'string') {
+    return false
+  }
+  try {
+    // const nDt = new Date(dt);
+    const nDt = moment(dt, format)
+    if (String(nDt).toString().toLowerCase() === String('Invalid Date').toLowerCase()) {
+      return false
+    }
+    return true
+  } catch (error) {
+    return false
+  }
+}
+

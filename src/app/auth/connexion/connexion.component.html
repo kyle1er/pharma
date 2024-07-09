@@ -6,11 +6,11 @@
       <label for="pseudo">Pseudo</label>
       <input type="text" id="pseudo" formControlName="email">
     </div>
-    <div>
+    <div class="password">
       <label for="password">Mot de passe</label>
       <div class="d-flex btnEye">
         <input type="password" id="password" formControlName="pwd" #passWord>
-        <span class="material-symbols-outlined" #me (click)="showPassWord(passWord, me)">
+        <span class="material-symbols-outlined eyeSpan" #me (click)="showPassWord(passWord, me)">
           visibility
           </span>
       </div>
@@ -25,7 +25,7 @@
   </div>
 
   <div class="login soumettre">
-    <button nz-button [nzLoading]="isLoadingOne" class="" (click)="connexion()" type="submit" [disabled]="formulaireConnexion.invalid" >Se connecter</button><!-- [routerLink]="['/pharma']"  -->
+    <button nz-button [nzLoading]="isLoadingOne" (click)="connexion()" type="submit" [disabled]="formulaireConnexion.invalid" >Se connecter</button><!-- [routerLink]="['/pharma']"  -->
   </div>
 
   <div class="createLogin">
