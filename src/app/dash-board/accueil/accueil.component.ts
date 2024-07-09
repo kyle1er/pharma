@@ -64,10 +64,10 @@ export class AccueilComponent implements OnInit {
 
     this.webService.getUserInfos().subscribe(( val )=>{
       console.log(val);
-      this.formulaireInscription = {
+      this.formulaireInscription = val/* {
         ...val,
         Sections : val['Sections'].reduce( ( accu: any, current: any ) => [...accu , current._sectionID] , [] )
-      }
+      } */
       // const myData = new inscriptionData( 'objetSimple', this.formulaireInscription );
       // console.log(" my data original === ", myData.myDataOriginal);
       // console.log(" my data transform === ", myData.myData);

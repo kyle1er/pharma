@@ -269,6 +269,6 @@
 
 <nz-modal [nzWidth]="1000" [nzFooter]=null nzCentered="true" [(nzVisible)]="isVisible" nzTitle="Modification de vos informations" (nzOnCancel)="isVisible = false" > <!--  -->
   <ng-container *nzModalContent>
-    <app-form-inscription class="editer" [actionTitre]="'EDIT'" [data]="formulaireInscription" ></app-form-inscription>
+    <app-form-inscription class="editer" [actionTitre]="'EDIT'"  ><!-- [data]="formulaireInscription" --></app-form-inscription>
   </ng-container>
 </nz-modal>

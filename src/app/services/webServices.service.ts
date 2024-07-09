@@ -194,7 +194,7 @@ export class WebServicesService {
     //   nom : data$['Nom'],
     //   prenom : data$['Pnom']
     // }
-    this.userData = {...data$}
+    this.userData = {...data$, Sections : data$['Sections'].reduce( ( accu: any, current: any ) => [...accu , current._sectionID] , [] )}
   }
 
   getUserInfos() : Observable<any> {
@@ -203,7 +203,7 @@ export class WebServicesService {
       const time = setInterval(()=>{
         if (this.userData) {
           clearInterval(time);
-          obser.next( this.userData )
+          obser.next( {...this.userData} )
         }
       }, 100)
     })

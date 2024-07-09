@@ -25,7 +25,7 @@ interface documents { _i: number, _libelle: string, _desa: boolean, fileName?: s
 export class FormInscriptionComponent implements OnInit {
 
 
-  @Input() data: any;
+  // @Input() data: any;
   // listFile: Array<{ id?: number, key: string, fileName: string, file: File }> = []
   listFile: Array<myFile> = [];
   enModeTest: boolean = false;
@@ -400,41 +400,44 @@ export class FormInscriptionComponent implements OnInit {
 
           if (this.actionTitre === 'EDIT') {
 
-            /* --------------------------- */
-            /* SUPPRESSION DES CLES NON NECESSAIRE */
-            /* --------------------------- */
+            this.myService.getUserInfos().subscribe(( val )=>{
+              console.log(val);
+              /* --------------------------- */
+              /* SUPPRESSION DES CLES NON NECESSAIRE */
+              /* --------------------------- */
 
-            console.log("data recu ===== ", {...this.data});
-            const data$ = new inscriptionData('objetSimple', this.data);
-            console.log("data transform 0 ===== ", {...data$});
-            // console.log("data$.myData ==== ", data$.myData);
+              console.log("data recu ===== ", {...val});
+              const data$ = new inscriptionData('objetSimple', val);
+              console.log("data transform 0 ===== ", {...data$});
+              // console.log("data$.myData ==== ", data$.myData);
 
 
-            const lstKeyData = Object.keys( data$.myData );
-            const deleteKey = (()=>{
-              const lstKeyForm = Object.keys( this.formulaireInscription.value );
-              const deleteKey = lodash.difference( lstKeyData, lstKeyForm )
-              console.log("deleteKey ===== ", deleteKey);
+              const lstKeyData = Object.keys( data$.myData );
+              const deleteKey = (()=>{
+                const lstKeyForm = Object.keys( this.formulaireInscription.value );
+                const deleteKey = lodash.difference( lstKeyData, lstKeyForm )
+                console.log("deleteKey ===== ", deleteKey);
 
-              for (const key of deleteKey) {
-                delete data$.myData[key]
-              }
-            })()
-
-            const formateDate = (()=>{
-              // const key = Object.keys( this.data )
-              for (const iterator of lstKeyData) {
-                if (dateIsValide(data$.myData[iterator])) {
-                  data$.myData[iterator] = moment(data$.myData[iterator], 'DD-MM-YYYY').format("YYYY-MM-DD")
+                for (const key of deleteKey) {
+                  delete data$.myData[key]
                 }
-              }
-            })()
+              })()
 
-            console.log("data transform date ===== ", {...data$});
-            this.formulaireInscription.setValue({ ...data$.myData })
-            // console.log("formulaireInscription === ", this.formulaireInscription);
+              const formateDate = (()=>{
+                // const key = Object.keys( val )
+                for (const iterator of lstKeyData) {
+                  if (dateIsValide(data$.myData[iterator])) {
+                    data$.myData[iterator] = moment(data$.myData[iterator], 'DD-MM-YYYY').format("YYYY-MM-DD")
+                  }
+                }
+              })()
+
+              console.log("data transform date ===== ", {...data$});
+              this.formulaireInscription.setValue({ ...data$.myData })
+              // console.log("formulaireInscription === ", this.formulaireInscription);
 
 
+            })
 
           }
         },
