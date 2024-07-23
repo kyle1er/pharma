@@ -8,7 +8,7 @@
   /* .radioBtnGrp */.checkBtn {
     span {
       & input {
-        // display: none;
+        display: none;
         visibility: hidden;
 
         &:checked+label {
@@ -31,4 +31,13 @@
   }
 
 
+}
+
+@media screen and (max-width : 425px) {
+  .radioBtnGrp, .checkBtn{
+    justify-content: space-between;
+    span{
+      margin: 1px !important;
+    }
+  }
 }

@@ -63,7 +63,7 @@ export class AccueilComponent implements OnInit {
   ngOnInit() {
 
     this.webService.getUserInfos().subscribe(( val )=>{
-      console.log(val);
+      // console.log(val);
       this.formulaireInscription = val/* {
         ...val,
         Sections : val['Sections'].reduce( ( accu: any, current: any ) => [...accu , current._sectionID] , [] )

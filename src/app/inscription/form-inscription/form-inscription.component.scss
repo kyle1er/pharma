@@ -1,9 +1,9 @@
 .myForm {
   position: relative;
-  min-height: 95vh;
-  max-height: 10vh;
   overflow: hidden;
   flex-direction: row;
+  // min-height: 95vh;
+  // max-height: 10vh;
 
   background-color: rgba(255, 255, 255, 0.905);
   border-radius: 15px;
@@ -21,7 +21,7 @@
 
     &.formDiv {
       padding: 10px;
-      flex: 1 1 60%;
+      // flex: 1 1 60%;
       justify-content: space-between;
       background-color: transparent;
 
@@ -57,16 +57,16 @@
 
           &+div {
             input.lieu {
-              flex: 1 1 80%;
+              // flex: 1 1 80%;
               margin-left: 5px;
             }
 
             ol {
               width: 100%;
 
-              li {
-                flex: 0 1 45%;
-              }
+              // li {
+              //   flex: 0 1 45%;
+              // }
             }
           }
         }
@@ -92,7 +92,7 @@
             background-color: #dcdcdc7d;
             padding-left: 10px;
             font-style: italic;
-            width: 90%;
+            // width: 90%;
             border-radius: 10px 0 0 10px;
 
             &>span {
@@ -147,9 +147,9 @@
   }
 
 
-  nz-select {
-    min-width: 200px;
-  }
+  // nz-select {
+  //   min-width: 200px;
+  // }
 
 
   /* -------------------- */
@@ -158,8 +158,8 @@
 
   .closeBtn{
     position: absolute;
-    width: 35px;
-    height: 35px;
+    // width: 35px;
+    // height: 35px;
     border: none;
     border-radius: 50%;
     right: 10px;
@@ -167,4 +167,541 @@
     // background-color: var(--vert_opacity);
     color: var(--vert);
   }
+}
+
+
+
+@media screen and (min-width: 769px) {
+  .myForm {
+    // position: relative;
+    min-height: 95vh;
+    max-height: 100vh;
+    // overflow: hidden;
+    // flex-direction: row;
+
+    // background-color: rgba(255, 255, 255, 0.905);
+    // border-radius: 15px;
+    // padding: 25px;
+    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
+
+    &>div {
+      // flex: 1 1 50%;
+      // overflow: hidden;
+
+      // img {
+      //   width: 100%;
+      //   height: 100%;
+      // }
+
+      &.formDiv {
+        // padding: 10px;
+        flex: 1 1 60%;
+        // justify-content: space-between;
+        // background-color: transparent;
+
+        // h2 {
+        //   text-decoration: underline;
+        // }
+
+        // input,
+        // select {
+        //   outline-style: none;
+        //   // border: 1px solid gainsboro;
+        //   border: none;
+        //   border-bottom: 1px solid gray;
+        //   padding: 5px 10px;
+        //   margin-bottom: 10px;
+
+        //   &.prenom {
+        //     flex: 1 1 80%;
+        //     margin-left: 5px;
+        //   }
+        // }
+
+
+        fieldset {
+          // padding: 0px 5px;
+          // margin-bottom: 2px 5px;
+
+          // border: 1px solid gray;
+          &.titreL legend {
+            // font-size: 15px;
+            // font-weight: 700;
+
+            &+div {
+              input.lieu {
+                flex: 1 1 80%;
+                // margin-left: 5px;
+              }
+
+              ol {
+                // width: 100%;
+
+                li {
+                  flex: 0 1 45%;
+                }
+              }
+            }
+          }
+
+
+          // .infoDoc {
+          //   font-size: 11px;
+          //   font-style: italic;
+          //   color: #a3a3a3;
+          //   background-color: gainsboro;
+          //   border-radius: 5px;
+          // }
+
+
+          ul {
+            // width: 100%;
+
+            // label {
+            //   font-weight: 500;
+            // }
+
+            .fichierImport {
+              // background-color: #dcdcdc7d;
+              // padding-left: 10px;
+              // font-style: italic;
+              // border-radius: 10px 0 0 10px;
+              width: 90%;
+
+              // &>span {
+              //   flex: 0 0 100%;
+              //   text-overflow: ellipsis;
+              //   text-wrap: nowrap;
+              //   overflow: hidden;
+              // }
+
+              // button {
+              //   border: none;
+              //   color: red;
+              //   // background-color: transparent;
+              // }
+            }
+          }
+
+          // label,
+          // input[type='radio'],
+          // input[type='checkbox'] {
+          //   cursor: pointer;
+          // }
+
+          // &.etatCivil {
+
+          // }
+        }
+      }
+    }
+
+    /* ------ */
+    // .action {
+    //   padding: 10px 5px 0px;
+
+    //   // border: 1px solid ;
+    //   button {
+    //     background-color: rgba(0, 0, 0, 0.566);
+    //     color: white;
+    //     font-weight: 700;
+    //     padding: 5px 10px;
+    //     border-radius: 5px;
+    //     border: none;
+
+    //     &:hover {
+    //       background-color: rgba(0, 0, 0, 0.8);
+    //     }
+
+    //     &:disabled {
+    //       cursor: not-allowed;
+    //     }
+    //   }
+    // }
+
+
+    nz-select {
+      min-width: 200px;
+    }
+
+
+    /* -------------------- */
+    /* -------------------- */
+    /* -------------------- */
+
+    .closeBtn{
+      // position: absolute;
+      width: 35px;
+      height: 35px;
+      // border: none;
+      // border-radius: 50%;
+      // right: 10px;
+      // top: 10px;
+      // // background-color: var(--vert_opacity);
+      // color: var(--vert);
+    }
+  }
+
+}
+
+
+@media screen and (min-width: 426px) and (mqx-width: 768px) {
+  .myForm {
+    // position: relative;
+    min-height: 95vh;
+    max-height: 100vh;
+    // overflow: hidden;
+    // flex-direction: row;
+
+    // background-color: rgba(255, 255, 255, 0.905);
+    // border-radius: 15px;
+    // padding: 25px;
+    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
+
+    &>div {
+      // flex: 1 1 50%;
+      // overflow: hidden;
+
+      // img {
+      //   width: 100%;
+      //   height: 100%;
+      // }
+
+      &.formDiv {
+        // padding: 10px;
+        flex: 1 1 60%;
+        // justify-content: space-between;
+        // background-color: transparent;
+
+        // h2 {
+        //   text-decoration: underline;
+        // }
+
+        // input,
+        // select {
+        //   outline-style: none;
+        //   // border: 1px solid gainsboro;
+        //   border: none;
+        //   border-bottom: 1px solid gray;
+        //   padding: 5px 10px;
+        //   margin-bottom: 10px;
+
+        //   &.prenom {
+        //     flex: 1 1 80%;
+        //     margin-left: 5px;
+        //   }
+        // }
+
+
+        fieldset {
+          // padding: 0px 5px;
+          // margin-bottom: 2px 5px;
+
+          // border: 1px solid gray;
+          &.titreL legend {
+            // font-size: 15px;
+            // font-weight: 700;
+
+            &+div {
+              input.lieu {
+                flex: 1 1 80%;
+                // margin-left: 5px;
+              }
+
+              ol {
+                // width: 100%;
+
+                li {
+                  flex: 0 1 45%;
+                }
+              }
+            }
+          }
+
+
+          // .infoDoc {
+          //   font-size: 11px;
+          //   font-style: italic;
+          //   color: #a3a3a3;
+          //   background-color: gainsboro;
+          //   border-radius: 5px;
+          // }
+
+
+          ul {
+            // width: 100%;
+
+            // label {
+            //   font-weight: 500;
+            // }
+
+            .fichierImport {
+              // background-color: #dcdcdc7d;
+              // padding-left: 10px;
+              // font-style: italic;
+              // border-radius: 10px 0 0 10px;
+              width: 90%;
+
+              // &>span {
+              //   flex: 0 0 100%;
+              //   text-overflow: ellipsis;
+              //   text-wrap: nowrap;
+              //   overflow: hidden;
+              // }
+
+              // button {
+              //   border: none;
+              //   color: red;
+              //   // background-color: transparent;
+              // }
+            }
+          }
+
+          // label,
+          // input[type='radio'],
+          // input[type='checkbox'] {
+          //   cursor: pointer;
+          // }
+
+          // &.etatCivil {
+
+          // }
+        }
+      }
+    }
+
+    /* ------ */
+    // .action {
+    //   padding: 10px 5px 0px;
+
+    //   // border: 1px solid ;
+    //   button {
+    //     background-color: rgba(0, 0, 0, 0.566);
+    //     color: white;
+    //     font-weight: 700;
+    //     padding: 5px 10px;
+    //     border-radius: 5px;
+    //     border: none;
+
+    //     &:hover {
+    //       background-color: rgba(0, 0, 0, 0.8);
+    //     }
+
+    //     &:disabled {
+    //       cursor: not-allowed;
+    //     }
+    //   }
+    // }
+
+
+    nz-select {
+      min-width: 200px;
+    }
+
+
+    /* -------------------- */
+    /* -------------------- */
+    /* -------------------- */
+
+    .closeBtn{
+      // position: absolute;
+      width: 35px;
+      height: 35px;
+      // border: none;
+      // border-radius: 50%;
+      // right: 10px;
+      // top: 10px;
+      // // background-color: var(--vert_opacity);
+      // color: var(--vert);
+    }
+  }
+
+}
+
+
+@media screen and (max-width: 425px) {
+  .myForm {
+    // position: relative;
+    min-height: 95vh;
+    max-height: 100vh;
+    // overflow: hidden;
+    flex-direction: column;
+
+    // background-color: rgba(255, 255, 255, 0.905);
+    // border-radius: 15px;
+    // padding: 25px;
+    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
+
+    &>div {
+      // flex: 1 1 50%;
+      // overflow: hidden;
+
+      // img {
+      //   width: 100%;
+      //   height: 100%;
+      // }
+
+      &.imagFond{
+        display: none;
+      }
+
+      &.formDiv {
+        // padding: 10px;
+        overflow-y: auto;
+        flex: 1 1 60%;
+        // justify-content: space-between;
+        // background-color: transparent;
+
+        // h2 {
+        //   text-decoration: underline;
+        // }
+
+        // input,
+        // select {
+        //   outline-style: none;
+        //   // border: 1px solid gainsboro;
+        //   border: none;
+        //   border-bottom: 1px solid gray;
+        //   padding: 5px 10px;
+        //   margin-bottom: 10px;
+
+        //   &.prenom {
+        //     flex: 1 1 80%;
+        //     margin-left: 5px;
+        //   }
+        // }
+
+
+        fieldset {
+          // padding: 0px 5px;
+          // margin-bottom: 2px 5px;
+
+          // border: 1px solid gray;
+          &.titreL legend {
+            // font-size: 15px;
+            // font-weight: 700;
+
+            &+div {
+              input.lieu {
+                flex: 1 1 80%;
+                // margin-left: 5px;
+              }
+
+              ol {
+                // width: 100%;
+                flex-direction: column;
+
+                li {
+                  flex: 0 1 45%;
+                }
+              }
+
+              &.sectionOdre{
+                padding: 0px !important;
+              }
+
+              .moreInfos{
+                flex-direction: column;
+              }
+            }
+          }
+
+
+          // .infoDoc {
+          //   font-size: 11px;
+          //   font-style: italic;
+          //   color: #a3a3a3;
+          //   background-color: gainsboro;
+          //   border-radius: 5px;
+          // }
+
+
+          ul {
+            // width: 100%;
+
+            // label {
+            //   font-weight: 500;
+            // }
+
+            .fichierImport {
+              // background-color: #dcdcdc7d;
+              // padding-left: 10px;
+              // font-style: italic;
+              // border-radius: 10px 0 0 10px;
+              width: 90%;
+
+              // &>span {
+              //   flex: 0 0 100%;
+              //   text-overflow: ellipsis;
+              //   text-wrap: nowrap;
+              //   overflow: hidden;
+              // }
+
+              // button {
+              //   border: none;
+              //   color: red;
+              //   // background-color: transparent;
+              // }
+            }
+          }
+
+          // label,
+          // input[type='radio'],
+          // input[type='checkbox'] {
+          //   cursor: pointer;
+          // }
+
+          // &.etatCivil {
+
+          // }
+        }
+      }
+    }
+
+    /* ------ */
+    // .action {
+    //   padding: 10px 5px 0px;
+
+    //   // border: 1px solid ;
+    //   button {
+    //     background-color: rgba(0, 0, 0, 0.566);
+    //     color: white;
+    //     font-weight: 700;
+    //     padding: 5px 10px;
+    //     border-radius: 5px;
+    //     border: none;
+
+    //     &:hover {
+    //       background-color: rgba(0, 0, 0, 0.8);
+    //     }
+
+    //     &:disabled {
+    //       cursor: not-allowed;
+    //     }
+    //   }
+    // }
+
+
+    nz-select {
+      min-width: 200px;
+    }
+
+
+    /* -------------------- */
+    /* -------------------- */
+    /* -------------------- */
+
+    .closeBtn{
+      // position: absolute;
+      width: 35px;
+      height: 35px;
+      // border: none;
+      // border-radius: 50%;
+      // right: 10px;
+      // top: 10px;
+      // // background-color: var(--vert_opacity);
+      // color: var(--vert);
+    }
+  }
+
 }

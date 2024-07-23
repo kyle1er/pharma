@@ -27,3 +27,64 @@
     }
   }
 }
+
+@media screen and (min-width : 1025px) {
+  .conteneur{
+  & > div{
+    &.formulaire{
+      &>div{
+        min-width: 40%;
+      }
+    }
+  }
+}
+
+}
+
+@media screen and (width : 1024px) {
+  .conteneur{
+  & > div{
+    &.formulaire{
+      &>div{
+        min-width: 65%;
+      }
+    }
+  }
+}
+
+}
+
+@media screen and (min-width : 768px) and (max-width : 1023px) {
+  .conteneur{
+    & > div{
+      &.formulaire{
+        &>div{
+          min-width: 85%;
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width : 425px) {
+  .conteneur{
+    flex-direction: column;
+    & > div{
+      &.fonds{
+        img{
+          width: auto;
+          height: 100vh;
+        }
+      }
+
+      &.formulaire{
+        position: initial;
+        &>div{
+          min-width: 75%;
+        }
+      }
+    }
+  }
+
+}
