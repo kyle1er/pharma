@@ -5,12 +5,12 @@
 
   padding: 10px 15px;
   .welcome{
-    font-size: 1.8em;
+    // font-size: 1.8em;
     color: white;
 
     .logo{
-      width: 150px;
-      height: 150px;
+      // width: 150px;
+      // height: 150px;
       overflow: hidden;
       border-radius: 50%;
       margin: 0 15px 0 -20px;
@@ -58,4 +58,204 @@
       }
     }
   }
+}
+
+
+
+@media screen and (min-width : 1024px) {
+  .conteneur{
+    // background-color: red;
+    // width: 100%;
+    // height: 100%;
+
+    // padding: 10px 15px;
+    .welcome{
+      font-size: 1.8em;
+      // color: white;
+
+      .logo{
+        width: 150px;
+        height: 150px;
+        // overflow: hidden;
+        // border-radius: 50%;
+        // margin: 0 15px 0 -20px;
+        // border: 1px solid red;
+        // filter: drop-shadow(0px 15px 30px black);
+        // box-shadow: 0px 0px 25px white;
+
+
+        // img{
+        //   width: 100%;
+        //   height: 100%;
+        // }
+      }
+    }
+
+    // .otre{
+    //   .compte{
+    //     // border-radius: 25px;
+    //     // // background-color: var(--vert);
+    //     // background-color: white;
+    //     // overflow: hidden;
+    //     // padding: 2px;
+    //     // cursor: pointer;
+
+    //     // .avatar{
+    //     //   width: 50px;
+    //     //   height: 50px;
+    //     //   border-radius: 50%;
+    //     //   overflow: hidden;
+    //     //   margin-right: 5px;
+
+    //     //   img{
+    //     //     width: 100%;
+    //     //     height: 100%;
+    //     //   }
+    //     // }
+
+    //     // .user{
+    //     //   #name{
+    //     //     // color: black;
+    //     //     font-size: 16px;
+    //     //     padding: 0px 5px;
+    //     //     font-weight: bold;
+    //     //   }
+    //     // }
+    //   }
+    // }
+  }
+
+
+}
+
+
+@media screen and (min-width : 768px) and (max-width : 1024px) {
+  .conteneur{
+    // background-color: red;
+    // width: 100%;
+    // height: 100%;
+
+    // padding: 10px 15px;
+    .welcome{
+      font-size: 1.2em;
+      // color: white;
+
+      .logo{
+        width: 125px;
+        height: 125px;
+        // overflow: hidden;
+        // border-radius: 50%;
+        // margin: 0 15px 0 -20px;
+        // border: 1px solid red;
+        // filter: drop-shadow(0px 15px 30px black);
+        // box-shadow: 0px 0px 25px white;
+
+
+        // img{
+        //   width: 100%;
+        //   height: 100%;
+        // }
+      }
+    }
+
+    // .otre{
+    //   .compte{
+    //     // border-radius: 25px;
+    //     // // background-color: var(--vert);
+    //     // background-color: white;
+    //     // overflow: hidden;
+    //     // padding: 2px;
+    //     // cursor: pointer;
+
+    //     // .avatar{
+    //     //   width: 50px;
+    //     //   height: 50px;
+    //     //   border-radius: 50%;
+    //     //   overflow: hidden;
+    //     //   margin-right: 5px;
+
+    //     //   img{
+    //     //     width: 100%;
+    //     //     height: 100%;
+    //     //   }
+    //     // }
+
+    //     // .user{
+    //     //   #name{
+    //     //     // color: black;
+    //     //     font-size: 16px;
+    //     //     padding: 0px 5px;
+    //     //     font-weight: bold;
+    //     //   }
+    //     // }
+    //   }
+    // }
+  }
+
+
+}
+
+@media screen and (max-width : 425px) {
+  .conteneur{
+    // background-color: red;
+    // width: 100%;
+    // height: 100%;
+
+    // padding: 10px 15px;
+    .welcome{
+      font-size: 0.9em;
+      // color: white;
+
+      .logo{
+        display: none;
+        // overflow: hidden;
+        // border-radius: 50%;
+        // margin: 0 15px 0 -20px;
+        // border: 1px solid red;
+        // filter: drop-shadow(0px 15px 30px black);
+        // box-shadow: 0px 0px 25px white;
+
+
+        // img{
+        //   width: 100%;
+        //   height: 100%;
+        // }
+      }
+    }
+
+    .otre{
+      .compte{
+        // border-radius: 25px;
+        // // background-color: var(--vert);
+        // background-color: white;
+        // overflow: hidden;
+        // padding: 2px;
+        // cursor: pointer;
+
+        .avatar{
+          width: 30px;
+          height: 30px;
+          // border-radius: 50%;
+          // overflow: hidden;
+          margin-right: 0px;
+
+          // img{
+          //   width: 100%;
+          //   height: 100%;
+          // }
+        }
+
+        // .user{
+        //   #name{
+        //     // color: black;
+        //     font-size: 16px;
+        //     padding: 0px 5px;
+        //     font-weight: bold;
+        //   }
+        // }
+      }
+    }
+  }
+
+
 }

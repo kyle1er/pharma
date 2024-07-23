@@ -1,6 +1,6 @@
 {
   "methode": "POST",
-  "url": "_logOut",
+  "url": "_logout",
   "params": {
     "token": "****************"
   }

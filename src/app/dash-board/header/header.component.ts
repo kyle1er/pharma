@@ -9,7 +9,8 @@ import { WebServicesService } from 'src/app/services/webServices.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() userData : any
+  @Input() userData : any;
+  nomUser : string = ""
   constructor( private route : Router, private webService : WebServicesService ) { }
 
   ngOnInit() {
@@ -17,6 +18,7 @@ export class HeaderComponent implements OnInit {
     //   console.log(" header data user ", dat);
     //   this.userData = dat;
     // })
+    this.UserInitial()
   }
 
 
@@ -48,5 +50,26 @@ export class HeaderComponent implements OnInit {
 
   getUserInfos(){
     this.webService.getUserInfos()
+  }
+
+  UserInitial(init = true){
+    // let name$ = name;
+    if (init) {
+      if (window.screen.width <= 425) {
+        this.nomUser = this.userData?.nom.charAt(0) || ''
+      }
+      console.log("name === ", this.userData?.nom);
+
+      // return name$
+    }else{
+
+      window.addEventListener('resize', ()=>{
+        if (window.screen.width <= 425) {
+          this.nomUser = this.userData?.nom.charAt(0) || ''
+        }
+        console.log("name === ", this.userData?.nom);
+      }, true)
+    }
+    // return name$
   }
 }

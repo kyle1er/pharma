@@ -92,3 +92,88 @@
     }
   }
 }
+
+
+
+
+@media screen and (max-width : 425px) {
+  .conteneur {
+    // width: 100vw;
+    // height: 100vh;
+    // position: relative;
+    // overflow: hidden;
+    // overflow-y: scroll;
+    padding: 15px;
+    // background-image: url('../../assets/images/pill-681121_1280.jpg');
+    // background-size: 100% 100%;
+    // background-repeat: no-repeat;
+
+
+    &>img {
+      width: 100%;
+      height: 100%;
+      // opacity: .2;
+    }
+
+    & #layout {
+      // position: absolute;
+      // top: 50%;
+      // left: 50%;
+      // transform: translate(-50%, -50%);
+      width: 100%;
+      height: 100%;
+
+      // #left{
+      //   flex: 0 0 12%;
+      //   background-color: rgba(135, 207, 235, 0.5);
+      // }
+      #tete {
+        width: 100%;
+        min-height: 70px;
+        max-height: 70px;
+        border-radius: 45px;
+        // background-color: rgba(135, 207, 235, 0.5);
+        background-color: var(--vert);
+        // color: white;
+      }
+
+      #data {
+        margin-top: 50px;
+        flex: 1 1 100%;
+        min-height: 75vh;
+        border-radius: 20px;
+        scrollbar-width: none;
+        padding: 15px;
+        overflow-y: scroll;
+        // background-color: rgba(255, 166, 0, 0.411);
+        background-color: rgba(255, 255, 255, 0.823);
+        position: relative;
+
+        // .action {
+        //   position: sticky;
+        //   bottom: -17px;
+        //   background-color: #ffffffd6;
+        //   padding: 15px;
+        //   width: 100%;
+
+
+        //   button {
+        //     border-radius: 5px;
+        //     border: none;
+        //     box-shadow: 0px 0px 5px var(--vert);
+        //     background-color: var(--vert);
+        //     color: white;
+        //     transition: .5s;
+
+        //     &:hover {
+        //       background-color: rgba(255, 255, 255, 0.633);
+        //       color: var(--vert);
+        //     }
+        //   }
+
+        // }
+      }
+    }
+  }
+
+}
