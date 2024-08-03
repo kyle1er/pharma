@@ -1,64 +1,52 @@
-<div class="myForm d-flex"><!-- *ngIf="mustShow" -->
+<div class="myForm"><!-- *ngIf="mustShow" -->
   <button (click)="closeForm()" class="closeBtn" *ngIf="actionTitre === 'NEW'">
     <span class="material-symbols-outlined">
       close
       </span>
   </button>
-  <div class="imagFond">
+  <!-- <div class="imagFond">
     <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
-  </div>
+  </div> -->
   <div class="formDiv d-flex flex-column ">
-    <div [formGroup]="formulaireInscription">
+    <h2>{{ actionTitre === 'NEW' ? "Formulaire d'inscription" : "Modification des informations" }}</h2>
 
-      <h2>{{ actionTitre === 'NEW' ? "Formulaire d'inscription" : "Modification des informations"}}</h2>
+    <div [formGroup]="formulaireInscription">
 
       <div class="d-flex flex-column" *ngIf="step === 0">
         <!-- INFORMATIONS PERSONNELLES -->
 
-        <input type="text" placeholder="Nom" formControlName="Nom">
-        <input type="text" placeholder="Prénom( s )" formControlName="Pnom">
-        <!-- <div class="d-flex justify-content-between">
-        </div> -->
+        <fieldset class="bloc">
+          <legend>IDENTITE DU PHARMACIEN</legend>
 
-        <div class="d-flex flex-column">
-          <fieldset class="titreL birthInfo">
-            <legend>Date et lieu de naissance</legend>
-            <div class="d-flex justify-content-between">
-              <input type="date" id="" placeholder="Date de naissance" formControlName="Datenaiss">
-              <input class="lieu" type="text" placeholder="Lieu de naissance" formControlName="Lieunaiss">
-            </div>
-          </fieldset>
-
-          <fieldset class="titreL etatCivil">
-            <legend>Etat civil</legend>
+          <div class="d-flex flex-column">
+            <label for="nom">NOM</label>
+            <input type="text" id="nom" placeholder="Nom" formControlName="Nom">
+          </div>
+          <div class="d-flex flex-column">
+            <label for="prenom">PRENOMS</label>
+            <input type="text" id="prenom" placeholder="Prénom( s )" formControlName="Pnom">
+          </div>
+          <!--  -->
+          <div class="d-flex flex-column">
+            <label for="dateBirth">Date de naissance</label>
+            <input type="date" id="dateBirth" placeholder="Date de naissance" formControlName="Datenaiss">
+          </div>
+          <div class="d-flex flex-column">
+            <label for="lieuBirth">lieu de naissance</label>
+            <input class="lieu" id="lieuBirth" type="text" placeholder="Lieu de naissance" formControlName="Lieunaiss">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>SITUATION MATRIMONIALE</label>
             <div>
               <app-checkButton [checkBtnData]="listEtatCivil"
                 [defaultValue]="formulaireInscription.controls['Etatcivil'].value"
                 (value)="formulaireInscription.patchValue({'Etatcivil' : $event})"></app-checkButton>
             </div>
-            <!-- <div class="d-flex justify-content-between py-1 px-4">
-              <label for="Célibataire">
-                Célibataire
-                <input type="radio" id="Célibataire" value="Célibataire" formControlName="Etatcivil" />
-              </label>
-              <label for="Marié">
-                Marié
-                <input type="radio" id="Marié" value="Marié" formControlName="Etatcivil" />
-              </label>
-              <label for="Divorcé">
-                Divorcé
-                <input type="radio" id="Divorcé" value="Divorcé" formControlName="Etatcivil" />
-              </label>
-              <label for="Veuf">
-                Veuf (ve)
-                <input type="radio" id="Veuf" value="Veuf(ve)" formControlName="Etatcivil" />
-              </label>
-            </div> -->
-          </fieldset>
-
-          <!-- <input type="text" placeholder="Nationnalité" formControlName="NationaliteID"> -->
-          <fieldset class="titreL etatCivil my-2">
-            <legend>Nationalité</legend>
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>Nationalité</label>
             <div>
               <nz-select class="flex-grow-1" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner votre nationnalité"
                 [ngModelOptions]="{standalone: true}"
@@ -67,27 +55,30 @@
                 <nz-option *ngFor="let item of nationalite" [nzLabel]="item._Libelle" [nzValue]="item._i"></nz-option>
               </nz-select>
             </div>
-          </fieldset>
-          <!-- <div class="d-flex align-items-center my-2 ">
-            <label for="selectNation">Nationalité</label>
+          </div>
 
-            <select class="mx-2" id="selectNation" formControlName="NationaliteID">
-              <option value="" disabled selected>Sélectionner votre nationnalité</option>
-              <option *ngFor="let item of nationalite" [value]="item.code">{{item.libelle}}</option>
-            </select>
-          </div> -->
 
-          <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
-          <input type="email" placeholder="Adresse mail" formControlName="Mail">
-          <input type="text" placeholder="Situation géographique actuelle (Quartier)" formControlName="Adrgeo">
+        </fieldset>
 
-          <!-- <select id="">
-            <option value="M">Homme</option>
-            <option value="H">Femme</option>
-          </select>
-          <input type="password" name="">
-          <input type="password" name=""> -->
-        </div>
+        <fieldset class="bloc">
+          <legend>INFORMATIONS PERSONNELLES</legend>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>TELEPHONE</label>
+            <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>mail</label>
+            <input type="email" placeholder="Adresse mail" formControlName="Mail">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>Situation géographique actuelle (Quartier)</label>
+            <input type="text" placeholder="Situation géographique actuelle (Quartier)" formControlName="Adrgeo">
+          </div>
+          <!-- ---- -->
+        </fieldset>
       </div>
 
       <!-- ----------------- -->
@@ -95,78 +86,60 @@
       <div class="d-flex flex-column" *ngIf="step === 1">
         <!-- INFORMATIONS PROFESSIONELLES -->
 
-        <div class="d-flex flex-column">
-          <fieldset class="titreL">
-            <legend>Date de dépôt complet du dossier complet</legend>
-            <div class="d-flex justify-content-between">
-              <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
+        <fieldset class="bloc">
+          <legend>INFORMATIONS PROFESSIONNELLES</legend>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>Date de dépôt complet du dossier complet</label>
+            <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
                 formControlName="Datedepot_dos">
-            </div>
-          </fieldset>
-          <fieldset class="titreL">
-            <legend>Date et lieu d’obtention du diplôme (soutenance)</legend>
-            <div class="d-flex justify-content-between">
-              <input type="date" id="" placeholder="Date d’obtention" formControlName="DiplomeobtenuLe">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>Date de dépôt complet du dossier complet</label>
+            <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
+                formControlName="Datedepot_dos">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>Date d’obtention du diplôme (soutenance)</label>
+            <input type="date" id="" placeholder="Date d’obtention" formControlName="DiplomeobtenuLe">
+          </div>
+          <!-- ---- -->
+          <div class="d-flex flex-column">
+            <label>lieu d’obtention du diplôme (soutenance)</label>
               <input class="lieu" type="text" placeholder="Lieu d’obtention" formControlName="Lieuobtentiondiplome">
-            </div>
-          </fieldset>
-          <fieldset class="titreL">
-            <legend>Date de délivrance du diplôme</legend>
-            <div class="d-flex justify-content-between">
-              <input type="date" class="flex-grow-1" id="" placeholder="Date de délivrance"
-                formControlName="DiplomeDelivreLe">
-              <!-- <input class="lieu" type="text" placeholder="Lieu de délivrance" formControlName="lieuDelivranceDiplome"> -->
-            </div>
-          </fieldset>
+          </div>
+          <!-- ---- -->
 
-          <fieldset class="titreL">
-            <legend>Section du tableau de l’Ordre souhaitée</legend>
+          <div class="d-flex flex-column">
+            <label>Date de délivrance du diplôme</label>
+            <input type="date" class="flex-grow-1" id="" placeholder="Date de délivrance"
+            formControlName="DiplomeDelivreLe">
+          </div>
+          <!-- ---- -->
+
+          <div class="d-flex flex-column">
+            <label>Section du tableau de l’Ordre souhaitée</label>
             <div class="d-flex sectionOdre justify-content-between py-1 px-4">
               <app-checkButton [checkBtnData]="listSectionOrdre"
                 [defaultValue]="formulaireInscription.controls['Sections'].value"
                 (value)="setSectionDocs('Sections', $event)"></app-checkButton>
-              <!-- <label for="un">
-                1
-                <input type="checkbox" id="un" [value]="'001'" #section1 (click)="setSectionDocs('Sections', section1.value)" >
-              </label>
-              <label for="deux">
-                2
-                <input type="checkbox" id="deux" [value]="'002'" #section2 (click)="setSectionDocs('Sections', section2.value)" >
-              </label>
-              <label for="trois">
-                3
-                <input type="checkbox" id="trois" [value]="'003'" #section3 (click)="setSectionDocs('Sections', section3.value)" >
-              </label>
-              <label for="quatre">
-                4
-                <input type="checkbox" id="quatre" [value]="'004'" #section4 (click)="setSectionDocs('Sections', section4.value)" >
-              </label> -->
             </div>
-          </fieldset>
+          </div>
+          <!-- ---- -->
 
-          <!-- - -->
-          <!-- - -->
-          <!-- - -->
-          <fieldset class="titreL">
-            <legend>Demande de changement de section</legend>
+          <div class="d-flex flex-column">
+            <label>Demande de changement de section</label>
             <div>
               <app-checkButton [checkBtnData]="listChangeSection"
                 [defaultValue]="formulaireInscription.controls['ChangementOrdre'].value"
                 (value)="formulaireInscription.patchValue({'ChangementOrdre' : $event})"></app-checkButton>
             </div>
-            <!-- <div class="d-flex justify-content-center py-1 px-4">
-              <label for="non" class="mx-2">
-                NON
-                <input type="radio" id="non" formControlName="ChangementOrdre" [value]="false">
-              </label>
-              <label for="oui" class="mx-2">
-                OUI
-                <input type="radio" id="oui" formControlName="ChangementOrdre" [value]="true">
-              </label>
-            </div> -->
-          </fieldset>
+          </div>
+          <!-- ---- -->
+        </fieldset>
 
-        </div>
       </div>
 
       <!-- ------- -->
@@ -175,45 +148,40 @@
       <div class="d-flex flex-column" *ngIf="step === 2">
         <!-- INFORMATIONS PROFESSIONELLES -->
 
-        <div class="d-flex flex-column">
-          <!-- ---- -->
-          <!-- ---- -->
-          <!-- ---- -->
-          <fieldset class="titreL">
-            <legend>Etablissement pharmaceutique ou employeur</legend>
-            <div class="d-flex flex-column py-1 px-4" [formGroupName]="'etabPharmaceutique'">
-              <div class="d-flex flex-column">
-                <label for="Raisonsociale">Raison sociale</label>
-                <input type="text" id="Raisonsociale" formControlName="Raisonscial_emp">
-              </div>
-
-              <div class="d-flex flex-column">
-                <label for="Adressepostale">Adresse postale</label>
-                <input type="text" id="Adressepostale" formControlName="Adrpost_emp">
-              </div>
-
-              <div class="moreInfos d-flex justify-content-between">
-                <div class="d-flex flex-column">
-                  <label for="telEtabli">Tel.</label>
-                  <input type="text" id="telEtabli" formControlName="Tel_emp">
-                </div>
-
-                <div class="d-flex flex-column">
-                  <label for="fax">Fax</label>
-                  <input type="text" id="fax" formControlName="Fax_emp">
-                </div>
-              </div>
-
-
-              <div class="d-flex flex-column">
-                <label for="Adressegeographique">Adresse géographique</label>
-                <input type="text" id="Adressegeographique" formControlName="Adrgeo_emp">
-              </div>
-
+        <fieldset class="bloc">
+          <legend>Etablissement pharmaceutique ou employeur</legend>
+          <div class="d-flex flex-column py-1 px-4" [formGroupName]="'etabPharmaceutique'">
+            <div class="d-flex flex-column">
+              <label for="Raisonsociale">Raison sociale</label>
+              <input type="text" id="Raisonsociale" formControlName="Raisonscial_emp">
             </div>
-          </fieldset>
 
-        </div>
+            <div class="d-flex flex-column">
+              <label for="Adressepostale">Adresse postale</label>
+              <input type="text" id="Adressepostale" formControlName="Adrpost_emp">
+            </div>
+
+            <div class="d-flex flex-column">
+              <label for="telEtabli">Tel.</label>
+              <input type="text" id="telEtabli" formControlName="Tel_emp">
+            </div>
+
+            <div class="d-flex flex-column">
+              <label for="fax">Fax</label>
+              <input type="text" id="fax" formControlName="Fax_emp">
+            </div>
+            <!-- <div class="moreInfos d-flex justify-content-between">
+            </div> -->
+
+
+            <div class="d-flex flex-column">
+              <label for="Adressegeographique">Adresse géographique</label>
+              <input type="text" id="Adressegeographique" formControlName="Adrgeo_emp">
+            </div>
+
+          </div>
+        </fieldset>
+
       </div>
 
       <!-- ------- -->
@@ -222,56 +190,49 @@
       <div class="d-flex flex-column" *ngIf="step === 3">
         <!-- INFORMATIONS PROFESSIONELLES -->
 
-        <div class="d-flex flex-column">
-          <!-- ---- -->
-          <!-- ---- -->
-          <!-- ---- -->
-          <fieldset class="titreL">
-            <legend>Personnes à contacter</legend>
-            <div class="d-flex py-1 px-4" [formGroupName]="'contact'">
+        <fieldset class="bloc">
+          <legend>Personnes à contacter</legend>
+          <div class="d-flex py-1 px-4" [formGroupName]="'contact'">
 
-              <ol class="d-flex justify-content-between px-2">
-                <li><b>Entourage immédiat</b>
-                  <div class="d-flex flex-column" [formGroupName]="'contactImmediat'">
-                    <div class="d-flex flex-column">
-                      <label for="immediatName">Nom et Prénoms</label>
-                      <input type="text" id="immediatName" formControlName="Nomcontact_immed">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <label for="immediatAdress">Adresse</label>
-                      <input type="text" id="immediatAdress" formControlName="Adrcontact_immed">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <label for="immediatTel">Tel.</label>
-                      <input type="text" id="immediatTel" formControlName="Telcontact_immed">
-                    </div>
+            <ol class="d-flex flex-column justify-content-between px-2">
+              <li><b>Entourage immédiat</b>
+                <div class="d-flex flex-column" [formGroupName]="'contactImmediat'">
+                  <div class="d-flex flex-column">
+                    <label for="immediatName">Nom et Prénoms</label>
+                    <input type="text" id="immediatName" formControlName="Nomcontact_immed">
                   </div>
-                </li>
-                <li><b>Entourage Professionnel</b>
-                  <div class="d-flex flex-column" [formGroupName]="'contactPro'">
-                    <div class="d-flex flex-column">
-                      <label for="ProfessionnelName">Nom et Prénoms</label>
-                      <input type="text" id="ProfessionnelName" formControlName="Nomcontact_prof">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <label for="ProfessionnelAdress">Adresse</label>
-                      <input type="text" id="ProfessionnelAdress" formControlName="Adrcontact_prof">
-                    </div>
-                    <div class="d-flex flex-column">
-                      <label for="ProfessionnelTel">Tel.</label>
-                      <input type="text" id="ProfessionnelTel" formControlName="Telcontact_prof">
-                    </div>
+                  <div class="d-flex flex-column">
+                    <label for="immediatAdress">Adresse</label>
+                    <input type="text" id="immediatAdress" formControlName="Adrcontact_immed">
                   </div>
-                </li>
-              </ol>
+                  <div class="d-flex flex-column">
+                    <label for="immediatTel">Tel.</label>
+                    <input type="text" id="immediatTel" formControlName="Telcontact_immed">
+                  </div>
+                </div>
+              </li>
+              <li><b>Entourage Professionnel</b>
+                <div class="d-flex flex-column" [formGroupName]="'contactPro'">
+                  <div class="d-flex flex-column">
+                    <label for="ProfessionnelName">Nom et Prénoms</label>
+                    <input type="text" id="ProfessionnelName" formControlName="Nomcontact_prof">
+                  </div>
+                  <div class="d-flex flex-column">
+                    <label for="ProfessionnelAdress">Adresse</label>
+                    <input type="text" id="ProfessionnelAdress" formControlName="Adrcontact_prof">
+                  </div>
+                  <div class="d-flex flex-column">
+                    <label for="ProfessionnelTel">Tel.</label>
+                    <input type="text" id="ProfessionnelTel" formControlName="Telcontact_prof">
+                  </div>
+                </div>
+              </li>
+            </ol>
 
-            </div>
-          </fieldset>
-          <!-- ---- -->
-          <!-- ---- -->
-          <!-- ---- -->
-          <fieldset class="titreL">
-            <legend>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</legend>
+          </div>
+
+          <div>
+            <label>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</label>
             <div class="d-flex justify-content-between py-1 px-4">
 
               <span *ngFor="let appre of appreciation">
@@ -280,26 +241,12 @@
                     [value]="appre._libelle">
                 </label>
               </span>
-
-              <!-- <label for="attributionstresbien">Très bien
-                <input type="radio" id="attributionstresbien" formControlName="CnceOrdre" value="Très bien">
-              </label>
-
-              <label for="attributionsbien">Bien
-                <input type="radio" id="attributionsbien" formControlName="CnceOrdre" value="Bien">
-              </label>
-
-              <label for="attributionsassezbien">Assez Bien
-                <input type="radio" id="attributionsassezbien" formControlName="CnceOrdre" value="Assez Bien">
-              </label> -->
-
             </div>
-          </fieldset>
-          <!-- ---- -->
-          <!-- ---- -->
-          <!-- ---- -->
-          <fieldset class="titreL">
-            <legend>Je connais le code de déontologie pharmaceutique</legend>
+          </div>
+
+
+          <div>
+            <label>Je connais le code de déontologie pharmaceutique</label>
             <div class="d-flex justify-content-between py-1 px-4">
 
               <span *ngFor="let appre of appreciation">
@@ -309,23 +256,16 @@
                     [value]="appre._libelle">
                 </label>
               </span>
-              <!--
-              <label for="codebien">Bien
-                <input type="radio" id="codebien" formControlName="CnceDeontologie" value="Bien">
-              </label>
-
-              <label for="codeassezbien">Assez Bien
-                <input type="radio" id="codeassezbien" formControlName="CnceDeontologie" value="Assez Bien">
-              </label> -->
-
             </div>
-          </fieldset>
+          </div>
+
 
           <span class="mt-3 mx-3">
             <i>Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies
               pour la constitution du dossier d’inscription.</i>
           </span>
-        </div>
+        </fieldset>
+
       </div>
 
 
@@ -375,7 +315,8 @@
 
 
     <div class="action d-flex justify-content-between ">
-      <button class="d-flex align-items-center " [disabled]="step <= 0" (click)="stepNavigation('-')">
+      <div *ngIf="step <= 0" ></div>
+      <button class="d-flex align-items-center " *ngIf="step > 0" [disabled]="step <= 0" (click)="stepNavigation('-')">
         <span class="material-symbols-outlined">arrow_left</span>
         Précédant
       </button> <!--  -->

@@ -10,118 +10,171 @@
   padding: 25px;
   box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
 
-  &>div {
-    flex: 1 1 50%;
-    overflow: hidden;
+  // &>div {
+  //   flex: 1 1 50%;
+  //   overflow: hidden;
 
-    img {
-      width: 100%;
-      height: 100%;
+  //   img {
+  //     width: 100%;
+  //     height: 100%;
+  //   }
+
+  //   &.formDiv {
+  //     padding: 10px;
+  //     // flex: 1 1 60%;
+  //     justify-content: space-between;
+  //     background-color: transparent;
+
+  //     h2 {
+  //       text-transform: uppercase;
+  //       // text-decoration: underline;
+  //       text-align: center;
+  //     }
+
+  //     input,
+  //     select {
+  //       outline-style: none;
+  //       // border: 1px solid gainsboro;
+  //       border: none;
+  //       border-bottom: 1px solid gray;
+  //       padding: 5px 10px;
+  //       margin-bottom: 10px;
+
+  //       &.prenom {
+  //         flex: 1 1 80%;
+  //         margin-left: 5px;
+  //       }
+  //     }
+
+
+  //     fieldset {
+  //       padding: 0px 5px;
+  //       margin-bottom: 2px 5px;
+
+  //       // border: 1px solid gray;
+  //       &.titreL legend {
+  //         font-size: 15px;
+  //         font-weight: 700;
+
+  //         &+div {
+  //           input.lieu {
+  //             // flex: 1 1 80%;
+  //             margin-left: 5px;
+  //           }
+
+  //           ol {
+  //             width: 100%;
+
+  //             // li {
+  //             //   flex: 0 1 45%;
+  //             // }
+  //           }
+  //         }
+  //       }
+
+
+  //       .infoDoc {
+  //         font-size: 11px;
+  //         font-style: italic;
+  //         color: #a3a3a3;
+  //         background-color: gainsboro;
+  //         border-radius: 5px;
+  //       }
+
+
+  //       ul {
+  //         width: 100%;
+
+  //         label {
+  //           font-weight: 500;
+  //         }
+
+  //         .fichierImport {
+  //           background-color: #dcdcdc7d;
+  //           padding-left: 10px;
+  //           font-style: italic;
+  //           // width: 90%;
+  //           border-radius: 10px 0 0 10px;
+
+  //           &>span {
+  //             flex: 0 0 100%;
+  //             text-overflow: ellipsis;
+  //             text-wrap: nowrap;
+  //             overflow: hidden;
+  //           }
+
+  //           button {
+  //             border: none;
+  //             color: red;
+  //             // background-color: transparent;
+  //           }
+  //         }
+  //       }
+
+  //       label,
+  //       input[type='radio'],
+  //       input[type='checkbox'] {
+  //         cursor: pointer;
+  //       }
+
+  //       // &.etatCivil {
+
+  //       // }
+  //     }
+  //   }
+  // }
+
+  .formDiv {
+    >h2 {
+      text-transform: uppercase;
+      text-align: center;
     }
 
-    &.formDiv {
-      padding: 10px;
-      // flex: 1 1 60%;
-      justify-content: space-between;
-      background-color: transparent;
+    &>div {
+      margin-top: 15px;
 
-      h2 {
-        // text-transform: uppercase;
-        text-decoration: underline;
-      }
+      .bloc {
+        border: 1px solid gainsboro;
+        border-radius: 3px;
+        margin-top: 15px;
+        padding-bottom: 10px;
 
-      input,
-      select {
-        outline-style: none;
-        // border: 1px solid gainsboro;
-        border: none;
-        border-bottom: 1px solid gray;
-        padding: 5px 10px;
-        margin-bottom: 10px;
-
-        &.prenom {
-          flex: 1 1 80%;
-          margin-left: 5px;
-        }
-      }
-
-
-      fieldset {
-        padding: 0px 5px;
-        margin-bottom: 2px 5px;
-
-        // border: 1px solid gray;
-        &.titreL legend {
-          font-size: 15px;
-          font-weight: 700;
-
-          &+div {
-            input.lieu {
-              // flex: 1 1 80%;
-              margin-left: 5px;
-            }
-
-            ol {
-              width: 100%;
-
-              // li {
-              //   flex: 0 1 45%;
-              // }
-            }
-          }
+        legend {
+          background-color: var(--vert);
+          color: white;
+          font-weight: 500;
+          font-size: 18px;
+          padding: 10px 20px;
+          border-radius: 5px 5px 0 0;
+          text-transform: uppercase;
         }
 
-
-        .infoDoc {
-          font-size: 11px;
-          font-style: italic;
-          color: #a3a3a3;
-          background-color: gainsboro;
-          border-radius: 5px;
-        }
-
-
-        ul {
-          width: 100%;
+        >div {
+          padding: 0px 15px;
 
           label {
-            font-weight: 500;
+            text-transform: uppercase;
           }
 
-          .fichierImport {
-            background-color: #dcdcdc7d;
-            padding-left: 10px;
-            font-style: italic;
-            // width: 90%;
-            border-radius: 10px 0 0 10px;
+          input,
+          select {
+            outline-style: none;
+            // border: 1px solid gainsboro;
+            border: none;
+            border-bottom: 1px solid gray;
+            padding: 5px 10px;
+            margin-bottom: 10px;
 
-            &>span {
-              flex: 0 0 100%;
-              text-overflow: ellipsis;
-              text-wrap: nowrap;
-              overflow: hidden;
-            }
-
-            button {
-              border: none;
-              color: red;
-              // background-color: transparent;
-            }
+            // &.prenom {
+            //   flex: 1 1 80%;
+            //   margin-left: 5px;
+            // }
           }
         }
-
-        label,
-        input[type='radio'],
-        input[type='checkbox'] {
-          cursor: pointer;
-        }
-
-        // &.etatCivil {
-
-        // }
       }
     }
   }
+
 
   /* ------ */
   .action {
@@ -147,16 +200,17 @@
   }
 
 
-  // nz-select {
-  //   min-width: 200px;
-  // }
+  nz-select {
+    // min-width: 200px;
+    width: 100%;
+  }
 
 
   /* -------------------- */
   /* -------------------- */
   /* -------------------- */
 
-  .closeBtn{
+  .closeBtn {
     position: absolute;
     // width: 35px;
     // height: 35px;
@@ -329,7 +383,7 @@
     /* -------------------- */
     /* -------------------- */
 
-    .closeBtn{
+    .closeBtn {
       // position: absolute;
       width: 35px;
       height: 35px;
@@ -503,7 +557,7 @@
     /* -------------------- */
     /* -------------------- */
 
-    .closeBtn{
+    .closeBtn {
       // position: absolute;
       width: 35px;
       height: 35px;
@@ -541,7 +595,7 @@
       //   height: 100%;
       // }
 
-      &.imagFond{
+      &.imagFond {
         display: none;
       }
 
@@ -596,11 +650,11 @@
                 }
               }
 
-              &.sectionOdre{
+              &.sectionOdre {
                 padding: 0px !important;
               }
 
-              .moreInfos{
+              .moreInfos {
                 flex-direction: column;
               }
             }
@@ -691,7 +745,7 @@
     /* -------------------- */
     /* -------------------- */
 
-    .closeBtn{
+    .closeBtn {
       // position: absolute;
       width: 35px;
       height: 35px;

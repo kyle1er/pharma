@@ -28,7 +28,23 @@ export class ConnexionComponent implements OnInit {
 
 
   ngOnInit() {
+    this.inscription()
 
+    document.addEventListener('keypress', (e)=>{
+
+      if ( e.key === "Enter" ) {
+        if( this.formulaireConnexion.invalid ){
+          this.infoNotif = {
+            type : 'error',
+            message : "Veuillez renseigner vos informations de connexion, svp !"
+          };
+
+          this.infoNotifActivate = true;
+        }else{
+          this.connexion()
+        }
+      }
+    })
   }
 
 
@@ -81,4 +97,6 @@ export class ConnexionComponent implements OnInit {
     input.type = ( input.type === 'text') ? 'password' : 'text'
     span.innerText = ( span.innerText === 'visibility' ) ? 'visibility_off' : 'visibility'
   }
+
+  // enterPress( key  )
 }

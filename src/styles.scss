@@ -6,8 +6,9 @@
 }
 
 
-input {
-  background-color: rgba(67, 185, 73, 0.116);
+input, select {
+  // background-color: rgba(67, 185, 73, 0.116);
+  border-radius: 5px;
 }
 
 :disabled {
