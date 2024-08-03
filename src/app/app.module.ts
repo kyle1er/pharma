@@ -22,8 +22,7 @@ registerLocaleData(fr);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    HttpClientModule
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: fr_FR }
