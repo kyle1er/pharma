@@ -2,7 +2,7 @@
   <button (click)="closeForm()" class="closeBtn" *ngIf="actionTitre === 'NEW'">
     <span class="material-symbols-outlined">
       close
-      </span>
+    </span>
   </button>
   <!-- <div class="imagFond">
     <img [src]="'assets/images/medical-5459633_1280.png'" alt="">
@@ -10,312 +10,345 @@
   <div class="formDiv d-flex flex-column ">
     <h2>{{ actionTitre === 'NEW' ? "Formulaire d'inscription" : "Modification des informations" }}</h2>
 
-    <div [formGroup]="formulaireInscription">
+    <div class="containerForm">
 
-      <div class="d-flex flex-column" *ngIf="step === 0">
-        <!-- INFORMATIONS PERSONNELLES -->
+      <div [formGroup]="formulaireInscription">
 
-        <fieldset class="bloc">
-          <legend>IDENTITE DU PHARMACIEN</legend>
+        <div class="d-flex flex-column" *ngIf="step === 0">
+          <!-- INFORMATIONS PERSONNELLES -->
 
-          <div class="d-flex flex-column">
-            <label for="nom">NOM</label>
-            <input type="text" id="nom" placeholder="Nom" formControlName="Nom">
-          </div>
-          <div class="d-flex flex-column">
-            <label for="prenom">PRENOMS</label>
-            <input type="text" id="prenom" placeholder="Prénom( s )" formControlName="Pnom">
-          </div>
-          <!--  -->
-          <div class="d-flex flex-column">
-            <label for="dateBirth">Date de naissance</label>
-            <input type="date" id="dateBirth" placeholder="Date de naissance" formControlName="Datenaiss">
-          </div>
-          <div class="d-flex flex-column">
-            <label for="lieuBirth">lieu de naissance</label>
-            <input class="lieu" id="lieuBirth" type="text" placeholder="Lieu de naissance" formControlName="Lieunaiss">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>SITUATION MATRIMONIALE</label>
+          <fieldset class="bloc">
+            <legend>IDENTITE DU PHARMACIEN</legend>
+
             <div>
-              <app-checkButton [checkBtnData]="listEtatCivil"
-                [defaultValue]="formulaireInscription.controls['Etatcivil'].value"
-                (value)="formulaireInscription.patchValue({'Etatcivil' : $event})"></app-checkButton>
-            </div>
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>Nationalité</label>
-            <div>
-              <nz-select class="flex-grow-1" nzShowSearch nzAllowClear nzPlaceHolder="Sélectionner votre nationnalité"
-                [ngModelOptions]="{standalone: true}"
-                (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})"
-                [ngModel]="formulaireInscription.controls['NationaliteID'].value">
-                <nz-option *ngFor="let item of nationalite" [nzLabel]="item._Libelle" [nzValue]="item._i"></nz-option>
-              </nz-select>
-            </div>
-          </div>
 
-
-        </fieldset>
-
-        <fieldset class="bloc">
-          <legend>INFORMATIONS PERSONNELLES</legend>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>TELEPHONE</label>
-            <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>mail</label>
-            <input type="email" placeholder="Adresse mail" formControlName="Mail">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>Situation géographique actuelle (Quartier)</label>
-            <input type="text" placeholder="Situation géographique actuelle (Quartier)" formControlName="Adrgeo">
-          </div>
-          <!-- ---- -->
-        </fieldset>
-      </div>
-
-      <!-- ----------------- -->
-      <!-- ----------------- -->
-      <div class="d-flex flex-column" *ngIf="step === 1">
-        <!-- INFORMATIONS PROFESSIONELLES -->
-
-        <fieldset class="bloc">
-          <legend>INFORMATIONS PROFESSIONNELLES</legend>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>Date de dépôt complet du dossier complet</label>
-            <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
-                formControlName="Datedepot_dos">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>Date de dépôt complet du dossier complet</label>
-            <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
-                formControlName="Datedepot_dos">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>Date d’obtention du diplôme (soutenance)</label>
-            <input type="date" id="" placeholder="Date d’obtention" formControlName="DiplomeobtenuLe">
-          </div>
-          <!-- ---- -->
-          <div class="d-flex flex-column">
-            <label>lieu d’obtention du diplôme (soutenance)</label>
-              <input class="lieu" type="text" placeholder="Lieu d’obtention" formControlName="Lieuobtentiondiplome">
-          </div>
-          <!-- ---- -->
-
-          <div class="d-flex flex-column">
-            <label>Date de délivrance du diplôme</label>
-            <input type="date" class="flex-grow-1" id="" placeholder="Date de délivrance"
-            formControlName="DiplomeDelivreLe">
-          </div>
-          <!-- ---- -->
-
-          <div class="d-flex flex-column">
-            <label>Section du tableau de l’Ordre souhaitée</label>
-            <div class="d-flex sectionOdre justify-content-between py-1 px-4">
-              <app-checkButton [checkBtnData]="listSectionOrdre"
-                [defaultValue]="formulaireInscription.controls['Sections'].value"
-                (value)="setSectionDocs('Sections', $event)"></app-checkButton>
-            </div>
-          </div>
-          <!-- ---- -->
-
-          <div class="d-flex flex-column">
-            <label>Demande de changement de section</label>
-            <div>
-              <app-checkButton [checkBtnData]="listChangeSection"
-                [defaultValue]="formulaireInscription.controls['ChangementOrdre'].value"
-                (value)="formulaireInscription.patchValue({'ChangementOrdre' : $event})"></app-checkButton>
-            </div>
-          </div>
-          <!-- ---- -->
-        </fieldset>
-
-      </div>
-
-      <!-- ------- -->
-      <!-- ------- -->
-      <!-- ------- -->
-      <div class="d-flex flex-column" *ngIf="step === 2">
-        <!-- INFORMATIONS PROFESSIONELLES -->
-
-        <fieldset class="bloc">
-          <legend>Etablissement pharmaceutique ou employeur</legend>
-          <div class="d-flex flex-column py-1 px-4" [formGroupName]="'etabPharmaceutique'">
-            <div class="d-flex flex-column">
-              <label for="Raisonsociale">Raison sociale</label>
-              <input type="text" id="Raisonsociale" formControlName="Raisonscial_emp">
-            </div>
-
-            <div class="d-flex flex-column">
-              <label for="Adressepostale">Adresse postale</label>
-              <input type="text" id="Adressepostale" formControlName="Adrpost_emp">
-            </div>
-
-            <div class="d-flex flex-column">
-              <label for="telEtabli">Tel.</label>
-              <input type="text" id="telEtabli" formControlName="Tel_emp">
-            </div>
-
-            <div class="d-flex flex-column">
-              <label for="fax">Fax</label>
-              <input type="text" id="fax" formControlName="Fax_emp">
-            </div>
-            <!-- <div class="moreInfos d-flex justify-content-between">
-            </div> -->
-
-
-            <div class="d-flex flex-column">
-              <label for="Adressegeographique">Adresse géographique</label>
-              <input type="text" id="Adressegeographique" formControlName="Adrgeo_emp">
-            </div>
-
-          </div>
-        </fieldset>
-
-      </div>
-
-      <!-- ------- -->
-      <!-- ------- -->
-      <!-- ------- -->
-      <div class="d-flex flex-column" *ngIf="step === 3">
-        <!-- INFORMATIONS PROFESSIONELLES -->
-
-        <fieldset class="bloc">
-          <legend>Personnes à contacter</legend>
-          <div class="d-flex py-1 px-4" [formGroupName]="'contact'">
-
-            <ol class="d-flex flex-column justify-content-between px-2">
-              <li><b>Entourage immédiat</b>
-                <div class="d-flex flex-column" [formGroupName]="'contactImmediat'">
-                  <div class="d-flex flex-column">
-                    <label for="immediatName">Nom et Prénoms</label>
-                    <input type="text" id="immediatName" formControlName="Nomcontact_immed">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <label for="immediatAdress">Adresse</label>
-                    <input type="text" id="immediatAdress" formControlName="Adrcontact_immed">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <label for="immediatTel">Tel.</label>
-                    <input type="text" id="immediatTel" formControlName="Telcontact_immed">
-                  </div>
+              <div class="d-flex flex-column">
+                <label for="nom">NOM</label>
+                <input type="text" id="nom" placeholder="Nom" formControlName="Nom">
+              </div>
+              <div class="d-flex flex-column">
+                <label for="prenom">PRENOMS</label>
+                <input type="text" id="prenom" placeholder="Prénom( s )" formControlName="Pnom">
+              </div>
+              <!--  -->
+              <div class="d-flex flex-column">
+                <label for="dateBirth">Date de naissance</label>
+                <input type="date" id="dateBirth" placeholder="Date de naissance" formControlName="Datenaiss">
+              </div>
+              <div class="d-flex flex-column">
+                <label for="lieuBirth">lieu de naissance</label>
+                <input class="lieu" id="lieuBirth" type="text" placeholder="Lieu de naissance"
+                  formControlName="Lieunaiss">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>SITUATION MATRIMONIALE</label>
+                <div>
+                  <app-checkButton [checkBtnData]="listEtatCivil"
+                    [defaultValue]="formulaireInscription.controls['Etatcivil'].value"
+                    (value)="formulaireInscription.patchValue({'Etatcivil' : $event})"></app-checkButton>
                 </div>
-              </li>
-              <li><b>Entourage Professionnel</b>
-                <div class="d-flex flex-column" [formGroupName]="'contactPro'">
-                  <div class="d-flex flex-column">
-                    <label for="ProfessionnelName">Nom et Prénoms</label>
-                    <input type="text" id="ProfessionnelName" formControlName="Nomcontact_prof">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <label for="ProfessionnelAdress">Adresse</label>
-                    <input type="text" id="ProfessionnelAdress" formControlName="Adrcontact_prof">
-                  </div>
-                  <div class="d-flex flex-column">
-                    <label for="ProfessionnelTel">Tel.</label>
-                    <input type="text" id="ProfessionnelTel" formControlName="Telcontact_prof">
-                  </div>
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>Nationalité</label>
+                <div>
+                  <nz-select class="flex-grow-1" nzShowSearch nzAllowClear
+                    nzPlaceHolder="Sélectionner votre nationnalité" [ngModelOptions]="{standalone: true}"
+                    (ngModelChange)="formulaireInscription.patchValue({'NationaliteID' : $event})"
+                    [ngModel]="formulaireInscription.controls['NationaliteID'].value">
+                    <nz-option *ngFor="let item of nationalite" [nzLabel]="item._Libelle"
+                      [nzValue]="item._i"></nz-option>
+                  </nz-select>
                 </div>
-              </li>
-            </ol>
+              </div>
 
-          </div>
-
-          <div>
-            <label>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</label>
-            <div class="d-flex justify-content-between py-1 px-4">
-
-              <span *ngFor="let appre of appreciation">
-                <label [for]="'CnceOrdre'+ appre._libelle" *ngIf="appre.UseOrdre">{{appre._libelle | titlecase}}
-                  <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre"
-                    [value]="appre._libelle">
-                </label>
-              </span>
             </div>
-          </div>
 
+          </fieldset>
 
-          <div>
-            <label>Je connais le code de déontologie pharmaceutique</label>
-            <div class="d-flex justify-content-between py-1 px-4">
+          <fieldset class="bloc">
+            <legend>INFORMATIONS PERSONNELLES</legend>
+            <!-- ---- -->
 
-              <span *ngFor="let appre of appreciation">
-                <label [for]="'CnceDeontologie'+ appre._libelle" *ngIf="appre.UseDeontologie">{{appre._libelle |
-                  titlecase}}
-                  <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie"
-                    [value]="appre._libelle">
-                </label>
-              </span>
-            </div>
-          </div>
-
-
-          <span class="mt-3 mx-3">
-            <i>Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies
-              pour la constitution du dossier d’inscription.</i>
-          </span>
-        </fieldset>
-
-      </div>
-
-
-      <!-- ------- -->
-      <!-- ------- -->
-      <!-- ------- -->
-      <div class="d-flex flex-column" *ngIf="step === 4">
-        <!-- RECAPITULATIF [nzMaxTagPlaceholder]="tagPlaceHolder" -->
-
-        <div class="d-flex flex-column">
-          <label for=""><b>Foncion(s)</b></label>
-          <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
-            [ngModel]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}" (ngModelChange)="getListDoc($event)" >
-            <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
-          </nz-select>
-          <!-- <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template> -->
-
-          <fieldset class="titreL mt-3">
-            <legend>Liste des dossiers à fournir</legend>
-            <span class="infoDoc d-flex align-items-center p-3 " ><span class="material-symbols-outlined mx-1">
-              info
-              </span>
-              Cliquez sur le nom du dossier à fournir pour importer le fichier correspondant
-            </span>
-            <div class="mt-2 py-1">
-              <ul>
-                <li *ngFor="let item of documents"class="d-flex justify-content-between flex-column flex-wrap">
-                  <label [for]="'fichier_'+ item._i" class="mx-2" >{{ item._libelle }}</label>
-                  <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2" type="file" accept="image/jpeg,image/jpg,image/png,application/pdf,image/x-eps" name="" [id]="'fichier_'+ item._i">
-                  <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i)">
-                    <span [id]="'name_'+ item._i" >{{item?.fileName}}</span>
-                    <button (click)="deleteFile(item._i)">
-                      <span class="material-symbols-outlined">
-                        delete_forever
-                        </span>
-                    </button>
-                  </div>
-                </li>
-              </ul>
+            <div>
+              <div class="d-flex flex-column">
+                <label>TELEPHONE</label>
+                <input type="tel" placeholder="Numéro de téléphone" formControlName="Tel">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>mail</label>
+                <input type="email" placeholder="Adresse mail" formControlName="Mail">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>Situation géographique actuelle (Quartier)</label>
+                <input type="text" placeholder="Situation géographique actuelle (Quartier)" formControlName="Adrgeo">
+              </div>
+              <!-- ---- -->
             </div>
           </fieldset>
         </div>
+
+        <!-- ----------------- -->
+        <!-- ----------------- -->
+        <div class="d-flex flex-column" *ngIf="step === 1">
+          <!-- INFORMATIONS PROFESSIONELLES -->
+
+          <fieldset class="bloc">
+            <legend>INFORMATIONS PROFESSIONNELLES</legend>
+            <!-- ---- -->
+
+            <div>
+              <div class="d-flex flex-column">
+                <label>Date de dépôt complet du dossier complet</label>
+                <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
+                  formControlName="Datedepot_dos">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>Date de dépôt complet du dossier complet</label>
+                <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
+                  formControlName="Datedepot_dos">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>Date d’obtention du diplôme (soutenance)</label>
+                <input type="date" id="" placeholder="Date d’obtention" formControlName="DiplomeobtenuLe">
+              </div>
+              <!-- ---- -->
+              <div class="d-flex flex-column">
+                <label>lieu d’obtention du diplôme (soutenance)</label>
+                <input class="lieu" type="text" placeholder="Lieu d’obtention" formControlName="Lieuobtentiondiplome">
+              </div>
+              <!-- ---- -->
+
+              <div class="d-flex flex-column">
+                <label>Date de délivrance du diplôme</label>
+                <input type="date" class="flex-grow-1" id="" placeholder="Date de délivrance"
+                  formControlName="DiplomeDelivreLe">
+              </div>
+              <!-- ---- -->
+
+              <div class="d-flex flex-column" *ngIf="listSectionOrdre.dataList.length">
+                <label>Section du tableau de l’Ordre souhaitée</label>
+                <div class="d-flex sectionOdre justify-content-between py-1 px-4">
+                  <app-checkButton [checkBtnData]="listSectionOrdre"
+                    [defaultValue]="formulaireInscription.controls['Sections'].value"
+                    (value)="setSectionDocs('Sections', $event)"></app-checkButton>
+                </div>
+              </div>
+              <!-- ---- -->
+
+              <div class="d-flex flex-column" *ngIf="listChangeSection.dataList.length">
+                <label>Demande de changement de section</label>
+                <div>
+                  <app-checkButton [checkBtnData]="listChangeSection"
+                    [defaultValue]="formulaireInscription.controls['ChangementOrdre'].value"
+                    (value)="formulaireInscription.patchValue({'ChangementOrdre' : $event})"></app-checkButton>
+                </div>
+              </div>
+              <!-- ---- -->
+            </div>
+          </fieldset>
+
+        </div>
+
+        <!-- ------- -->
+        <!-- ------- -->
+        <!-- ------- -->
+        <div class="d-flex flex-column" *ngIf="step === 2">
+          <!-- INFORMATIONS PROFESSIONELLES -->
+
+          <fieldset class="bloc">
+            <legend>Etablissement pharmaceutique ou employeur</legend>
+            <!-- <div> -->
+            <div [formGroupName]="'etabPharmaceutique'">
+              <div class="d-flex flex-column">
+                <label for="Raisonsociale">Raison sociale</label>
+                <input type="text" id="Raisonsociale" formControlName="Raisonscial_emp">
+              </div>
+
+              <div class="d-flex flex-column">
+                <label for="Adressepostale">Adresse postale</label>
+                <input type="text" id="Adressepostale" formControlName="Adrpost_emp">
+              </div>
+
+              <div class="d-flex flex-column">
+                <label for="telEtabli">Tel.</label>
+                <input type="text" id="telEtabli" formControlName="Tel_emp">
+              </div>
+
+              <div class="d-flex flex-column">
+                <label for="fax">Fax</label>
+                <input type="text" id="fax" formControlName="Fax_emp">
+              </div>
+              <!-- <div class="moreInfos d-flex justify-content-between">
+                </div> -->
+
+
+              <div class="d-flex flex-column">
+                <label for="Adressegeographique">Adresse géographique</label>
+                <input type="text" id="Adressegeographique" formControlName="Adrgeo_emp">
+              </div>
+
+            </div>
+            <!-- </div> -->
+          </fieldset>
+
+        </div>
+
+        <!-- ------- -->
+        <!-- ------- -->
+        <!-- ------- -->
+        <div class="d-flex flex-column" *ngIf="step === 3">
+          <!-- INFORMATIONS PROFESSIONELLES -->
+
+          <fieldset class="bloc">
+            <legend>Personnes à contacter</legend>
+            <!-- <div class="flex-column"> -->
+            <div class="d-flex py-1 px-4" [formGroupName]="'contact'">
+
+              <ol class="d-flex px-2">
+                <li><b>Entourage immédiat</b>
+                  <div class="d-flex flex-column" [formGroupName]="'contactImmediat'">
+                    <div class="d-flex flex-column">
+                      <label for="immediatName">Nom et Prénoms</label>
+                      <input type="text" id="immediatName" formControlName="Nomcontact_immed">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatAdress">Adresse</label>
+                      <input type="text" id="immediatAdress" formControlName="Adrcontact_immed">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="immediatTel">Tel.</label>
+                      <input type="text" id="immediatTel" formControlName="Telcontact_immed">
+                    </div>
+                  </div>
+                </li>
+                <li><b>Entourage Professionnel</b>
+                  <div class="d-flex flex-column" [formGroupName]="'contactPro'">
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelName">Nom et Prénoms</label>
+                      <input type="text" id="ProfessionnelName" formControlName="Nomcontact_prof">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelAdress">Adresse</label>
+                      <input type="text" id="ProfessionnelAdress" formControlName="Adrcontact_prof">
+                    </div>
+                    <div class="d-flex flex-column">
+                      <label for="ProfessionnelTel">Tel.</label>
+                      <input type="text" id="ProfessionnelTel" formControlName="Telcontact_prof">
+                    </div>
+                  </div>
+                </li>
+              </ol>
+
+            </div>
+
+            <div class="mx-3" *ngIf="appreciation.length">
+              <label>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</label>
+              <div class="d-flex justify-content-between py-1 px-4">
+
+                <span *ngFor="let appre of appreciation">
+                  <label [for]="'CnceOrdre'+ appre._libelle" *ngIf="appre.UseOrdre">{{appre._libelle | titlecase}}
+                    <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre"
+                      [value]="appre._libelle">
+                  </label>
+                </span>
+              </div>
+            </div>
+
+
+            <div class="mx-3" *ngIf="appreciation.length">
+              <label>Je connais le code de déontologie pharmaceutique</label>
+              <div class="d-flex justify-content-between py-1 px-4">
+
+                <span *ngFor="let appre of appreciation">
+                  <label [for]="'CnceDeontologie'+ appre._libelle" *ngIf="appre.UseDeontologie">{{appre._libelle |
+                    titlecase}}
+                    <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie"
+                      [value]="appre._libelle">
+                  </label>
+                </span>
+              </div>
+            </div>
+
+            <div class="mt-3 mx-3">
+              <span>
+                <i>Je déclare les informations ci-dessous données sincères et conformes aux pièces fournies
+                  pour la constitution du dossier d’inscription.</i>
+              </span>
+            </div>
+            <!-- </div> -->
+
+          </fieldset>
+
+        </div>
+
+
+        <!-- ------- -->
+        <!-- ------- -->
+        <!-- ------- -->
+        <div class="d-flex flex-column" *ngIf="step === 4">
+          <!-- RECAPITULATIF [nzMaxTagPlaceholder]="tagPlaceHolder" -->
+
+          <div class="d-flex flex-column">
+            <!-- <label for=""><b>Foncion(s)</b></label>
+            <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
+              [ngModel]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}" (ngModelChange)="getListDoc($event)" >
+              <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
+            </nz-select> -->
+            <!-- <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template> -->
+
+            <fieldset class="bloc">
+              <legend>Liste des dossiers à fournir</legend>
+              <div>
+
+                <div>
+                  <label for=""><b>Foncion(s)</b></label>
+                  <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
+                    [ngModel]="listOfSelectedValue" [ngModelOptions]="{standalone: true}"
+                    (ngModelChange)="getListDoc($event)">
+                    <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
+                  </nz-select>
+                </div>
+                <span class="infoDoc d-flex align-items-center p-3 "><span class="material-symbols-outlined mx-1">
+                    info
+                  </span>
+                  Cliquez sur le nom du dossier à fournir pour importer le fichier correspondant
+                </span>
+                <div class="mt-2 py-1" style="flex-direction: column;">
+                  <ul>
+                    <li *ngFor="let item of documents" class="d-flex justify-content-between flex-column flex-wrap">
+                      <label [for]="'fichier_'+ item._i" class="mx-2">{{ item._libelle }}</label>
+                      <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2"
+                        type="file" accept="image/jpeg,image/jpg,image/png,application/pdf,image/x-eps" name=""
+                        [id]="'fichier_'+ item._i">
+                      <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i)">
+                        <span [id]="'name_'+ item._i">{{item?.fileName}}</span>
+                        <button (click)="deleteFile(item._i)">
+                          <span class="material-symbols-outlined">
+                            delete_forever
+                          </span>
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
 
-
     <div class="action d-flex justify-content-between ">
-      <div *ngIf="step <= 0" ></div>
+      <div *ngIf="step <= 0"></div>
       <button class="d-flex align-items-center " *ngIf="step > 0" [disabled]="step <= 0" (click)="stepNavigation('-')">
         <span class="material-symbols-outlined">arrow_left</span>
         Précédant
@@ -324,7 +357,8 @@
         Suivant
         <span class="material-symbols-outlined">arrow_right</span>
       </button> <!--  -->
-      <button  nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 4" [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
+      <button nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 4"
+        [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
         (click)="inscription()">
         Enregistrer
         <!-- <span class="material-symbols-outlined">save</span> -->
@@ -335,4 +369,4 @@
 
 
 
-<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifShow" (isFermer)="infoNotifShow = false" ></app-notification>
+<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifShow" (isFermer)="infoNotifShow = false"></app-notification>

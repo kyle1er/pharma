@@ -3,13 +3,29 @@
 * {
   --vert: #3D9C3D;
   --vert_opacity: 61, 156, 61;
+  // font-family: monospace;
 }
 
-
-input, select {
-  // background-color: rgba(67, 185, 73, 0.116);
+input,
+select {
+  outline-style: none;
+  // border: 1px solid gainsboro;
+  border: none;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+  margin-bottom: 10px;
   border-radius: 5px;
+  color: gray;
+
+  // &.prenom {
+  //   flex: 1 1 80%;
+  //   margin-left: 5px;
+  // }
 }
+// input, select {
+//   // background-color: rgba(67, 185, 73, 0.116);
+
+// }
 
 :disabled {
   cursor: not-allowed;

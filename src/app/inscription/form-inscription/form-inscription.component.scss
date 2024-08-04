@@ -131,6 +131,9 @@
     }
 
     &>div {
+      &.containerForm{
+        min-height: 65vh;
+      }
       margin-top: 15px;
 
       .bloc {
@@ -149,28 +152,62 @@
           text-transform: uppercase;
         }
 
-        >div {
-          padding: 0px 15px;
+        >div:first-of-type {
+          display: flex;
+          padding: 10px 15px;
+          flex-wrap: wrap;
+          justify-content: space-around;
 
-          label {
-            text-transform: uppercase;
+          >div {
+            margin: 0px 5px;
+            flex: 1 1 45%;
+
+            label {
+              text-transform: uppercase;
+              font-family: monospace;
+            }
+
           }
 
-          input,
-          select {
-            outline-style: none;
-            // border: 1px solid gainsboro;
-            border: none;
-            border-bottom: 1px solid gray;
-            padding: 5px 10px;
-            margin-bottom: 10px;
+          >ol {
+            width: 100%;
 
-            // &.prenom {
-            //   flex: 1 1 80%;
-            //   margin-left: 5px;
-            // }
+            li {
+              flex: 1 1 45%;
+              margin: 0px 15px;
+            }
           }
         }
+
+        // .infoDoc {
+        //   font-size: 11px;
+        //   font-style: italic;
+        //   color: #a3a3a3;
+        //   background-color: gainsboro;
+        //   border-radius: 5px;
+        // }
+
+        .fichierImport {
+          background-color: #dcdcdc7d;
+          padding-left: 10px;
+          font-style: italic;
+          // width: 90%;
+          border-radius: 10px 0 0 10px;
+
+          &>span {
+            flex: 0 0 100%;
+            text-overflow: ellipsis;
+            text-wrap: nowrap;
+            overflow: hidden;
+          }
+
+          button {
+            border: none;
+            color: red;
+            // background-color: transparent;
+          }
+        }
+
       }
     }
   }
