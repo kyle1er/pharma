@@ -1,6 +1,6 @@
 <div [ngSwitch]="typeButton" class="conteneur">
   <div *ngSwitchCase="'checkbox'" class="checkBtn d-flex flex-wrap">
-    <span *ngFor="let item of dataListe">
+    <span *ngFor="let item of dataListe" class="p-1 m-1">
       <input type="checkbox" (click)="fnCheckRadio( item.valeur )" [id]="item.libelle" [value]="item.valeur" [checked]=" defaultValue.includes( ''+item.valeur)">
       <label [for]="item.libelle">{{item.libelle}}</label>
     </span>

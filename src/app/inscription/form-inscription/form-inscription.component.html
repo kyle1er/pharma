@@ -1,4 +1,4 @@
-<div class="myForm"><!-- *ngIf="mustShow" -->
+<div [class]="'myForm '+ ((actionTitre) ? 'inscription' : 'modification') "><!-- *ngIf="mustShow" -->
   <button (click)="closeForm()" class="closeBtn" *ngIf="actionTitre === 'NEW'">
     <span class="material-symbols-outlined">
       close
@@ -131,16 +131,6 @@
               </div>
               <!-- ---- -->
 
-              <div class="d-flex flex-column" *ngIf="listSectionOrdre.dataList.length">
-                <label>Section du tableau de l’Ordre souhaitée</label>
-                <div class="d-flex sectionOdre justify-content-between py-1 px-4">
-                  <app-checkButton [checkBtnData]="listSectionOrdre"
-                    [defaultValue]="formulaireInscription.controls['Sections'].value"
-                    (value)="setSectionDocs('Sections', $event)"></app-checkButton>
-                </div>
-              </div>
-              <!-- ---- -->
-
               <div class="d-flex flex-column" *ngIf="listChangeSection.dataList.length">
                 <label>Demande de changement de section</label>
                 <div>
@@ -150,17 +140,19 @@
                 </div>
               </div>
               <!-- ---- -->
+
+              <div class="d-flex flex-column" *ngIf="listSectionOrdre.dataList.length">
+                <label>Section du tableau de l’Ordre souhaitée</label>
+                <div class="d-flex sectionOdre justify-content-between py-1 px-4">
+                  <app-checkButton [checkBtnData]="listSectionOrdre"
+                    [defaultValue]="formulaireInscription.controls['Sections'].value"
+                    (value)="setSectionDocs('Sections', $event)"></app-checkButton>
+                </div>
+              </div>
+              <!-- ---- -->
             </div>
           </fieldset>
-
-        </div>
-
-        <!-- ------- -->
-        <!-- ------- -->
-        <!-- ------- -->
-        <div class="d-flex flex-column" *ngIf="step === 2">
-          <!-- INFORMATIONS PROFESSIONELLES -->
-
+          <!--  -->
           <fieldset class="bloc">
             <legend>Etablissement pharmaceutique ou employeur</legend>
             <!-- <div> -->
@@ -199,10 +191,11 @@
 
         </div>
 
+
         <!-- ------- -->
         <!-- ------- -->
         <!-- ------- -->
-        <div class="d-flex flex-column" *ngIf="step === 3">
+        <div class="d-flex flex-column" *ngIf="step === 2">
           <!-- INFORMATIONS PROFESSIONELLES -->
 
           <fieldset class="bloc">
@@ -247,30 +240,30 @@
 
             </div>
 
-            <div class="mx-3" *ngIf="appreciation.length">
+            <div class="mx-3 " *ngIf="appreciation.length">
               <label>Je connais les attributions de l’Ordre des Pharmaciens de Côte d’Ivoire</label>
-              <div class="d-flex justify-content-between py-1 px-4">
+              <div class="d-flex py-1 px-4a appreciation"><!-- justify-content-between  -->
 
-                <span *ngFor="let appre of appreciation">
+                <span *ngFor="let appre of appreciation" class="p-1 m-1">
                   <label [for]="'CnceOrdre'+ appre._libelle" *ngIf="appre.UseOrdre">{{appre._libelle | titlecase}}
-                    <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre"
-                      [value]="appre._libelle">
                   </label>
+                  <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre"
+                    [value]="appre._libelle">
                 </span>
               </div>
             </div>
 
 
-            <div class="mx-3" *ngIf="appreciation.length">
+            <div class="mx-3 " *ngIf="appreciation.length">
               <label>Je connais le code de déontologie pharmaceutique</label>
-              <div class="d-flex justify-content-between py-1 px-4">
+              <div class="d-flex py-1 px-4a appreciation"><!-- justify-content-between  -->
 
-                <span *ngFor="let appre of appreciation">
+                <span *ngFor="let appre of appreciation" class="p-1 m-1">
                   <label [for]="'CnceDeontologie'+ appre._libelle" *ngIf="appre.UseDeontologie">{{appre._libelle |
                     titlecase}}
-                    <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie"
-                      [value]="appre._libelle">
                   </label>
+                  <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie"
+                    [value]="appre._libelle">
                 </span>
               </div>
             </div>
@@ -291,10 +284,10 @@
         <!-- ------- -->
         <!-- ------- -->
         <!-- ------- -->
-        <div class="d-flex flex-column" *ngIf="step === 4">
+        <div class="d-flex flex-column" *ngIf="step === 3">
           <!-- RECAPITULATIF [nzMaxTagPlaceholder]="tagPlaceHolder" -->
 
-          <div class="d-flex flex-column">
+          <!-- <div class="d-flex flex-column"> -->
             <!-- <label for=""><b>Foncion(s)</b></label>
             <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
               [ngModel]="listOfSelectedValue"  [ngModelOptions]="{standalone: true}" (ngModelChange)="getListDoc($event)" >
@@ -304,7 +297,7 @@
 
             <fieldset class="bloc">
               <legend>Liste des dossiers à fournir</legend>
-              <div>
+              <div class="flex-column">
 
                 <div>
                   <label for=""><b>Foncion(s)</b></label>
@@ -314,11 +307,13 @@
                     <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
                   </nz-select>
                 </div>
-                <span class="infoDoc d-flex align-items-center p-3 "><span class="material-symbols-outlined mx-1">
-                    info
+                <div>
+                  <span class="infoDoc d-flex align-items-center p-3 "><span class="material-symbols-outlined mx-1">
+                      info
+                    </span>
+                    Cliquez sur le nom du dossier à fournir pour importer le fichier correspondant
                   </span>
-                  Cliquez sur le nom du dossier à fournir pour importer le fichier correspondant
-                </span>
+                </div>
                 <div class="mt-2 py-1" style="flex-direction: column;">
                   <ul>
                     <li *ngFor="let item of documents" class="d-flex justify-content-between flex-column flex-wrap">
@@ -339,7 +334,7 @@
                 </div>
               </div>
             </fieldset>
-          </div>
+          <!-- </div> -->
         </div>
 
       </div>
@@ -353,11 +348,11 @@
         <span class="material-symbols-outlined">arrow_left</span>
         Précédant
       </button> <!--  -->
-      <button class="d-flex align-items-center " *ngIf="step < 4" (click)="stepNavigation('+')">
+      <button class="d-flex align-items-center " *ngIf="step < 3" (click)="stepNavigation('+')">
         Suivant
         <span class="material-symbols-outlined">arrow_right</span>
       </button> <!--  -->
-      <button nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 4"
+      <button nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 3"
         [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
         (click)="inscription()">
         Enregistrer

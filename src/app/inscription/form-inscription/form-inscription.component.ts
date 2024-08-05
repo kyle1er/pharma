@@ -367,25 +367,28 @@ export class FormInscriptionComponent implements OnInit {
       }
     } else {
 
+      const data = {
+        body : [
+          /* {
+            "item": "doc",
+            "desa": 0
+          }, */
+          {
+            "item": "nationalite"
+          },
+          {
+            "item": "appreciation"
+          }, {
+            "item": "section"
+          },
+          {
+            "item": "fonction"
+          }
+        ]
+      }
 
 
-      this.myService.execute('getItems', [
-        /* {
-          "item": "doc",
-          "desa": 0
-        }, */
-        {
-          "item": "nationalite"
-        },
-        {
-          "item": "appreciation"
-        }, {
-          "item": "section"
-        },
-        {
-          "item": "fonction"
-        }
-      ], false).subscribe({
+      this.myService.execute('getItems',data , false).subscribe({
         next: (value: any) => {
           console.log("list items === ", value);
           /* ---------------- */

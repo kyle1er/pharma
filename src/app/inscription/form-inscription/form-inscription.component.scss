@@ -1,14 +1,38 @@
 .myForm {
   position: relative;
-  overflow: hidden;
-  flex-direction: row;
-  // min-height: 95vh;
-  // max-height: 10vh;
-
   background-color: rgba(255, 255, 255, 0.905);
   border-radius: 15px;
   padding: 25px;
   box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
+  width: 100%;
+  // height: 100%;
+  height: 100vh;
+  border-radius: 0px;
+  padding: 5% 20%;
+  // overflow-y: hidden;
+  // overflow-y: auto !important;
+
+  // &.inscription {
+  //   // width: 100%;
+  //   // height: 100%;
+  //   // border-radius: 0px !important;
+  //   // padding: 5% 20% !important;
+  //   // overflow-y: auto !important;
+
+  //   .action {
+  //     position: initial;
+  //   }
+
+  // }
+
+  // &.modification{
+
+  // }
+
+  // overflow: hidden;
+  // flex-direction: row;
+  // min-height: 95vh;
+  // max-height: 10vh;
 
   // &>div {
   //   flex: 1 1 50%;
@@ -125,15 +149,19 @@
   // }
 
   .formDiv {
+    height: 100%;
+    overflow-y: auto;
     >h2 {
       text-transform: uppercase;
       text-align: center;
     }
 
     &>div {
-      &.containerForm{
-        min-height: 65vh;
-      }
+      // &.containerForm {
+      //   // min-height: 65vh;
+      //   overflow-y: auto;
+      // }
+
       margin-top: 15px;
 
       .bloc {
@@ -216,6 +244,7 @@
   /* ------ */
   .action {
     padding: 10px 5px 0px;
+    position: initial;
 
     // border: 1px solid ;
     button {
@@ -261,12 +290,19 @@
 }
 
 
+::ng-deep{
+  app-checkbutton{
+    width: 100%;
+  }
+}
+
+
 
 @media screen and (min-width: 769px) {
   .myForm {
     // position: relative;
-    min-height: 95vh;
-    max-height: 100vh;
+    // min-height: 95vh;
+    // max-height: 100vh;
     // overflow: hidden;
     // flex-direction: row;
 
@@ -436,79 +472,65 @@
 }
 
 
-@media screen and (min-width: 426px) and (mqx-width: 768px) {
+@media screen and (min-width: 426px) and (max-width: 768px) {
   .myForm {
-    // position: relative;
-    min-height: 95vh;
-    max-height: 100vh;
-    // overflow: hidden;
-    // flex-direction: row;
-
-    // background-color: rgba(255, 255, 255, 0.905);
-    // border-radius: 15px;
-    // padding: 25px;
-    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
-
-    &>div {
-      // flex: 1 1 50%;
-      // overflow: hidden;
-
-      // img {
-      //   width: 100%;
-      //   height: 100%;
+    padding: 5% 10% !important;
+    .formDiv {
+      // >h2 {
+      //   text-transform: uppercase;
+      //   text-align: center;
       // }
 
-      &.formDiv {
-        // padding: 10px;
-        flex: 1 1 60%;
-        // justify-content: space-between;
-        // background-color: transparent;
-
-        // h2 {
-        //   text-decoration: underline;
+      &>div {
+        // &.containerForm {
+        //   min-height: 65vh;
         // }
 
-        // input,
-        // select {
-        //   outline-style: none;
-        //   // border: 1px solid gainsboro;
-        //   border: none;
-        //   border-bottom: 1px solid gray;
-        //   padding: 5px 10px;
-        //   margin-bottom: 10px;
+        // margin-top: 15px;
 
-        //   &.prenom {
-        //     flex: 1 1 80%;
-        //     margin-left: 5px;
-        //   }
-        // }
+        .bloc {
+          // border: 1px solid gainsboro;
+          // border-radius: 3px;
+          // margin-top: 15px;
+          // padding-bottom: 10px;
 
-
-        fieldset {
-          // padding: 0px 5px;
-          // margin-bottom: 2px 5px;
-
-          // border: 1px solid gray;
-          &.titreL legend {
-            // font-size: 15px;
-            // font-weight: 700;
-
-            &+div {
-              input.lieu {
-                flex: 1 1 80%;
-                // margin-left: 5px;
-              }
-
-              ol {
-                // width: 100%;
-
-                li {
-                  flex: 0 1 45%;
-                }
-              }
-            }
+          legend {
+            // background-color: var(--vert);
+            // color: white;
+            // font-weight: 500;
+            font-size: 16px;
+            // padding: 10px 20px;
+            // border-radius: 5px 5px 0 0;
+            // text-transform: uppercase;
           }
 
+          >div:first-of-type {
+            // display: flex;
+            // padding: 10px 15px;
+            // flex-wrap: wrap;
+            // justify-content: space-around;
+
+            >div {
+              // margin: 0px 5px;
+              // flex: 1 1 45%;
+
+              label {
+                // text-transform: uppercase;
+                // font-family: monospace;
+                font-size: 12px;
+              }
+
+            }
+
+            // >ol {
+            //   // width: 100%;
+
+            //   // li {
+            //   //   flex: 1 1 45%;
+            //   //   margin: 0px 15px;
+            //   // }
+            // }
+          }
 
           // .infoDoc {
           //   font-size: 11px;
@@ -518,75 +540,29 @@
           //   border-radius: 5px;
           // }
 
+          // .fichierImport {
+          //   // background-color: #dcdcdc7d;
+          //   // padding-left: 10px;
+          //   // font-style: italic;
+          //   // width: 90%;
+          //   // border-radius: 10px 0 0 10px;
 
-          ul {
-            // width: 100%;
+          //   // &>span {
+          //   //   flex: 0 0 100%;
+          //   //   text-overflow: ellipsis;
+          //   //   text-wrap: nowrap;
+          //   //   overflow: hidden;
+          //   // }
 
-            // label {
-            //   font-weight: 500;
-            // }
-
-            .fichierImport {
-              // background-color: #dcdcdc7d;
-              // padding-left: 10px;
-              // font-style: italic;
-              // border-radius: 10px 0 0 10px;
-              width: 90%;
-
-              // &>span {
-              //   flex: 0 0 100%;
-              //   text-overflow: ellipsis;
-              //   text-wrap: nowrap;
-              //   overflow: hidden;
-              // }
-
-              // button {
-              //   border: none;
-              //   color: red;
-              //   // background-color: transparent;
-              // }
-            }
-          }
-
-          // label,
-          // input[type='radio'],
-          // input[type='checkbox'] {
-          //   cursor: pointer;
+          //   // button {
+          //   //   border: none;
+          //   //   color: red;
+          //   //   // background-color: transparent;
+          //   // }
           // }
 
-          // &.etatCivil {
-
-          // }
         }
       }
-    }
-
-    /* ------ */
-    // .action {
-    //   padding: 10px 5px 0px;
-
-    //   // border: 1px solid ;
-    //   button {
-    //     background-color: rgba(0, 0, 0, 0.566);
-    //     color: white;
-    //     font-weight: 700;
-    //     padding: 5px 10px;
-    //     border-radius: 5px;
-    //     border: none;
-
-    //     &:hover {
-    //       background-color: rgba(0, 0, 0, 0.8);
-    //     }
-
-    //     &:disabled {
-    //       cursor: not-allowed;
-    //     }
-    //   }
-    // }
-
-
-    nz-select {
-      min-width: 200px;
     }
 
 
@@ -598,12 +574,6 @@
       // position: absolute;
       width: 35px;
       height: 35px;
-      // border: none;
-      // border-radius: 50%;
-      // right: 10px;
-      // top: 10px;
-      // // background-color: var(--vert_opacity);
-      // color: var(--vert);
     }
   }
 
@@ -612,169 +582,110 @@
 
 @media screen and (max-width: 425px) {
   .myForm {
-    // position: relative;
-    min-height: 95vh;
-    max-height: 100vh;
-    // overflow: hidden;
-    flex-direction: column;
-
-    // background-color: rgba(255, 255, 255, 0.905);
-    // border-radius: 15px;
-    // padding: 25px;
-    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
-
-    &>div {
-      // flex: 1 1 50%;
-      // overflow: hidden;
-
-      // img {
-      //   width: 100%;
-      //   height: 100%;
+    padding: 5% 10% !important;
+    .formDiv {
+      // >h2 {
+      //   text-transform: uppercase;
+      //   text-align: center;
       // }
 
-      &.imagFond {
-        display: none;
-      }
-
-      &.formDiv {
-        // padding: 10px;
-        overflow-y: auto;
-        flex: 1 1 60%;
-        // justify-content: space-between;
-        // background-color: transparent;
-
-        // h2 {
-        //   text-decoration: underline;
+      &>div {
+        // &.containerForm {
+        //   min-height: 65vh;
         // }
 
-        // input,
-        // select {
-        //   outline-style: none;
-        //   // border: 1px solid gainsboro;
-        //   border: none;
-        //   border-bottom: 1px solid gray;
-        //   padding: 5px 10px;
-        //   margin-bottom: 10px;
+        // margin-top: 15px;
 
-        //   &.prenom {
-        //     flex: 1 1 80%;
-        //     margin-left: 5px;
-        //   }
-        // }
+        .bloc {
+          // border: 1px solid gainsboro;
+          // border-radius: 3px;
+          // margin-top: 15px;
+          // padding-bottom: 10px;
 
-
-        fieldset {
-          // padding: 0px 5px;
-          // margin-bottom: 2px 5px;
-
-          // border: 1px solid gray;
-          &.titreL legend {
-            // font-size: 15px;
-            // font-weight: 700;
-
-            &+div {
-              input.lieu {
-                flex: 1 1 80%;
-                // margin-left: 5px;
-              }
-
-              ol {
-                // width: 100%;
-                flex-direction: column;
-
-                li {
-                  flex: 0 1 45%;
-                }
-              }
-
-              &.sectionOdre {
-                padding: 0px !important;
-              }
-
-              .moreInfos {
-                flex-direction: column;
-              }
-            }
+          legend {
+            // background-color: var(--vert);
+            // color: white;
+            // font-weight: 500;
+            font-size: 11px;
+            // padding: 10px 20px;
+            // border-radius: 5px 5px 0 0;
+            // text-transform: uppercase;
           }
 
+          >div:first-of-type {
+            flex-direction: column;
+            padding: 0px !important;
+            // display: flex;
+            // padding: 10px 15px;
+            // flex-wrap: wrap;
+            // justify-content: space-around;
 
-          // .infoDoc {
-          //   font-size: 11px;
-          //   font-style: italic;
-          //   color: #a3a3a3;
-          //   background-color: gainsboro;
-          //   border-radius: 5px;
-          // }
+            >div {
+              // margin: 0px 5px;
+              // flex: 1 1 45%;
 
+              label {
+                // text-transform: uppercase;
+                // font-family: monospace;
+                font-size: 10px;
+              }
 
-          ul {
-            // width: 100%;
+            }
 
-            // label {
-            //   font-weight: 500;
-            // }
+            >ol {
+              // width: 100%;
+              flex-direction: column;
 
-            .fichierImport {
-              // background-color: #dcdcdc7d;
-              // padding-left: 10px;
-              // font-style: italic;
-              // border-radius: 10px 0 0 10px;
-              width: 90%;
-
-              // &>span {
-              //   flex: 0 0 100%;
-              //   text-overflow: ellipsis;
-              //   text-wrap: nowrap;
-              //   overflow: hidden;
-              // }
-
-              // button {
-              //   border: none;
-              //   color: red;
-              //   // background-color: transparent;
+              // li {
+              //   flex: 1 1 45%;
+              //   margin: 0px 15px;
               // }
             }
           }
 
-          // label,
-          // input[type='radio'],
-          // input[type='checkbox'] {
-          //   cursor: pointer;
+          .infoDoc {
+            font-size: 12px;
+            // font-size: 11px;
+            // font-style: italic;
+            // color: #a3a3a3;
+            // background-color: gainsboro;
+            // border-radius: 5px;
+          }
+
+          // .fichierImport {
+          //   // background-color: #dcdcdc7d;
+          //   // padding-left: 10px;
+          //   // font-style: italic;
+          //   // width: 90%;
+          //   // border-radius: 10px 0 0 10px;
+
+          //   // &>span {
+          //   //   flex: 0 0 100%;
+          //   //   text-overflow: ellipsis;
+          //   //   text-wrap: nowrap;
+          //   //   overflow: hidden;
+          //   // }
+
+          //   // button {
+          //   //   border: none;
+          //   //   color: red;
+          //   //   // background-color: transparent;
+          //   // }
           // }
 
-          // &.etatCivil {
-
-          // }
         }
       }
-    }
 
-    /* ------ */
-    // .action {
-    //   padding: 10px 5px 0px;
-
-    //   // border: 1px solid ;
-    //   button {
-    //     background-color: rgba(0, 0, 0, 0.566);
-    //     color: white;
-    //     font-weight: 700;
-    //     padding: 5px 10px;
-    //     border-radius: 5px;
-    //     border: none;
-
-    //     &:hover {
-    //       background-color: rgba(0, 0, 0, 0.8);
-    //     }
-
-    //     &:disabled {
-    //       cursor: not-allowed;
-    //     }
-    //   }
-    // }
-
-
-    nz-select {
-      min-width: 200px;
+      .appreciation{
+        label{
+          font-size: 11px;
+          margin-right: 2px;
+        }
+      }
+      .sectionOdre{
+        padding-left: initial !important;
+        padding-right: initial !important;
+      }
     }
 
 
@@ -786,13 +697,14 @@
       // position: absolute;
       width: 35px;
       height: 35px;
-      // border: none;
-      // border-radius: 50%;
-      // right: 10px;
-      // top: 10px;
-      // // background-color: var(--vert_opacity);
-      // color: var(--vert);
     }
   }
+
+
+
+  nz-select {
+    width: 210px !important;
+  }
+
 
 }
