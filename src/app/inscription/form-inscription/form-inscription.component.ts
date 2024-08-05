@@ -390,7 +390,7 @@ export class FormInscriptionComponent implements OnInit {
 
       this.myService.execute('getItems',data , false).subscribe({
         next: (value: any) => {
-          console.log("list items === ", value);
+          // console.log("list items === ", value);
           /* ---------------- */
           /* ---------------- */
           this.nationalite = value['description']['nationalite'] as Array<nationalite>;
@@ -404,14 +404,14 @@ export class FormInscriptionComponent implements OnInit {
           if (this.actionTitre === 'EDIT') {
 
             this.myService.getUserInfos().subscribe(( val )=>{
-              console.log(val);
+              // console.log(val);
               /* --------------------------- */
               /* SUPPRESSION DES CLES NON NECESSAIRE */
               /* --------------------------- */
 
-              console.log("data recu ===== ", {...val});
+              // console.log("data recu ===== ", {...val});
               const data$ = new inscriptionData('objetSimple', val);
-              console.log("data transform 0 ===== ", {...data$});
+              // console.log("data transform 0 ===== ", {...data$});
               // console.log("data$.myData ==== ", data$.myData);
 
 
@@ -419,12 +419,12 @@ export class FormInscriptionComponent implements OnInit {
               const deleteKey = (()=>{
                 const lstKeyForm = Object.keys( this.formulaireInscription.value );
                 const deleteKey = lodash.difference( lstKeyData, lstKeyForm )
-                console.log("deleteKey ===== ", deleteKey);
+                // console.log("deleteKey ===== ", deleteKey);
 
                 for (const key of deleteKey) {
                   delete data$.myData[key]
                 }
-              })()
+              })();
 
               const formateDate = (()=>{
                 // const key = Object.keys( val )
@@ -433,9 +433,9 @@ export class FormInscriptionComponent implements OnInit {
                     data$.myData[iterator] = moment(data$.myData[iterator], 'DD-MM-YYYY').format("YYYY-MM-DD")
                   }
                 }
-              })()
+              })();
 
-              console.log("data transform date ===== ", {...data$});
+              // console.log("data transform date ===== ", {...data$});
               this.formulaireInscription.setValue({ ...data$.myData })
               // console.log("formulaireInscription === ", this.formulaireInscription);
 
@@ -445,7 +445,7 @@ export class FormInscriptionComponent implements OnInit {
           }
         },
         error: (err) => {
-          console.log("error list items === ", err);
+          // console.log("error list items === ", err);
           this.infoNotif = {
             message: "Erreur lors du chargement des documents à fournir",
             type: 'error'
@@ -486,7 +486,7 @@ export class FormInscriptionComponent implements OnInit {
     data.formatDate()
 
     // console.log("sessions :: ", this.formulaireInscription.value);
-    console.log("data === ", data);
+    // console.log("data === ", data);
 
 
 
@@ -578,7 +578,7 @@ export class FormInscriptionComponent implements OnInit {
     this.listOfSelectedValue = [...fonction];
     // this.infoNotifShow = true;
 
-    console.log("liste des fonctions === ", this.listOfSelectedValue);
+    // console.log("liste des fonctions === ", this.listOfSelectedValue);
 
     const params = {
       body: this.listOfSelectedValue/* {
@@ -588,7 +588,7 @@ export class FormInscriptionComponent implements OnInit {
     this.myService.execute('get_documents', params, false).subscribe({
       next: (value: any) => {
 
-        console.log("document === ", value);
+        // console.log("document === ", value);
         this.documents = value['description'] as documents[];
         // this.infoNotifShow = false;
 
