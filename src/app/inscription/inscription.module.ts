@@ -9,7 +9,7 @@ import { CheckButtonModule } from '../shared/checkButton/checkButton.module';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NotificationModule } from '../shared/notification/notification.module';
-
+import { NzStepsModule } from 'ng-zorro-antd/steps';
 
 
 @NgModule({
@@ -22,7 +22,8 @@ import { NotificationModule } from '../shared/notification/notification.module';
     NzSelectModule,
     FormsModule,
     NzButtonModule,
-    NotificationModule
+    NotificationModule,
+    NzStepsModule
 
   ],
   declarations: [

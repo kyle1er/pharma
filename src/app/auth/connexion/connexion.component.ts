@@ -19,7 +19,7 @@ export class ConnexionComponent implements OnInit {
 
   constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router ) {
     this.formulaireConnexion = this.fb.group({
-      email : ['', [Validators.required]],
+      pseudo : ['', [Validators.required]],
       pwd : ['', [Validators.required]],
       // pseudo : ['', [Validators.required]],
       // passWord : ['', [Validators.required]],
@@ -28,7 +28,7 @@ export class ConnexionComponent implements OnInit {
 
 
   ngOnInit() {
-    this.inscription()
+    // this.inscription()
 
     document.addEventListener('keypress', (e)=>{
 
