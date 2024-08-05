@@ -2,10 +2,8 @@
   "methode": "POST",
   "url": "_get_ins_docs_a_fournir",
   "params": {
-    "body": {
-        "fonctions": [
+    "body": [
             "1"
         ]
-    }
 }
 }

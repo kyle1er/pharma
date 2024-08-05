@@ -513,8 +513,8 @@ export class FormInscriptionComponent implements OnInit {
 
 
     // console.log( "this.listSection ", key, listSection);
-    console.log("this.formulaireInscription ", this.formulaireInscription.value);
-    console.log("this.formulaireInscription ", this.formulaireInscription);
+    // console.log("this.formulaireInscription ", this.formulaireInscription.value);
+    // console.log("this.formulaireInscription ", this.formulaireInscription);
 
 
   }
@@ -581,11 +581,11 @@ export class FormInscriptionComponent implements OnInit {
     console.log("liste des fonctions === ", this.listOfSelectedValue);
 
     const params = {
-      body: {
-        fonctions: this.listOfSelectedValue
-      }
+      body: this.listOfSelectedValue/* {
+        fonctions:
+      } */
     }
-    this.myService.execute('get_documents', params).subscribe({
+    this.myService.execute('get_documents', params, false).subscribe({
       next: (value: any) => {
 
         console.log("document === ", value);
