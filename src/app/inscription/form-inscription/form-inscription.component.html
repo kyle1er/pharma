@@ -150,6 +150,17 @@
                 </div>
                 <!-- ---- -->
 
+                <div class="d-flex flex-column">
+                  <label for="">Foncion(s)</label>
+                  <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
+                    [ngModel]="listOfSelectedValue" [ngModelOptions]="{standalone: true}"
+                    (ngModelChange)="setListFonction($event)">
+                    <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
+                  </nz-select>
+                </div>
+
+                <!-- ---- -->
+
                 <div class="d-flex flex-column" *ngIf="listSectionOrdre.dataList.length">
                   <label>Section du tableau de l’Ordre souhaitée</label>
                   <div class="d-flex sectionOdre justify-content-between py-1 px-4">
@@ -308,14 +319,14 @@
                 <legend>Liste des dossiers à fournir</legend>
                 <div class="flex-column">
 
-                  <div>
+                  <!-- <div>
                     <label for=""><b>Foncion(s)</b></label>
                     <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
                       [ngModel]="listOfSelectedValue" [ngModelOptions]="{standalone: true}"
                       (ngModelChange)="getListDoc($event)">
                       <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
                     </nz-select>
-                  </div>
+                  </div> -->
                   <div>
                     <span class="infoDoc d-flex align-items-center p-3 "><span class="material-symbols-outlined mx-1">
                         info

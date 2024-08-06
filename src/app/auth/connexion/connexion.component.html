@@ -4,7 +4,7 @@
   <div class="myForm" [formGroup]="formulaireConnexion" >
     <div>
       <label for="pseudo">Pseudo</label>
-      <input type="text" id="pseudo" formControlName="pseudo">
+      <input type="text" id="pseudo" formControlName="login">
     </div>
     <div class="password">
       <label for="password">Mot de passe</label>
@@ -18,8 +18,9 @@
   </div>
 
   <div class="secondaireAction d-flex justify-content-between ">
-    <label for="rememberMe">
-      <input type="checkbox" id="rememberMe"> Se souvenir de moi
+    <label for="rememberMe" class="d-flex align-items-center">
+      <input type="checkbox" id="rememberMe" [(ngModel)]="rememberMe" [value]="rememberMe">
+      <span class="mx-1" >Se souvenir de moi</span>
     </label>
     <span [routerLink]="['/auth/passWord-forget']" >Mot de passe oublié</span>
   </div>

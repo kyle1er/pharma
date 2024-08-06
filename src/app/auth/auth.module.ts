@@ -6,7 +6,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { MotOublieComponent } from './mot-oublie/mot-oublie.component';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { PassWordEditComponent } from './passWordEdit/passWordEdit.component';
 
@@ -23,7 +23,8 @@ import { PassWordEditComponent } from './passWordEdit/passWordEdit.component';
     RouterModule,
     ReactiveFormsModule,
     NzButtonModule,
-    NotificationModule
+    NotificationModule,
+    FormsModule
   ]
 })
 export class AuthModule { }

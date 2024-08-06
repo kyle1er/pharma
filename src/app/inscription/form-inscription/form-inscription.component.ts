@@ -461,7 +461,12 @@ export class FormInscriptionComponent implements OnInit {
   }
 
   stepNavigation(signe: '+' | '-' = "+") {
-    this.step = eval(this.step + "" + signe + " 1")
+    this.step = eval(this.step + "" + signe + " 1");
+
+    /* Chargement des dossiers à fournir */
+    if ( signe === '+' && this.step === 3) {
+      this.getListDoc();
+    }
   }
 
   inscription() {
@@ -573,19 +578,10 @@ export class FormInscriptionComponent implements OnInit {
   }
 
 
-  getListDoc(fonction: any[]) {
+  getListDoc() {
     // console.log("fonction ==== ", fonction);
-    this.listOfSelectedValue = [...fonction];
-    // this.infoNotifShow = true;
 
-    // console.log("liste des fonctions === ", this.listOfSelectedValue);
-
-    const params = {
-      body: this.listOfSelectedValue/* {
-        fonctions:
-      } */
-    }
-    this.myService.execute('get_documents', params, false).subscribe({
+    this.myService.execute('get_documents', [...this.listOfSelectedValue], false).subscribe({
       next: (value: any) => {
 
         // console.log("document === ", value);
@@ -602,6 +598,12 @@ export class FormInscriptionComponent implements OnInit {
         this.infoNotifShow = true;
       },
     })
+
+  }
+
+
+  setListFonction( fonction: any[] ){
+    this.listOfSelectedValue = [...fonction];
   }
 
   closeForm() {

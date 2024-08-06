@@ -11,6 +11,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { InscriptionModule } from '../inscription/inscription.module';
 import { AccueilComponent } from './accueil/accueil.component';
+import { NotificationModule } from '../shared/notification/notification.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { AccueilComponent } from './accueil/accueil.component';
     NzDropDownModule,
     NzTableModule,
     NzModalModule,
-    InscriptionModule
+    InscriptionModule,
+    NotificationModule
   ],
   declarations: [
     DashBoardComponent,

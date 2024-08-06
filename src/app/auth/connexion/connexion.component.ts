@@ -15,11 +15,12 @@ export class ConnexionComponent implements OnInit {
   isLoadingOne: boolean = false;
   infoNotif!: INotification;
   infoNotifActivate!: boolean;
+  rememberMe: boolean = false;
 
 
   constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router ) {
     this.formulaireConnexion = this.fb.group({
-      pseudo : ['', [Validators.required]],
+      login : ['', [Validators.required]],
       pwd : ['', [Validators.required]],
       // pseudo : ['', [Validators.required]],
       // passWord : ['', [Validators.required]],
@@ -29,7 +30,7 @@ export class ConnexionComponent implements OnInit {
 
   ngOnInit() {
     // this.inscription()
-
+    this.gestionCookies();
     document.addEventListener('keypress', (e)=>{
 
       if ( e.key === "Enter" ) {
@@ -49,14 +50,17 @@ export class ConnexionComponent implements OnInit {
 
 
   connexion(){
-    console.log(this.formulaireConnexion.value);
-    console.log(this.formulaireConnexion);
+    // console.log(this.formulaireConnexion.value);
+    // console.log(this.formulaireConnexion);
+    // console.log("this.rememberMe === ", this.rememberMe);
+
+    // return
     this.isLoadingOne = true;
 
     this.cnx.authenticate("connexion", this.formulaireConnexion.value).subscribe({
       next: ( retour : any ) => {
         this.isLoadingOne = false;
-        console.log("Mon retour done ", retour);
+        // console.log("Mon retour done ", retour);
 
         const data_ = retour['data'] as { fonction: "logIn", erreur: string,  status: number, lib_err: string  }
         // console.log("Mon retour done_ ", data_.lib_err);
@@ -71,11 +75,12 @@ export class ConnexionComponent implements OnInit {
           return
         }
 
+        this.gestionCookies( false )
         this.router.navigateByUrl("/pharma")
       },
       error: (err) => {
         this.isLoadingOne = false;
-        console.log("Mon retour err ", err);
+        // console.log("Mon retour err ", err);
         this.infoNotif = {
           type : 'error',
           message : "Une erreur est survenue lors de la connexion\nVeuillez réessayer s'il vous plaît."
@@ -99,4 +104,20 @@ export class ConnexionComponent implements OnInit {
   }
 
   // enterPress( key  )
+
+  gestionCookies( load = true ){
+    if ( !load ) {
+      if ( this.rememberMe ) {
+        localStorage.setItem( 'acces', JSON.stringify( this.formulaireConnexion.value ) )
+      }else{
+        localStorage.removeItem( 'acces' )
+      }
+    }else{
+      const acees : any = JSON.parse( JSON.parse( JSON.stringify( localStorage.getItem( 'acces' ) ) ) )
+      if ( acees ) {
+        this.formulaireConnexion.reset( {...acees} );
+        this.rememberMe = true
+      }
+    }
+  }
 }

@@ -1,6 +1,6 @@
 {
   "methode" : "POST",
-  "url" : "_get_inscription",
+  "url" : "_get_phcien",
   "params" : {
     "token": "{{token}}",
     "body": {

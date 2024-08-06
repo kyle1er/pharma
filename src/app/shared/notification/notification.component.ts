@@ -31,7 +31,7 @@ export class NotificationComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log("this.infoNotif === ", this.infoNotif);
+    // console.log("this.infoNotif === ", this.infoNotif);
 
     // if (this.maskModal) {
     //   this.myModal = this.maskModal.modalRef.overlayRef._pane as HTMLElement
