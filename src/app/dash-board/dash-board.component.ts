@@ -22,18 +22,15 @@ export class DashBoardComponent implements OnInit {
   ngOnInit(): void {
     this.webService.execute('get_phcien').subscribe({
       next: (val: any) => {
-        // console.log(val);
-        this.isLoading = false
         this.userData = {
-          nom: val['description']['Nom'],
-          prenom: val['description']['Pnom']
+          nom: val['description']['nom'],
+          prenom: val['description']['pnom']
         }
+
         this.webService.setUserInfos(val['description']);
+        this.isLoading = false
       },
       error: (err) => {
-        // console.log(err);
-        // this.router.navigateByUrl('/pharma')
-        // this.isLoading = false;
         this.infoNotif = {
           type : 'error',
           message : "Une erreur est survenue.\nVeuillez réessayer ultérieurement."

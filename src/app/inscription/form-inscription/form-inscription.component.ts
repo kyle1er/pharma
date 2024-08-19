@@ -45,7 +45,7 @@ export class FormInscriptionComponent implements OnInit {
   };
   infoNotifShow: boolean = false;
 
-  listOfSelectedValue: Array<number> = []
+  // listOfSelectedValue: Array<number> = []
   step: number = 0;
   mustShow: boolean = false;
   nationalite: Array<nationalite> = [];
@@ -103,7 +103,7 @@ export class FormInscriptionComponent implements OnInit {
     this.formulaireInscription = this.fb.group({
       Nom: ['', [Validators.required]],
       Pnom: ['', [Validators.required]],
-      Datedepot_dos: [null, [Validators.required]],
+      Datecrea: [null, [Validators.required]],
       Datenaiss: [null, [Validators.required]],
       Lieunaiss: ['', [Validators.required]],
       Etatcivil: [null, [Validators.required]],
@@ -149,6 +149,9 @@ export class FormInscriptionComponent implements OnInit {
 
       CnceOrdre: [null, [Validators.required]],
       CnceDeontologie: [null, [Validators.required]],
+      Docs_fournis : [],
+      Fonctions : [],
+
     })
   }
 
@@ -435,7 +438,7 @@ export class FormInscriptionComponent implements OnInit {
                 }
               })();
 
-              // console.log("data transform date ===== ", {...data$});
+              console.log("data transform date ===== ", {...data$});
               this.formulaireInscription.setValue({ ...data$.myData })
               // console.log("formulaireInscription === ", this.formulaireInscription);
 
@@ -477,7 +480,7 @@ export class FormInscriptionComponent implements OnInit {
 
     const data = {
       Docs_fournis,
-      fonctions: this.listOfSelectedValue,
+      // fonctions: this.listOfSelectedValue,
       ...inscriptionData_.myData,
       formatDate: function () {
         for (const key in this) {
@@ -581,7 +584,8 @@ export class FormInscriptionComponent implements OnInit {
   getListDoc() {
     // console.log("fonction ==== ", fonction);
 
-    this.myService.execute('get_documents', [...this.listOfSelectedValue], false).subscribe({
+    // this.myService.execute('get_documents', {body : [...this.listOfSelectedValue]}, false).subscribe({
+    this.myService.execute('get_documents', {body : [...this.formulaireInscription.controls['Fonctions'].value]}, false).subscribe({
       next: (value: any) => {
 
         // console.log("document === ", value);
@@ -603,7 +607,8 @@ export class FormInscriptionComponent implements OnInit {
 
 
   setListFonction( fonction: any[] ){
-    this.listOfSelectedValue = [...fonction];
+    // this.listOfSelectedValue = [...fonction];
+    this.formulaireInscription.controls['Fonctions'].patchValue( [...fonction] )
   }
 
   closeForm() {

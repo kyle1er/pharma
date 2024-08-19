@@ -113,13 +113,7 @@
                 <div class="d-flex flex-column">
                   <label>Date de dépôt complet du dossier complet</label>
                   <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
-                    formControlName="Datedepot_dos">
-                </div>
-                <!-- ---- -->
-                <div class="d-flex flex-column">
-                  <label>Date de dépôt complet du dossier complet</label>
-                  <input type="date" class="flex-grow-1" id="" placeholder="Date d’obtention"
-                    formControlName="Datedepot_dos">
+                    formControlName="Datecrea">
                 </div>
                 <!-- ---- -->
                 <div class="d-flex flex-column">
@@ -153,7 +147,7 @@
                 <div class="d-flex flex-column">
                   <label for="">Foncion(s)</label>
                   <nz-select [nzMaxTagCount]="3" nzMode="multiple" nzPlaceHolder="Sélectionner votre fonction"
-                    [ngModel]="listOfSelectedValue" [ngModelOptions]="{standalone: true}"
+                    [ngModel]="this.formulaireInscription.controls['Fonctions'].value" [ngModelOptions]="{standalone: true}"
                     (ngModelChange)="setListFonction($event)">
                     <nz-option *ngFor="let item of fonction" [nzLabel]="item._libelle" [nzValue]="item._i"></nz-option>
                   </nz-select>

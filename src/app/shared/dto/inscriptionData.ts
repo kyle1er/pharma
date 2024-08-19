@@ -1,18 +1,29 @@
+import { capitalize } from "lodash";
+
 export class inscriptionData {
 
   private _myData: any;
   private _myDataReceived: any;
 
   constructor(typeOfObjet: 'objetSimple' | 'ObjetConstruction', objet: any) {
+    /*
+    typeOfObjet === le type de l'objet passé en paramètre
+     */
     this._myDataReceived = { ...objet };
+
+    let newobjet : any = {};
+    for (const element of Object.keys(objet)) {
+      newobjet[ element[0].toLocaleUpperCase()+element.slice(1) ] = objet[element]
+    }
+
 
     switch (typeOfObjet) {
       case 'ObjetConstruction':
-        this.ObjetConstruction(objet)
+        this.ObjetConstruction(newobjet)
         break;
 
       default:
-        this.objetSimple(objet)
+        this.objetSimple(newobjet)
         break;
     }
   }
@@ -43,6 +54,8 @@ export class inscriptionData {
     for (const key of [...Object.keys(etabPharmaceutique), ...Object.keys(contact.contactImmediat), ...Object.keys(contact.contactPro)]) {
       delete data[key]
     }
+
+    // console.log("list key restant  === ", Object.keys(data));
 
     this._myData = {
       ...data,

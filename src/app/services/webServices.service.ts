@@ -190,11 +190,12 @@ export class WebServicesService {
   }
 
   setUserInfos( data$ : any ){
-    // this.userData = {
-    //   nom : data$['Nom'],
-    //   prenom : data$['Pnom']
-    // }
-    this.userData = {...data$, Sections : data$['Sections'].reduce( ( accu: any, current: any ) => [...accu , current._sectionID] , [] )}
+    // this.userData = {...data$, Sections : data$['Sections'].reduce( ( accu: any, current: any ) => [...accu , current._sectionID] , [] ), Fonctions : data$['Fonctions'].reduce( ( accu: any, current: any ) => [...accu , current._fonctionID] , [] )}
+
+    const myReduce = ( key : string, reduceKey : string )=>{
+      return data$[key].reduce( ( accu: any, current: any ) => [...accu , current[reduceKey]] , [] )
+    }
+    this.userData = {...data$, Sections : myReduce('Sections', '_sectionID'), Fonctions : myReduce('Fonctions', '_fonctionID')}
   }
 
   getUserInfos() : Observable<any> {

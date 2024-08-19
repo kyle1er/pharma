@@ -701,6 +701,10 @@
     }
   }
 
+  nz-select {
+    // min-width: 200px;
+    width: 100%;
+  }
 }
 
 
@@ -711,6 +715,7 @@
     .formDiv {
 
       &>div.containerFormParent {
+        padding: 0%;
 
         .bloc {
 
@@ -809,7 +814,8 @@
   @media screen and (min-width:375px) and (max-width:424px) {
     nz-select {
       // width: 235px;
-      width: 280px;
+      // width: 280px;
+      width: 268px;
     }
 
   }
@@ -817,9 +823,13 @@
   @media screen and (max-width:374px) {
     nz-select {
       // width: 210px;
-      width: 228px;
+      width: 215px;
     }
 
+    .sectionOdre {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
 

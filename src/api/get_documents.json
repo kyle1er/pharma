@@ -1,7 +1,9 @@
 {
   "methode": "POST",
   "url": "_get_ins_docs_a_fournir",
-  "params": [
-    "1"
-  ]
+  "params": {
+    "body": [
+      "1"
+    ]
+  }
 }

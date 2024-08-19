@@ -8,42 +8,47 @@
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Date de dépôt complet du dossier complet :</span>
-          <span class="valeur">{{formulaireInscription['Datedepot_dos']}}</span>
+          <span class="valeur">{{formulaireInscription['datecrea']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Nom :</span>
-          <span class="valeur">{{formulaireInscription['Nom']}}</span>
+          <span class="valeur">{{formulaireInscription['nom']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Prénoms :</span>
-          <span class="valeur">{{formulaireInscription['Pnom']}}</span>
+          <span class="valeur">{{formulaireInscription['pnom']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Date et lieu de naissance :</span>
-          <span class="valeur">{{formulaireInscription['Datenaiss'] +' à '+ formulaireInscription['Lieunaiss']}}</span>
+          <span class="valeur">{{formulaireInscription['datenaiss'] +' à '+ formulaireInscription['lieunaiss']}}</span>
+        </div>
+
+        <div class="d-flex flex-wrap ">
+          <span class="libelle">Nationalité :</span>
+          <span class="valeur">{{formulaireInscription['lib_nationalite']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Etat civil :</span>
           <div class="d-flex justify-content-arround align-items-center">
-            <label class="d-flex align-items-center " >
-              Célibataire
-              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 1)">
+            <label class="d-flex align-items-center align-items-center " >
+              <span>Célibataire</span>
+              <input type="checkbox" disabled  [checked]="checkValue('etatcivil', 1)">
             </label>
             <label class="d-flex align-items-center " >
-              Marié
-              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 2)">
+              <span>Marié</span>
+              <input type="checkbox" disabled  [checked]="checkValue('etatcivil', 2)">
             </label>
             <label class="d-flex align-items-center " >
-              Divorcé
-              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 3)">
+              <span>Divorcé</span>
+              <input type="checkbox" disabled  [checked]="checkValue('etatcivil', 3)">
             </label>
             <label class="d-flex align-items-center " >
-              Veuf (ve)
-              <input type="checkbox" disabled  [checked]="checkValue('Etatcivil', 4)">
+              <span>Veuf (ve)</span>
+              <input type="checkbox" disabled  [checked]="checkValue('etatcivil', 4)">
             </label>
           </div>
         </div>
@@ -52,10 +57,10 @@
           <span class="libelle">Adresse personnelle :</span>
           <div class="d-flex justify-content-arround align-items-center">
             <label class="d-flex align-items-center " >
-              {{ 'Tel. : '+ formulaireInscription['Tel']}}
+              {{ 'Tel. : '+ formulaireInscription['tel']}}
             </label>
             <label class="d-flex align-items-center " >
-              {{ 'Mail : '+ formulaireInscription['Mail']}}
+              {{ 'Mail : '+ formulaireInscription['mail']}}
             </label>
           </div>
         </div>
@@ -71,12 +76,12 @@
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Date et lieu d’obtention du diplôme (soutenance) :</span>
-          <span class="valeur">{{formulaireInscription['DiplomeobtenuLe'] +' à '+ formulaireInscription['Lieuobtentiondiplome']}}</span>
+          <span class="valeur">{{formulaireInscription['diplomeobtenuLe'] +' à '+ formulaireInscription['lieuobtentiondiplome']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
           <span class="libelle">Date de délivrance du diplôme :</span>
-          <span class="valeur">{{formulaireInscription['DiplomeDelivreLe']}}</span>
+          <span class="valeur">{{formulaireInscription['diplomeDelivreLe']}}</span>
         </div>
 
         <div class="d-flex flex-wrap ">
@@ -106,11 +111,11 @@
           <div class="d-flex justify-content-arround align-items-center">
             <label class="d-flex align-items-center " >
               OUI
-              <input type="checkbox" [checked]="checkValue('ChangementOrdre', true)" disabled>
+              <input type="checkbox" [checked]="checkValue('changementOrdre', true)" disabled>
             </label>
             <label class="d-flex align-items-center " >
               NON
-              <input type="checkbox" [checked]="checkValue('ChangementOrdre', false)" disabled>
+              <input type="checkbox" [checked]="checkValue('changementOrdre', false)" disabled>
             </label>
           </div>
         </div>
@@ -121,26 +126,26 @@
           <div>
             <div class="d-flex flex-wrap justify-content-between" >
               <span class="libelle">Raison sociale :</span>
-              <span class="valeur">{{formulaireInscription['Raisonscial_emp']}}</span>
+              <span class="valeur">{{formulaireInscription['raisonscial_emp']}}</span>
             </div>
             <div class="d-flex flex-wrap justify-content-between" >
               <div class="d-flex align-items-center">
                 <span class="libelle">Adresse postale :</span>
-                <span class="valeur">{{formulaireInscription['Adrpost_emp']}}</span>
+                <span class="valeur">{{formulaireInscription['adrpost_emp']}}</span>
               </div>
               <div class="d-flex align-items-center mx-2">
                 <span class="libelle">Tel :</span>
-                <span class="valeur">{{formulaireInscription['Tel_emp']}}</span>
+                <span class="valeur">{{formulaireInscription['tel_emp']}}</span>
               </div>
               <div class="d-flex align-items-center">
                 <span class="libelle">Fax :</span>
-                <span class="valeur">{{formulaireInscription['Fax_emp']}}</span>
+                <span class="valeur">{{formulaireInscription['fax_emp']}}</span>
               </div>
             </div>
 
             <div class="d-flex flex-wrap justify-content-between" >
               <span class="libelle">Adresse géographique :</span>
-              <span class="valeur">{{formulaireInscription['Adrgeo_emp']}}</span>
+              <span class="valeur">{{formulaireInscription['adrgeo_emp']}}</span>
             </div>
           </div>
 
@@ -155,16 +160,16 @@
               <h4>Entourage immédiat</h4>
               <div class="d-flex justify-content-between">
                 <span class="libelle">Nom et Prénoms :</span>
-                <span class="valeur">{{formulaireInscription['Nomcontact_prof']}}</span>
+                <span class="valeur">{{formulaireInscription['nomcontact_prof']}}</span>
               </div>
               <div class="d-flex flex-wrap">
                 <div class="d-flex justify-content-between">
                   <span class="libelle">Adresse :</span>
-                  <span class="valeur">{{formulaireInscription['Adrcontact_prof']}}</span>
+                  <span class="valeur">{{formulaireInscription['adrcontact_prof']}}</span>
                 </div>
                 <div class="d-flex justify-content-between mx-2">
                   <span class="libelle">Tél :</span>
-                  <span class="valeur">{{formulaireInscription['Telcontact_prof']}}</span>
+                  <span class="valeur">{{formulaireInscription['telcontact_prof']}}</span>
                 </div>
               </div>
             </div>
@@ -173,16 +178,16 @@
               <h4>Entourage Professionnel</h4>
               <div class="d-flex justify-content-between">
                 <span class="libelle">Nom et Prénoms :</span>
-                <span class="valeur">{{formulaireInscription['Nomcontact_immed']}}</span>
+                <span class="valeur">{{formulaireInscription['nomcontact_immed']}}</span>
               </div>
               <div class="d-flex flex-wrap">
                 <div class="d-flex justify-content-between">
                   <span class="libelle">Adresse :</span>
-                  <span class="valeur">{{formulaireInscription['Adrcontact_immed']}}</span>
+                  <span class="valeur">{{formulaireInscription['adrcontact_immed']}}</span>
                 </div>
                 <div class="d-flex justify-content-between mx-2">
                   <span class="libelle">Tél :</span>
-                  <span class="valeur">{{formulaireInscription['Telcontact_immed']}}</span>
+                  <span class="valeur">{{formulaireInscription['telcontact_immed']}}</span>
                 </div>
               </div>
             </div>

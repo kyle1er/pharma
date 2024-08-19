@@ -9,67 +9,45 @@ import { WebServicesService } from 'src/app/services/webServices.service';
 })
 export class HeaderComponent implements OnInit {
 
-  @Input() userData : any;
-  nomUser : string = ""
-  constructor( private route : Router, private webService : WebServicesService ) { }
+  @Input() userData: any;
+  nomUser: string = ""
+  constructor(private route: Router, private webService: WebServicesService) { }
 
   ngOnInit() {
-    // this.webService.getUserInfos().subscribe((dat)=>{
-    //   console.log(" header data user ", dat);
-    //   this.userData = dat;
-    // })
     this.UserInitial()
   }
 
-
-  // showMenu(btn: HTMLElement){
-  //   console.log(btn);
-
-  //   if (btn.textContent?.includes("arrow_drop_down") ) {
-  //     btn.textContent = "arrow_drop_up"
-  //   }else{
-  //     btn.textContent = "arrow_drop_down"
-  //   }
-
-  // }
-
-  deconnecte(){
+  deconnecte() {
     this.webService.execute('logout').subscribe({
-      next : ()=>{
+      next: () => {
         sessionStorage.clear();
         this.route.navigateByUrl('/')
       },
-      error : (err)=>{
+      error: (err) => {
 
       }
     })
-
-    // sessionStorage.removeItem("auth");
-    // .clear("auth")
   }
 
-  getUserInfos(){
+  getUserInfos() {
     this.webService.getUserInfos()
   }
 
-  UserInitial(init = true){
-    // let name$ = name;
+  UserInitial(init = true) {
     if (init) {
-      if (window.screen.width <= 425) {
-        this.nomUser = this.userData?.nom.charAt(0) || ''
-      }
-      console.log("name === ", this.userData?.nom);
-
-      // return name$
-    }else{
-
-      window.addEventListener('resize', ()=>{
-        if (window.screen.width <= 425) {
-          this.nomUser = this.userData?.nom.charAt(0) || ''
-        }
-        console.log("name === ", this.userData?.nom);
-      }, true)
+      this.onResize()
     }
-    // return name$
+    window.addEventListener('resize', () => {
+      this.onResize()
+    })
   }
+
+  onResize() {
+    if (window.screen.width <= 425) {
+      this.nomUser = this.userData?.nom.charAt(0) || ''
+    } else {
+      this.nomUser = this.userData.nom;
+    }
+  }
+
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { random } from 'lodash';
+import { CryptoEnDeService } from 'src/app/services/crypto-en-de.service';
 import { WebServicesService } from 'src/app/services/webServices.service';
 import { INotification } from 'src/app/shared/notification/INotification';
 
@@ -18,7 +20,7 @@ export class ConnexionComponent implements OnInit {
   rememberMe: boolean = false;
 
 
-  constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router ) {
+  constructor( private fb: FormBuilder, private cnx: WebServicesService, private router: Router, private encrypt : CryptoEnDeService ) {
     this.formulaireConnexion = this.fb.group({
       login : ['', [Validators.required]],
       pwd : ['', [Validators.required]],
@@ -50,11 +52,6 @@ export class ConnexionComponent implements OnInit {
 
 
   connexion(){
-    // console.log(this.formulaireConnexion.value);
-    // console.log(this.formulaireConnexion);
-    // console.log("this.rememberMe === ", this.rememberMe);
-
-    // return
     this.isLoadingOne = true;
 
     this.cnx.authenticate("connexion", this.formulaireConnexion.value).subscribe({
@@ -78,7 +75,7 @@ export class ConnexionComponent implements OnInit {
         this.gestionCookies( false )
         this.router.navigateByUrl("/pharma")
       },
-      error: (err) => {
+      error: () => {
         this.isLoadingOne = false;
         // console.log("Mon retour err ", err);
         this.infoNotif = {
@@ -98,7 +95,7 @@ export class ConnexionComponent implements OnInit {
   }
 
   showPassWord( input : HTMLInputElement, span : HTMLSpanElement ){
-    console.log("input === ", input);
+    // console.log("input === ", input);
     input.type = ( input.type === 'text') ? 'password' : 'text'
     span.innerText = ( span.innerText === 'visibility' ) ? 'visibility_off' : 'visibility'
   }
@@ -106,17 +103,27 @@ export class ConnexionComponent implements OnInit {
   // enterPress( key  )
 
   gestionCookies( load = true ){
+
+    let myKeyStore = localStorage.key(0) || '-'+Math.floor( Math.random() * new Date().getUTCFullYear()); myKeyStore = myKeyStore.split('-')[1];
+    const myKey = "key N°-"+ myKeyStore;
+
     if ( !load ) {
       if ( this.rememberMe ) {
-        localStorage.setItem( 'acces', JSON.stringify( this.formulaireConnexion.value ) )
+
+        localStorage.setItem( myKey, this.encrypt.encrypt( myKey, JSON.stringify( this.formulaireConnexion.value )) )
       }else{
-        localStorage.removeItem( 'acces' )
+        localStorage.removeItem( myKey )
       }
     }else{
-      const acees : any = JSON.parse( JSON.parse( JSON.stringify( localStorage.getItem( 'acces' ) ) ) )
-      if ( acees ) {
-        this.formulaireConnexion.reset( {...acees} );
-        this.rememberMe = true
+      const data = localStorage.getItem( myKey ) || '';
+      if ( data !== '' ) {
+        const acees : any = JSON.parse( JSON.parse( JSON.stringify( this.encrypt.decrypt( myKey, data ) ) ) )
+        if ( acees ) {
+          this.formulaireConnexion.reset( {...acees} );
+          this.rememberMe = true
+        }else{
+          this.formulaireConnexion.reset()
+        }
       }
     }
   }
