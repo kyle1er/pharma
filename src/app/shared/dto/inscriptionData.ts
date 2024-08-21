@@ -11,18 +11,16 @@ export class inscriptionData {
      */
     this._myDataReceived = { ...objet };
 
-    let newobjet : any = {};
-    for (const element of Object.keys(objet)) {
-      newobjet[ element[0].toLocaleUpperCase()+element.slice(1) ] = objet[element]
-    }
-
-
     switch (typeOfObjet) {
       case 'ObjetConstruction':
-        this.ObjetConstruction(newobjet)
+        this.ObjetConstruction(objet)
         break;
 
       default:
+        let newobjet : any = {};
+        for (const element of Object.keys(objet)) {
+          newobjet[ element[0].toLocaleUpperCase()+element.slice(1) ] = objet[element]
+        }
         this.objetSimple(newobjet)
         break;
     }

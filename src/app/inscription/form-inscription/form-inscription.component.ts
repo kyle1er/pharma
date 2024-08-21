@@ -438,7 +438,7 @@ export class FormInscriptionComponent implements OnInit {
                 }
               })();
 
-              console.log("data transform date ===== ", {...data$});
+              // console.log("data transform date ===== ", {...data$});
               this.formulaireInscription.setValue({ ...data$.myData })
               // console.log("formulaireInscription === ", this.formulaireInscription);
 
@@ -454,7 +454,7 @@ export class FormInscriptionComponent implements OnInit {
             type: 'error'
           }
 
-          this.infoNotifShow = false;
+          this.infoNotifShow = true;
         },
       })
     }
@@ -474,6 +474,8 @@ export class FormInscriptionComponent implements OnInit {
 
   inscription() {
     this.isLoading = true;
+
+    console.log("this.formulaireInscription == ", this.formulaireInscription.value);
 
     const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value);
     const Docs_fournis = this.myService.uploadFile(Object.assign([], this.listFile));
@@ -497,7 +499,27 @@ export class FormInscriptionComponent implements OnInit {
     // console.log("data === ", data);
 
 
+    this.myService.execute( 'Inscription', data, false ).subscribe({
+      next : (val)=>{
+        console.log("val == ", val);
 
+        this.infoNotif = {
+          message: "succes",
+          type: 'error'
+        }
+
+        this.infoNotifShow = true;
+      },
+      error : (err)=>{
+        console.log("err == ", err);
+        this.infoNotif = {
+          message: err,
+          type: 'error'
+        }
+
+        this.infoNotifShow = true;
+      },
+    })
     setTimeout(() => {
       this.isLoading = false;
     }, 5000);
@@ -534,7 +556,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
   uploadFile(id: number, key: string, myFile: any) {
-    console.log(myFile);
+    // console.log(myFile);
 
     if (!myFile.target.files[0]) return
 
@@ -558,7 +580,6 @@ export class FormInscriptionComponent implements OnInit {
 
     const timSpan = setInterval(() => {
       const mySpan = document.querySelector('#name_' + id)
-      console.log(mySpan);
       if (mySpan) {
         clearInterval(timSpan)
         mySpan!.textContent = myFile.target.files[0].name
@@ -585,7 +606,18 @@ export class FormInscriptionComponent implements OnInit {
     // console.log("fonction ==== ", fonction);
 
     // this.myService.execute('get_documents', {body : [...this.listOfSelectedValue]}, false).subscribe({
-    this.myService.execute('get_documents', {body : [...this.formulaireInscription.controls['Fonctions'].value]}, false).subscribe({
+    const fonct : Array<any> = this.formulaireInscription.controls['Fonctions'].value || [];
+    if (fonct.length <= 0) {
+      this.infoNotif = {
+        message: "Aucune fonction sélectioné",
+        type: 'warning'
+      }
+
+      this.infoNotifShow = true;
+      return;
+    }
+
+    this.myService.execute('get_documents', {body : fonct}, false).subscribe({
       next: (value: any) => {
 
         // console.log("document === ", value);
