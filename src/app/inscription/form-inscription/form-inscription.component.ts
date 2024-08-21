@@ -149,8 +149,8 @@ export class FormInscriptionComponent implements OnInit {
 
       CnceOrdre: [null, [Validators.required]],
       CnceDeontologie: [null, [Validators.required]],
-      Docs_fournis : [],
-      Fonctions : [],
+      Docs_fournis: [],
+      Fonctions: [],
 
     })
   }
@@ -158,7 +158,7 @@ export class FormInscriptionComponent implements OnInit {
   ngOnInit() {
 
     if (this.enModeTest) {
-      this.formulaireInscription.setValue({
+      this.formulaireInscription.reset({
         "Nom": "YAH",
         "Pnom": "FIRM",
         "datedepot_dos": "2024-06-05",
@@ -166,8 +166,8 @@ export class FormInscriptionComponent implements OnInit {
         "Lieunaiss": "YAKRO",
         "Etatcivil": "Marié",
         "NationaliteID": 8,
-        "Tel": "2250004542345",
-        "Mail": "test@test.com",
+        "Tel": "0707848819",
+        "Mail": "calixte.kouadio@mediasoftci.net",
         "Adrgeo": "Test",
         "DiplomeobtenuLe": "2024-06-03",
         "Lieuobtentiondiplome": "Obtention ",
@@ -371,7 +371,7 @@ export class FormInscriptionComponent implements OnInit {
     } else {
 
       const data = {
-        body : [
+        body: [
           /* {
             "item": "doc",
             "desa": 0
@@ -391,7 +391,7 @@ export class FormInscriptionComponent implements OnInit {
       }
 
 
-      this.myService.execute('getItems',data , false).subscribe({
+      this.myService.execute('getItems', data, false).subscribe({
         next: (value: any) => {
           // console.log("list items === ", value);
           /* ---------------- */
@@ -406,7 +406,7 @@ export class FormInscriptionComponent implements OnInit {
 
           if (this.actionTitre === 'EDIT') {
 
-            this.myService.getUserInfos().subscribe(( val )=>{
+            this.myService.getUserInfos().subscribe((val) => {
               // console.log(val);
               /* --------------------------- */
               /* SUPPRESSION DES CLES NON NECESSAIRE */
@@ -418,10 +418,10 @@ export class FormInscriptionComponent implements OnInit {
               // console.log("data$.myData ==== ", data$.myData);
 
 
-              const lstKeyData = Object.keys( data$.myData );
-              const deleteKey = (()=>{
-                const lstKeyForm = Object.keys( this.formulaireInscription.value );
-                const deleteKey = lodash.difference( lstKeyData, lstKeyForm )
+              const lstKeyData = Object.keys(data$.myData);
+              const deleteKey = (() => {
+                const lstKeyForm = Object.keys(this.formulaireInscription.value);
+                const deleteKey = lodash.difference(lstKeyData, lstKeyForm)
                 // console.log("deleteKey ===== ", deleteKey);
 
                 for (const key of deleteKey) {
@@ -429,7 +429,7 @@ export class FormInscriptionComponent implements OnInit {
                 }
               })();
 
-              const formateDate = (()=>{
+              const formateDate = (() => {
                 // const key = Object.keys( val )
                 for (const iterator of lstKeyData) {
                   if (dateIsValide(data$.myData[iterator])) {
@@ -467,22 +467,19 @@ export class FormInscriptionComponent implements OnInit {
     this.step = eval(this.step + "" + signe + " 1");
 
     /* Chargement des dossiers à fournir */
-    if ( signe === '+' && this.step === 3) {
+    if (signe === '+' && this.step === 3) {
       this.getListDoc();
     }
   }
 
-  inscription() {
+  async inscription() {
     this.isLoading = true;
 
     console.log("this.formulaireInscription == ", this.formulaireInscription.value);
 
     const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value);
-    const Docs_fournis = this.myService.uploadFile(Object.assign([], this.listFile));
-
+    const Docs_fournis = await this.myService.uploadFile(Object.assign([], [...this.listFile]));
     const data = {
-      Docs_fournis,
-      // fonctions: this.listOfSelectedValue,
       ...inscriptionData_.myData,
       formatDate: function () {
         for (const key in this) {
@@ -496,11 +493,10 @@ export class FormInscriptionComponent implements OnInit {
     data.formatDate()
 
     // console.log("sessions :: ", this.formulaireInscription.value);
-    // console.log("data === ", data);
+    data["Docs_fournis"] = Docs_fournis;
 
-
-    this.myService.execute( 'Inscription', data, false ).subscribe({
-      next : (val)=>{
+    this.myService.execute('Inscription', data, false).subscribe({
+      next: (val) => {
         console.log("val == ", val);
 
         this.infoNotif = {
@@ -509,8 +505,9 @@ export class FormInscriptionComponent implements OnInit {
         }
 
         this.infoNotifShow = true;
+        this.isLoading = false;
       },
-      error : (err)=>{
+      error: (err) => {
         console.log("err == ", err);
         this.infoNotif = {
           message: err,
@@ -518,11 +515,12 @@ export class FormInscriptionComponent implements OnInit {
         }
 
         this.infoNotifShow = true;
-      },
+        this.isLoading = false;
+      }
     })
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.isLoading = false;
+    // }, 5000);
 
   }
 
@@ -540,13 +538,6 @@ export class FormInscriptionComponent implements OnInit {
     }
 
     this.formulaireInscription.controls[key].setValue(listSection);
-
-
-    // console.log( "this.listSection ", key, listSection);
-    // console.log("this.formulaireInscription ", this.formulaireInscription.value);
-    // console.log("this.formulaireInscription ", this.formulaireInscription);
-
-
   }
 
 
@@ -556,9 +547,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
   uploadFile(id: number, key: string, myFile: any) {
-    // console.log(myFile);
-
-    if (!myFile.target.files[0]) return
+    if (!myFile.target.files[0]) return;
 
     const [DocName, DocExtention] = (function separeNameExtention(_params: string) {
       const listElt = _params.split('.')
@@ -571,42 +560,37 @@ export class FormInscriptionComponent implements OnInit {
       DocExtention,
       File$: myFile.target.files[0]
     })
-
-    for (const doc of this.documents) {
-      if (doc._i === id) {
-        doc.fileName = myFile.target.files[0].name
-      }
-    }
-
-    const timSpan = setInterval(() => {
-      const mySpan = document.querySelector('#name_' + id)
-      if (mySpan) {
-        clearInterval(timSpan)
-        mySpan!.textContent = myFile.target.files[0].name
-      }
-    }, 10)
-
   }
 
   fileIsUpload(id: number) {
-    // console.log("this.listFile ", this.listFile);
-    // console.log("this.documents ", this.documents);
+    const file = this.listFile.find((elt) => elt.DocID === id)// != undefined
+    if ( file ) {
+      for (const doc of this.documents) {
+        if (doc._i === id) {
+          doc.fileName = file.File$?.name
+        }
+      }
 
-    return this.listFile.find((elt) => elt.DocID === id) != undefined
+    }
+
+    // const timSpan = setInterval(() => {
+    //   const mySpan = document.querySelector('#name_' + id)
+    //   if (mySpan) {
+    //     clearInterval(timSpan)
+    //     mySpan!.textContent = myFile.target.files[0].name
+    //   }
+    // }, 10)
+
+    return file != undefined
   }
 
   deleteFile(id: number) {
-    // console.log("this.listFile ", this.listFile);
     this.listFile = this.listFile.filter((elt) => elt.DocID !== id)
-    // return true
   }
 
 
   getListDoc() {
-    // console.log("fonction ==== ", fonction);
-
-    // this.myService.execute('get_documents', {body : [...this.listOfSelectedValue]}, false).subscribe({
-    const fonct : Array<any> = this.formulaireInscription.controls['Fonctions'].value || [];
+    const fonct: Array<any> = this.formulaireInscription.controls['Fonctions'].value || [];
     if (fonct.length <= 0) {
       this.infoNotif = {
         message: "Aucune fonction sélectioné",
@@ -617,13 +601,9 @@ export class FormInscriptionComponent implements OnInit {
       return;
     }
 
-    this.myService.execute('get_documents', {body : fonct}, false).subscribe({
+    this.myService.execute('get_documents', { body: fonct }, false).subscribe({
       next: (value: any) => {
-
-        // console.log("document === ", value);
         this.documents = value['description'] as documents[];
-        // this.infoNotifShow = false;
-
       },
       error: (err) => {
         this.infoNotif = {
@@ -638,9 +618,8 @@ export class FormInscriptionComponent implements OnInit {
   }
 
 
-  setListFonction( fonction: any[] ){
-    // this.listOfSelectedValue = [...fonction];
-    this.formulaireInscription.controls['Fonctions'].patchValue( [...fonction] )
+  setListFonction(fonction: any[]) {
+    this.formulaireInscription.controls['Fonctions'].patchValue([...fonction])
   }
 
   closeForm() {
@@ -650,7 +629,7 @@ export class FormInscriptionComponent implements OnInit {
 
 
 
-function dateIsValide(dt: string, format : string = 'DD-MM-YYYY') {
+function dateIsValide(dt: string, format: string = 'DD-MM-YYYY') {
   if (typeof dt !== 'string') {
     return false
   }

@@ -335,8 +335,8 @@
                         <input (change)="uploadFile(item._i, item._libelle, $event)" style="display: none;" class="mx-2"
                           type="file" accept="image/jpeg,image/jpg,image/png,application/pdf,image/x-eps" name=""
                           [id]="'fichier_'+ item._i">
-                        <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i)">
-                          <span [id]="'name_'+ item._i">{{item?.fileName}}</span>
+                        <div class="fichierImport d-flex justify-content-between " *ngIf="fileIsUpload( item._i )">
+                          <span>{{item?.fileName}}</span>
                           <button (click)="deleteFile(item._i)">
                             <span class="material-symbols-outlined">
                               delete_forever

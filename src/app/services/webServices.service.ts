@@ -160,33 +160,16 @@ export class WebServicesService {
   }
 
 
-  uploadFile( data: myFile[] ) {
-
-    console.log("data === ", data);
-
-    // const formData : myFile ;
-
-
-    // const formData = new FormData();
-    // console.log(" data === ", data);
-    // for (const dt of data) {
-    //   formData.append(dt.key, dt.file, dt.fileName)
-    // }
-
-    // console.log("formData INFO == ", formData.getAll('INFO'));
-
-
-
-    for (let dt of data) {
+  async uploadFile(data: myFile[]) {
+    for (let index = 0; index < data.length; index++) {
 
       const reader = new FileReader();
-      reader.readAsDataURL( dt.File$ as File );
-      reader.onload = ()=>{
-        dt.DocMemo = reader.result;
+      reader.readAsDataURL(data[index].File$ as File);
+      reader.onload = () => {
+        data[index].DocMemo = reader.result;
       }
     }
-
-    return data
+    return await data
   }
 
   setUserInfos( data$ : any ){

@@ -1,97 +1,8 @@
 .myForm {
   position: relative;
   background-color: rgba(255, 255, 255, 0.905);
-  // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
   width: 100%;
   height: 100vh;
-  // border-radius: 0px;
-  // padding: 4% 20%;
-
-  // &.inscription {
-  //   // width: 100%;
-  //   // height: 100%;
-  //   // border-radius: 0px;
-  //   // padding: 5% 20%;
-  //   // overflow-y: auto;
-
-  //   .action {
-  //     position: initial;
-  //   }
-
-  // }
-
-  // &.modification{
-
-  // }
-
-  // overflow: hidden;
-  // flex-direction: row;
-  // min-height: 95vh;
-  // max-height: 10vh;
-
-  // &>div {
-  //   flex: 1 1 50%;
-  //   overflow: hidden;
-
-  //   img {
-  //     width: 100%;
-  //     height: 100%;
-  //   }
-
-  //   &.formDiv {
-  //     padding: 10px;
-  //     // flex: 1 1 60%;
-  //     justify-content: space-between;
-  //     background-color: transparent;
-
-  //     h2 {
-  //       text-transform: uppercase;
-  //       // text-decoration: underline;
-  //       text-align: center;
-  //     }
-
-  //     input,
-  //     select {
-  //       outline-style: none;
-  //       // border: 1px solid gainsboro;
-  //       border: none;
-  //       border-bottom: 1px solid gray;
-  //       padding: 5px 10px;
-  //       margin-bottom: 10px;
-
-  //       &.prenom {
-  //         flex: 1 1 80%;
-  //         margin-left: 5px;
-  //       }
-  //     }
-
-
-  //     fieldset {
-  //       padding: 0px 5px;
-  //       margin-bottom: 2px 5px;
-
-  //       // border: 1px solid gray;
-  //       &.titreL legend {
-  //         font-size: 15px;
-  //         font-weight: 700;
-
-  //         &+div {
-  //           input.lieu {
-  //             // flex: 1 1 80%;
-  //             margin-left: 5px;
-  //           }
-
-  //           ol {
-  //             width: 100%;
-
-  //             // li {
-  //             //   flex: 0 1 45%;
-  //             // }
-  //           }
-  //         }
-  //       }
-
-
   .infoDoc {
     font-size: 11px;
     font-style: italic;
@@ -111,7 +22,6 @@
         content: "";
         position: absolute;
         top: 50%;
-        /* font-size: 25px; */
         transform: translateY(-50%);
         left: -5px;
         width: 5px;
@@ -160,19 +70,6 @@
     }
   }
 
-  //       label,
-  //       input[type='radio'],
-  //       input[type='checkbox'] {
-  //         cursor: pointer;
-  //       }
-
-  //       // &.etatCivil {
-
-  //       // }
-  //     }
-  //   }
-  // }
-
   .formDiv {
     height: 100%;
     overflow-y: auto;
@@ -188,10 +85,6 @@
       padding: 10px 25px;
 
       .containerForm {
-        // .stepper {
-
-        // }
-
         .formulaireInscrip {
           .bloc {
             border: 1px solid gainsboro;
@@ -236,45 +129,19 @@
               }
             }
 
-            // .infoDoc {
-            //   font-size: 11px;
-            //   font-style: italic;
-            //   color: #a3a3a3;
-            //   background-color: gainsboro;
-            //   border-radius: 5px;
-            // }
-
-            // .fichierImport {
-            //   background-color: #dcdcdc7d;
-            //   padding-left: 10px;
-            //   font-style: italic;
-            //   // width: 90%;
-            //   border-radius: 10px 0 0 10px;
-
-            //   &>span {
-            //     flex: 0 0 100%;
-            //     text-overflow: ellipsis;
-            //     text-wrap: nowrap;
-            //     overflow: hidden;
-            //   }
-
-            //   button {
-            //     border: none;
-            //     color: red;
-            //     // background-color: transparent;
-            //   }
-            // }
-
+            .appreciation{
+              span{
+                display: flex;
+                align-items: center;
+                *{
+                  cursor: pointer;
+                  margin: 0;
+                }
+              }
+            }
           }
         }
       }
-
-      // &.containerForm {
-      //   // min-height: 65vh;
-      //   overflow-y: auto;
-      // }
-
-
     }
   }
 
@@ -304,10 +171,11 @@
   }
 
 
-  // nz-select {
-  //   // min-width: 200px;
-  //   width: 100%;
-  // }
+  nz-select {
+    // min-width: 200px;
+    // width: 100%;
+    margin-bottom: 5px;
+  }
 
 
   /* -------------------- */
@@ -338,300 +206,31 @@
 
 @media screen and (min-width: 769px) {
   .myForm {
-    // position: relative;
-    // background-color: rgba(255, 255, 255, 0.905);
-    // box-shadow: 0px 0px 55px rgba(0, 0, 0, 0.444);
     width: 100%;
     height: 100vh;
-    // border-radius: 0px;
     padding: 3% 20%;
 
-    // &.inscription {
-    //   // width: 100%;
-    //   // height: 100%;
-    //   // border-radius: 0px;
-    //   // padding: 5% 20%;
-    //   // overflow-y: auto;
-
-    //   .action {
-    //     position: initial;
-    //   }
-
-    // }
-
-    // &.modification{
-
-    // }
-
-    // overflow: hidden;
-    // flex-direction: row;
-    // min-height: 95vh;
-    // max-height: 10vh;
-
-    // &>div {
-    //   flex: 1 1 50%;
-    //   overflow: hidden;
-
-    //   img {
-    //     width: 100%;
-    //     height: 100%;
-    //   }
-
-    //   &.formDiv {
-    //     padding: 10px;
-    //     // flex: 1 1 60%;
-    //     justify-content: space-between;
-    //     background-color: transparent;
-
-    //     h2 {
-    //       text-transform: uppercase;
-    //       // text-decoration: underline;
-    //       text-align: center;
-    //     }
-
-    //     input,
-    //     select {
-    //       outline-style: none;
-    //       // border: 1px solid gainsboro;
-    //       border: none;
-    //       border-bottom: 1px solid gray;
-    //       padding: 5px 10px;
-    //       margin-bottom: 10px;
-
-    //       &.prenom {
-    //         flex: 1 1 80%;
-    //         margin-left: 5px;
-    //       }
-    //     }
-
-
-    //     fieldset {
-    //       padding: 0px 5px;
-    //       margin-bottom: 2px 5px;
-
-    //       // border: 1px solid gray;
-    //       &.titreL legend {
-    //         font-size: 15px;
-    //         font-weight: 700;
-
-    //         &+div {
-    //           input.lieu {
-    //             // flex: 1 1 80%;
-    //             margin-left: 5px;
-    //           }
-
-    //           ol {
-    //             width: 100%;
-
-    //             // li {
-    //             //   flex: 0 1 45%;
-    //             // }
-    //           }
-    //         }
-    //       }
-
-
-    //       .infoDoc {
-    //         font-size: 11px;
-    //         font-style: italic;
-    //         color: #a3a3a3;
-    //         background-color: gainsboro;
-    //         border-radius: 5px;
-    //       }
-
-
-    //       ul {
-    //         width: 100%;
-
-    //         label {
-    //           font-weight: 500;
-    //         }
-
-    //         .fichierImport {
-    //           background-color: #dcdcdc7d;
-    //           padding-left: 10px;
-    //           font-style: italic;
-    //           // width: 90%;
-    //           border-radius: 10px 0 0 10px;
-
-    //           &>span {
-    //             flex: 0 0 100%;
-    //             text-overflow: ellipsis;
-    //             text-wrap: nowrap;
-    //             overflow: hidden;
-    //           }
-
-    //           button {
-    //             border: none;
-    //             color: red;
-    //             // background-color: transparent;
-    //           }
-    //         }
-    //       }
-
-    //       label,
-    //       input[type='radio'],
-    //       input[type='checkbox'] {
-    //         cursor: pointer;
-    //       }
-
-    //       // &.etatCivil {
-
-    //       // }
-    //     }
-    //   }
-    // }
-
     .formDiv {
-      // height: 100%;
-      // overflow-y: auto;
-
-      // >h2 {
-      //   text-transform: uppercase;
-      //   text-align: center;
-      // }
 
       &>div.containerFormParent {
-        // margin-top: 15px;
-        // background-color: #fff;
         padding: 10px 25px;
 
         .containerForm {
-          // .stepper {}
-
           .formulaireInscrip {
             .bloc {
-              // border: 1px solid gainsboro;
-              // border-radius: 3px;
-              // margin-top: 15px;
-              // padding-bottom: 10px;
-
               legend {
-                // background-color: var(--vert);
-                // color: white;
-                // font-weight: 500;
-                // padding: 10px 20px;
-                // border-radius: 5px 5px 0 0;
-                // text-transform: uppercase;
                 font-size: 18px;
               }
-
-              // >div:first-of-type {
-              //   // display: flex;
-              //   // padding: 10px 15px;
-              //   // flex-wrap: wrap;
-              //   // justify-content: space-around;
-
-              //   >div {
-              //     margin: 0px 5px;
-              //     flex: 1 1 45%;
-
-              //     label {
-              //       text-transform: uppercase;
-              //       font-family: monospace;
-              //     }
-
-              //   }
-
-              //   >ol {
-              //     width: 100%;
-
-              //     li {
-              //       flex: 1 1 45%;
-              //       margin: 0px 15px;
-              //     }
-              //   }
-              // }
-
-              // .infoDoc {
-              //   font-size: 11px;
-              //   font-style: italic;
-              //   color: #a3a3a3;
-              //   background-color: gainsboro;
-              //   border-radius: 5px;
-              // }
-
-              // .fichierImport {
-              //   background-color: #dcdcdc7d;
-              //   padding-left: 10px;
-              //   font-style: italic;
-              //   // width: 90%;
-              //   border-radius: 10px 0 0 10px;
-
-              //   &>span {
-              //     flex: 0 0 100%;
-              //     text-overflow: ellipsis;
-              //     text-wrap: nowrap;
-              //     overflow: hidden;
-              //   }
-
-              //   button {
-              //     border: none;
-              //     color: red;
-              //     // background-color: transparent;
-              //   }
-              // }
-
             }
           }
         }
-
-        // &.containerForm {
-        //   // min-height: 65vh;
-        //   overflow-y: auto;
-        // }
-
-
       }
     }
-
-
-    /* ------ */
-    // .action {
-    //   padding: 10px 5px 0px;
-    //   position: initial;
-
-    //   // border: 1px solid ;
-    //   button {
-    //     background-color: rgba(0, 0, 0, 0.566);
-    //     color: white;
-    //     font-weight: 700;
-    //     padding: 5px 10px;
-    //     border-radius: 5px;
-    //     border: none;
-
-    //     &:hover {
-    //       background-color: rgba(0, 0, 0, 0.8);
-    //     }
-
-    //     &:disabled {
-    //       cursor: not-allowed;
-    //     }
-    //   }
-    // }
-
 
     nz-select {
       // min-width: 200px;
       width: 100%;
     }
-
-
-    /* -------------------- */
-    /* -------------------- */
-    /* -------------------- */
-
-    // .closeBtn {
-    //   position: absolute;
-    //   // width: 35px;
-    //   // height: 35px;
-    //   border: none;
-    //   border-radius: 50%;
-    //   right: 10px;
-    //   top: 10px;
-    //   // background-color: var(--vert_opacity);
-    //   color: var(--vert);
-    // }
   }
 
   nz-select {
@@ -676,44 +275,8 @@
 
             >ol {
               flex-direction: column;
-              // width: 100%;
-
-              // li {
-              //   flex: 1 1 45%;
-              //   margin: 0px 15px;
-              // }
             }
           }
-
-          // .infoDoc {
-          //   font-size: 11px;
-          //   font-style: italic;
-          //   color: #a3a3a3;
-          //   background-color: gainsboro;
-          //   border-radius: 5px;
-          // }
-
-          // .fichierImport {
-          //   // background-color: #dcdcdc7d;
-          //   // padding-left: 10px;
-          //   // font-style: italic;
-          //   // width: 90%;
-          //   // border-radius: 10px 0 0 10px;
-
-          //   // &>span {
-          //   //   flex: 0 0 100%;
-          //   //   text-overflow: ellipsis;
-          //   //   text-wrap: nowrap;
-          //   //   overflow: hidden;
-          //   // }
-
-          //   // button {
-          //   //   border: none;
-          //   //   color: red;
-          //   //   // background-color: transparent;
-          //   // }
-          // }
-
         }
       }
     }
@@ -740,6 +303,18 @@
 @media screen and (max-width: 425px) {
   .myForm {
     padding: 5% 0%;
+    ul{
+      padding: 0%;
+      li::before{
+          width: 2px;
+          height: 85%;
+        }
+
+      .fichierImport{
+        max-width: 75%;
+        width: inherit;
+      }
+    }
 
     .formDiv {
 
@@ -772,28 +347,6 @@
           .infoDoc {
             font-size: 12px;
           }
-
-          // .fichierImport {
-          //   // background-color: #dcdcdc7d;
-          //   // padding-left: 10px;
-          //   // font-style: italic;
-          //   // width: 90%;
-          //   // border-radius: 10px 0 0 10px;
-
-          //   // &>span {
-          //   //   flex: 0 0 100%;
-          //   //   text-overflow: ellipsis;
-          //   //   text-wrap: nowrap;
-          //   //   overflow: hidden;
-          //   // }
-
-          //   // button {
-          //   //   border: none;
-          //   //   color: red;
-          //   //   // background-color: transparent;
-          //   // }
-          // }
-
         }
       }
 
@@ -838,24 +391,22 @@
   }
 
   nz-select {
-    // width: 265px;
-    width: 330px;
+    // width: 330px;
+    width: 100%;
   }
 
-  @media screen and (min-width:375px) and (max-width:424px) {
-    nz-select {
-      // width: 235px;
-      // width: 280px;
-      width: 268px;
-    }
+  // @media screen and (min-width:375px) and (max-width:424px) {
+  //   nz-select {
+  //     width: 268px;
+  //   }
 
-  }
+  // }
 
   @media screen and (max-width:374px) {
-    nz-select {
-      // width: 210px;
-      width: 215px;
-    }
+    // nz-select {
+    //   // width: 215px;
+    //   width: 100%;
+    // }
 
     .sectionOdre {
       padding-left: 0;
