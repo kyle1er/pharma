@@ -1,3 +1,12 @@
+*{
+  .ng-invalid + label{
+    color: red;
+    text-transform: initial !important;
+    background-color: #ff00000f;
+    padding: 0 5px;
+  }
+}
+
 .myForm {
   position: relative;
   background-color: rgba(255, 255, 255, 0.905);
@@ -56,7 +65,7 @@
       width: 95%;
 
       &>span {
-        flex: 0 0 95%;
+        flex: 0 0 90%;
         text-overflow: ellipsis;
         text-wrap: nowrap;
         overflow: hidden;
@@ -111,6 +120,7 @@
               >div {
                 margin: 0px 5px;
                 flex: 1 1 45%;
+                width: 100%;
 
                 label {
                   text-transform: uppercase;

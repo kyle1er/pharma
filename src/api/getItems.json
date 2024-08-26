@@ -16,6 +16,9 @@
       },
       {
         "item": "type"
+      },
+      {
+        "item": "etatcivil"
       }
     ]
   }

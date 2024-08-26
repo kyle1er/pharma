@@ -53,7 +53,7 @@
                 <div class="d-flex flex-column">
                   <label>SITUATION MATRIMONIALE</label>
                   <div>
-                    <app-checkButton [checkBtnData]="listEtatCivil"
+                    <app-checkButton *ngIf="listEtatCivil.dataList.length" [checkBtnData]="listEtatCivil"
                       [defaultValue]="formulaireInscription.controls['Etatcivil'].value"
                       (value)="formulaireInscription.patchValue({'Etatcivil' : $event})"></app-checkButton>
                   </div>
@@ -89,6 +89,7 @@
                 <div class="d-flex flex-column">
                   <label>mail</label>
                   <input type="email" placeholder="Adresse mail" formControlName="Mail">
+                  <label *ngIf="formulaireInscription.controls['Mail'].dirty && formulaireInscription.controls['Mail'].invalid " >Adresse mail invalide</label>
                 </div>
                 <!-- ---- -->
                 <div class="d-flex flex-column">
@@ -262,7 +263,7 @@
                     <label class="mx-1" [for]="'CnceOrdre'+ appre._libelle" *ngIf="appre.UseOrdre">{{appre._libelle | titlecase}}
                     </label>
                     <input type="radio" [id]="'CnceOrdre'+ appre._libelle" formControlName="CnceOrdre"
-                      [value]="appre._libelle">
+                      [value]="appre._i">
                   </span>
                 </div>
               </div>
@@ -277,7 +278,7 @@
                       titlecase}}
                     </label>
                     <input type="radio" [id]="'CnceDeontologie'+ appre._libelle" formControlName="CnceDeontologie"
-                      [value]="appre._libelle">
+                      [value]="appre._i">
                   </span>
                 </div>
               </div>
@@ -366,8 +367,7 @@
           Suivant
           <span class="material-symbols-outlined">arrow_right</span>
         </button> <!--  -->
-        <button nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 3"
-          [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
+        <button nz-button [nzLoading]="isLoading" class="d-flex align-items-center" *ngIf="step === 3" [disabled]="formulaireInscription.invalid || (listFile.length !== documents.length ) || documents.length === 0"
           (click)="inscription()">
           Enregistrer
           <!-- <span class="material-symbols-outlined">save</span> -->
@@ -379,4 +379,4 @@
 
 
 
-<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifShow" (isFermer)="infoNotifShow = false"></app-notification>
+<app-notification [infoNotif]="infoNotif" *ngIf="infoNotifShow" (isFermer)="infoNotifShow = false; connexion()"></app-notification>

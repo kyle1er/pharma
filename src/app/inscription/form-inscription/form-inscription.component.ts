@@ -58,22 +58,22 @@ export class FormInscriptionComponent implements OnInit {
   listEtatCivil: ICheckBtnData = {
     typeBouton: 'radio',
     dataList: [
-      {
-        libelle: "Célibataire",
-        valeur: "Célibataire",
-      },
-      {
-        libelle: "Marié",
-        valeur: "Marié",
-      },
-      {
-        libelle: "Divorcé",
-        valeur: "Divorcé",
-      },
-      {
-        libelle: "Veuf (ve)",
-        valeur: "Veuf (ve)",
-      },
+      // {
+      //   libelle: "Célibataire",
+      //   valeur: "Célibataire",
+      // },
+      // {
+      //   libelle: "Marié",
+      //   valeur: "Marié",
+      // },
+      // {
+      //   libelle: "Divorcé",
+      //   valeur: "Divorcé",
+      // },
+      // {
+      //   libelle: "Veuf (ve)",
+      //   valeur: "Veuf (ve)",
+      // },
     ]
   };
 
@@ -386,7 +386,11 @@ export class FormInscriptionComponent implements OnInit {
           },
           {
             "item": "fonction"
+          },
+          {
+            "item" : "etatcivil"
           }
+
         ]
       }
 
@@ -401,7 +405,10 @@ export class FormInscriptionComponent implements OnInit {
           // this.documents = value['description']['appreciation'] as Array<appreciation>;
 
           this.section = value['description']['section'] as Array<section>;
-          this.listSectionOrdre.dataList = JSON.parse(JSON.stringify(this.section).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'))
+          this.listSectionOrdre.dataList = [...rename( this.section )];
+
+          let etatCivil = value['description']['etatcivil'] as Array<{"_i": string, "_libelle": string, "_desa": boolean }>;
+          this.listEtatCivil.dataList = [...rename( etatCivil )];
           this.fonction = value['description']['fonction'] as Array<fonction>;
 
           if (this.actionTitre === 'EDIT') {
@@ -446,6 +453,11 @@ export class FormInscriptionComponent implements OnInit {
             })
 
           }
+
+
+          function rename( myArray: Array<any> ): Array<any>{
+            return JSON.parse(JSON.stringify( myArray ).replace(/_i/g, 'valeur').replace(/_libelle/g, 'libelle'));
+          }
         },
         error: (err) => {
           // console.log("error list items === ", err);
@@ -458,9 +470,6 @@ export class FormInscriptionComponent implements OnInit {
         },
       })
     }
-
-    // console.log(this.formulaireInscription);
-
   }
 
   stepNavigation(signe: '+' | '-' = "+") {
@@ -475,7 +484,7 @@ export class FormInscriptionComponent implements OnInit {
   async inscription() {
     this.isLoading = true;
 
-    console.log("this.formulaireInscription == ", this.formulaireInscription.value);
+    // console.log("this.formulaireInscription == ", {...this.formulaireInscription.value});
 
     const inscriptionData_ = new inscriptionData('ObjetConstruction', this.formulaireInscription.value);
     const Docs_fournis = await this.myService.uploadFile(Object.assign([], [...this.listFile]));
@@ -492,36 +501,45 @@ export class FormInscriptionComponent implements OnInit {
 
     data.formatDate()
 
-    // console.log("sessions :: ", this.formulaireInscription.value);
+    // console.log("sessions :: ", {...this.formulaireInscription.value});
     data["Docs_fournis"] = Docs_fournis;
 
     this.myService.execute('Inscription', data, false).subscribe({
-      next: (val) => {
-        console.log("val == ", val);
+      next: (val: any) => {
+        // console.log('val == ', val);
 
-        this.infoNotif = {
-          message: "succes",
-          type: 'error'
+        if (val['status']) {
+          this.infoNotif = {
+            message: val['description'],
+            type: 'success',
+          };
+        } else {
+          this.infoNotif = {
+            message: val['lib_err'],
+            type: 'error',
+          };
         }
 
         this.infoNotifShow = true;
         this.isLoading = false;
       },
       error: (err) => {
-        console.log("err == ", err);
         this.infoNotif = {
           message: err,
-          type: 'error'
-        }
+          type: 'error',
+        };
 
         this.infoNotifShow = true;
         this.isLoading = false;
-      }
-    })
-    // setTimeout(() => {
-    //   this.isLoading = false;
-    // }, 5000);
+      },
+    });
+  }
 
+
+  connexion(){
+    if (this.infoNotif.type === 'success') {
+      this.route.navigateByUrl('/')
+    }
   }
 
   setSectionDocs(key: string, val: string) {
@@ -541,9 +559,9 @@ export class FormInscriptionComponent implements OnInit {
   }
 
 
-  btnCheckRadio(val: any) {
-    this.formulaireInscription.patchValue({ 'Etatcivil': val })
-  }
+  // btnCheckRadio(val: any) {
+  //   this.formulaireInscription.patchValue({ 'Etatcivil': val })
+  // }
 
 
   uploadFile(id: number, key: string, myFile: any) {
